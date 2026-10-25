@@ -13,6 +13,7 @@
   <meta name="apple-mobile-web-app-title" content="SS34Up" />
   <meta name="mobile-web-app-capable" content="yes" />
   <link rel="stylesheet" href="assets/style.css?v=4" />
+  <script src="assets/nav.js?v=1" defer></script>
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c2664d686e3c495b84da351ee712c66a"}'></script>
   <!-- End Cloudflare Web Analytics -->
@@ -26,14 +27,19 @@
         <img src="icon.svg" width="34" height="34" alt="" />
         <span class="brand-text">SS34<span>Up</span></span>
       </a>
-      <nav class="main-nav" aria-label="Navigazione">
+      <nav class="main-nav" id="main-nav" aria-label="Navigazione">
         <a href="./#notti">Prossime notti</a>
         <a href="./#calendario">Calendario</a>
         <a href="./#servizi">Via lago</a>
         <a href="./#avvisi">Avvisi</a>
+        <a href="./#orari">Orari</a>
+        <a href="./#contatti">Contatti</a>
       </nav>
       <div class="header-actions">
         <a class="header-info" href="./">Torna al sito</a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Apri il menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </header>
@@ -94,8 +100,15 @@
             SS34Up verifica che non ripeta un avviso già presente sul sito o nel canale.
           </p>
           <p>
-            Se il contenuto non cambia, il file resta identico: non viene aggiornata la data di
-            generazione e non viene creato un commit inutile.
+            Se il contenuto non cambia, i dati restano identici ma la data di generazione avanza
+            comunque: quello che leggi in home è l’orario dell’ultimo controllo eseguito, non
+            l’ultima volta in cui è cambiato qualcosa.
+          </p>
+          <p>
+            Il codice è pubblico su GitHub con licenza MIT: puoi leggere lo scraper, il workflow di
+            aggiornamento e la cronologia dei dati, e verificare come nasce ogni informazione
+            pubblicata qui. Repository:
+            <a href="https://github.com/Dario-Fe/SS34Up" target="_blank" rel="noopener noreferrer">github.com/Dario-Fe/SS34Up ↗</a>.
           </p>
         </section>
 
@@ -160,7 +173,8 @@
           </p>
           <p>
             Puoi anche forzare un aggiornamento manuale dal repository GitHub. La data
-            dell’ultimo aggiornamento è sempre visibile in home, nella parte alta e nel footer.
+            dell’ultimo aggiornamento è sempre visibile in home, nella parte alta e nel footer:
+            viene aggiornata a ogni controllo, anche quando non ci sono avvisi nuovi.
           </p>
         </section>
 
@@ -234,7 +248,11 @@
         <section id="licenze">
           <h2>Licenze</h2>
           <p>
-            Il codice di SS34Up è distribuito con licenza MIT. I dati e i contenuti giornalistici
+            Il codice di SS34Up è distribuito con
+            <a href="https://github.com/Dario-Fe/SS34Up/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">licenza MIT</a>
+            ed è pubblico su
+            <a href="https://github.com/Dario-Fe/SS34Up" target="_blank" rel="noopener noreferrer">GitHub ↗</a>:
+            puoi leggerlo, riusarlo e segnalare un problema. I dati e i contenuti giornalistici
             restano dei rispettivi titolari: Comune di Verbania, Anas e Navigazione Laghi.
             L’uso del nome delle fonti non implica approvazione o affiliazione.
           </p>
@@ -270,6 +288,7 @@
       </div>
       <nav class="footer-links" aria-label="Link utili">
         <a href="./">Home</a>
+        <a href="https://github.com/Dario-Fe/SS34Up" target="_blank" rel="noopener noreferrer">Codice su GitHub ↗</a>
         <a href="https://www.comune.verbania.it/Novita" target="_blank" rel="noopener noreferrer">Comune di Verbania ↗</a>
         <a href="https://www.navigazionelaghi.it/" target="_blank" rel="noopener noreferrer">Navigazione Laghi ↗</a>
       </nav>

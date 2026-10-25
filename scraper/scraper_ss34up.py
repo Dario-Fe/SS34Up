@@ -643,7 +643,6 @@ def build_data(
     nav_notices: list[dict],
     telegram_notices: list[dict],
     timetables: list[dict],
-    existing: dict,
 ) -> dict:
     notices = dedupe_by_source_url(
         verbania_notices + nav_notices + telegram_notices
@@ -674,17 +673,13 @@ def build_data(
         "timetables": timetables,
     }
     content_hash = stable_hash(core)
-    previous_meta = existing.get("meta", {})
-    generated_at = (
-        previous_meta.get("generated_at")
-        if previous_meta.get("content_hash") == content_hash
-        else datetime.now(ROME).isoformat(timespec="seconds")
-    )
     return {
         "meta": {
             "app": "SS34Up",
             "version": 1,
-            "generated_at": generated_at,
+            # Sempre l'ora del controllo appena eseguito: anche senza novità
+            # il timestamp avanza, così l'app non sembra ferma.
+            "generated_at": datetime.now(ROME).isoformat(timespec="seconds"),
             "timezone": "Europe/Rome",
             "update_schedule": ["10:00", "18:00"],
             "schedule_note": "Aggiornamento automatico alle 10:00 e 18:00, ora italiana.",
@@ -746,7 +741,6 @@ def main() -> int:
         nav_notices,
         telegram_notices,
         timetables,
-        existing,
     )
     for warning in warnings:
         log(f"Avviso: {warning}")

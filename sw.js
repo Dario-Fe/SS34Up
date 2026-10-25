@@ -7,6 +7,7 @@ const SHELL = [
   "./infoutili.html",
   "./assets/style.css?v=4",
   "./assets/app.js?v=4",
+  "./assets/nav.js?v=1",
   "./manifest.json",
   "./icon.svg",
   "./icon-180.png",

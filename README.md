@@ -1,8 +1,44 @@
-# SS34Up
+<p align="center">
+  <img src="icon.svg" width="76" height="76" alt="Icona di SS34Up" />
+</p>
 
-SS34Up è un aggregatore statico e indipendente per consultare le **chiusure notturne della SS34 a Cannobio**, i **servizi sostitutivi via lago**, gli avvisi e gli orari ufficiali del Lago Maggiore.
+<h1 align="center">SS34Up</h1>
 
-La pagina non interroga le fonti dal browser: uno scraper Python produce `data.json`, che viene pubblicato insieme al sito. Ogni informazione mantiene il link alla propria fonte.
+<p align="center">
+  <strong>La Statale 34, senza sorprese.</strong><br />
+  Chiusure notturne della SS34 a Cannobio, servizi sostitutivi via lago, avvisi e orari ufficiali in una pagina sola.
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="Licenza MIT" src="https://img.shields.io/badge/licenza-MIT-3f7af5?style=flat-square" /></a>
+  <a href="scraper/requirements.txt"><img alt="Python 3.11 o successivo" src="https://img.shields.io/badge/python-3.11%2B-3776AB?style=flat-square" /></a>
+  <a href=".github/workflows/aggiorna.yml"><img alt="Aggiornamento automatico alle 10:00 e alle 18:00" src="https://img.shields.io/badge/aggiornamento-10%3A00%20%C2%B7%2018%3A00-07111f?style=flat-square" /></a>
+  <a href="https://github.com/Dario-Fe/SS34Up"><img alt="Codice su GitHub" src="https://img.shields.io/badge/codice-GitHub-181717?style=flat-square" /></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Dario-Fe/SS34Up">Repository</a> ·
+  <a href="LICENSE">Licenza MIT</a> ·
+  <a href="mailto:info@verbanianotizie.it">info@verbanianotizie.it</a>
+</p>
+
+SS34Up è un aggregatore statico e indipendente per consultare le **chiusure notturne della SS34 a Cannobio**, i **servizi sostitutivi via lago**, gli avvisi e gli orari ufficiali del Lago Maggiore. Fa parte della suite di servizi e app gratuite di Verbania Notizie, insieme a [BenzUp](https://benzup.netlify.app/), [JobUp](https://job-up.netlify.app/) e [AlboUp](https://alboup.netlify.app/).
+
+La pagina non interroga le fonti dal browser: uno scraper Python produce `data.json`, che viene pubblicato insieme al sito. Ogni informazione mantiene il link alla propria fonte, e il codice è pubblico su GitHub con licenza MIT.
+
+## Indice
+
+- [Cosa mostra](#cosa-mostra)
+- [Stack](#stack)
+- [Struttura](#struttura)
+- [Sviluppo locale](#sviluppo-locale)
+- [Aggiornamento automatico](#aggiornamento-automatico)
+- [Deploy su Netlify](#deploy-su-netlify)
+- [Contratto dati](#contratto-dati)
+- [Fonti e licenze](#fonti-e-licenze)
+- [Licenza](#licenza)
+- [Privacy](#privacy)
+- [Avvertenza](#avvertenza)
 
 ## Cosa mostra
 
@@ -12,9 +48,10 @@ La pagina non interroga le fonti dal browser: uno scraper Python produce `data.j
 - Avvisi pertinenti, con ricerca, filtri e scheda di dettaglio.
 - PDF degli orari di Navigazione Laghi.
 - Fonti, licenze e limiti nella pagina `infoutili.html`.
+- Contatti con l’email della redazione e riferimenti alla suite Verbania Notizie.
 - Guida per installare SS34Up come app su Android, iPhone/iPad e desktop.
 
-Regole principali:
+### Regole principali
 
 - La chiusura notturna è **21:00–05:00**.
 - È esclusa la notte tra sabato e domenica.
@@ -26,12 +63,14 @@ Regole principali:
 
 ## Stack
 
-- HTML, CSS e JavaScript senza framework e senza dipendenze runtime.
-- Python 3 con `requests` e `beautifulsoup4`.
-- `data.json` come unico contratto dati tra scraper e frontend.
-- Service worker per cache e consultazione offline di base.
-- GitHub Actions per l’aggiornamento automatico.
-- Netlify per il deploy statico.
+| Livello | Scelta |
+| --- | --- |
+| Frontend | HTML, CSS e JavaScript senza framework e senza dipendenze runtime |
+| Dati | `data.json`, unico contratto tra scraper e frontend |
+| Scraper | Python 3 con `requests` e `beautifulsoup4` |
+| Offline | Service worker per cache e consultazione offline di base |
+| Automazione | GitHub Actions, due aggiornamenti al giorno |
+| Hosting | Netlify, sito statico |
 
 ## Struttura
 
@@ -49,6 +88,7 @@ Regole principali:
 ├── netlify.toml
 ├── robots.txt
 ├── data.json
+├── LICENSE
 ├── assets/
 │   ├── app.js
 │   └── style.css
@@ -59,6 +99,7 @@ Regole principali:
 │   └── requirements.txt
 ├── tests/
 │   ├── fixtures/
+│   ├── test_build_data.py
 │   └── test_parsers.py
 ├── requirements-dev.txt
 ├── pytest.ini
@@ -96,7 +137,7 @@ Aprire `http://localhost:8000`. Non usare `file://`: il browser blocca il carica
 
 Su macOS/Linux i comandi equivalenti usano `.venv/bin/python`.
 
-## Aggiornamento
+## Aggiornamento automatico
 
 Lo scraper:
 
@@ -105,23 +146,27 @@ Lo scraper:
 3. usa Telegram come fonte supplementare, scartando i post già presenti sul sito o già pubblicati dal canale;
 4. estrae calendario, servizi, validità, orari e PDF;
 5. valida che tutti gli URL appartengano ai domini ufficiali o al canale Telegram del Comune;
-6. confronta l’hash del contenuto con `data.json` e conserva `generated_at` se nulla è cambiato;
+6. confronta l’hash del contenuto con `data.json` e aggiorna sempre `generated_at` con l’ora del controllo appena eseguito, anche quando i contenuti non cambiano;
 7. scrive il file in modo deterministico.
 
 Se il sito del Comune non risponde, lo scraper conserva l’ultimo calendario e gli avvisi Comune già salvati, poi aggiorna comunque Telegram e Navigazione Laghi. Un post Telegram viene accettato solo se è pertinente alla SS34 e non ripete per URL o contenuto un avviso già presente; la deduplica testuale considera gli avvisi dello stesso periodo.
 
-Il workflow `.github/workflows/aggiorna.yml` viene eseguito ogni giorno alle **08:00, 09:00, 16:00 e 17:00 UTC**. Un controllo in `Europe/Rome` prosegue solo alle 10:00 o alle 18:00 italiane, gestendo automaticamente ora legale e ora solare. Il workflow:
+Il workflow `.github/workflows/aggiorna.yml` gestisce le esecuzioni:
 
-- esegue lo scraper;
-- esegue i test;
-- crea un commit solo se `data.json` è cambiato;
-- non crea commit quando il contenuto è identico.
+| Fase | Comportamento |
+| --- | --- |
+| Cron GitHub | 08:00, 09:00, 16:00 e 17:00 UTC |
+| Controllo del fuso | prosegue solo alle 10:00 o alle 18:00 di `Europe/Rome`, con ora legale e ora solare |
+| Contenuti nuovi | `data.json` cambia, nasce un commit e Netlify ridistribuisce il sito |
+| Nessuna novità | `generated_at` avanza comunque: il commit contiene solo l’orario, così l’app mostra sempre l’ultimo controllo |
+
+Il `content_hash` resta invariato quando i contenuti sono identici: serve a distinguere una novità reale da un semplice controllo.
 
 Per forzare un aggiornamento usare **Actions → Aggiorna dati SS34Up → Run workflow**. Il job richiede `contents: write`, già dichiarato nel workflow.
 
 ## Deploy su Netlify
 
-1. Pubblicare il repository su GitHub.
+1. Il repository pubblico è [Dario-Fe/SS34Up](https://github.com/Dario-Fe/SS34Up).
 2. Creare un nuovo sito Netlify collegato al repository.
 3. Non impostare un build command.
 4. Impostare la directory di pubblicazione su `.` (la root del repository).
@@ -155,22 +200,25 @@ Status del calendario: `APERTA`, `CHIUSA`, `CHIUSURA_NOTTURNA`, `NON_DEFINITA`.
 
 ## Fonti e licenze
 
-Fonti principali:
+| Fonte | Cosa fornisce | Licenza dichiarata |
+| --- | --- | --- |
+| [Comune di Verbania — Novità](https://www.comune.verbania.it/Novita) | avvisi e comunicati | CC BY 4.0, salvo contenuti di terzi |
+| [Calendario SS34 del Comune](https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne) | aperture e chiusure notturne | CC BY 4.0 |
+| [Canale Telegram “Verbania M’Informa”](https://t.me/s/VerbaniaMinforma) | avvisi supplementari | non dichiarata |
+| [Navigazione Laghi](https://www.navigazionelaghi.it/) | avvisi, orari e PDF | non dichiarata |
 
-- [Comune di Verbania — Novità](https://www.comune.verbania.it/Novita)
-- [Calendario SS34 del Comune di Verbania](https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne)
-- [Canale Telegram “Verbania M’Informa”](https://t.me/s/VerbaniaMinforma)
-- [Navigazione Laghi](https://www.navigazionelaghi.it/)
-- [Orari Lago Maggiore](https://www.navigazionelaghi.it/biglietti-e-orari-lago-maggiore/)
+I contenuti del canale Telegram e di Navigazione Laghi sono consultati dalla fonte ufficiale, che non dichiara una licenza aperta esplicita: SS34Up riporta estratti e fatti con attribuzione e link, senza ridistribuire i PDF. L’uso dei nomi delle fonti non implica approvazione o affiliazione.
 
-I contenuti del Comune di Verbania sono pubblicati con licenza **CC BY 4.0**, salvo diversa indicazione per contenuti di terzi. I contenuti del canale Telegram sono consultati dalla fonte ufficiale, che non dichiara una licenza aperta esplicita. I contenuti di Navigazione Laghi sono consultati dalla fonte ufficiale, che non dichiara una licenza aperta esplicita: SS34Up riporta estratti e fatti con attribuzione e link, senza ridistribuire i PDF.
+## Licenza
 
-Il codice del progetto è distribuito con licenza MIT. I dati e i contenuti restano dei rispettivi titolari. L’uso dei nomi delle fonti non implica approvazione o affiliazione.
+Il codice è distribuito con **licenza MIT**: il testo completo è in [`LICENSE`](LICENSE), il repository pubblico è [github.com/Dario-Fe/SS34Up](https://github.com/Dario-Fe/SS34Up). La licenza riguarda solo il codice: dati, avvisi, orari, immagini e contenuti di Comune di Verbania, Anas e Navigazione Laghi restano dei rispettivi titolari.
 
 ## Privacy
 
-Nessun analytics, cookie di profilazione, font remoto o widget di terze parti. La cache del service worker resta sul dispositivo dell’utente. L’hosting può registrare log tecnici secondo le proprie condizioni.
+Nessun cookie di profilazione, nessun font remoto, nessun widget pubblicitario o social. Le uniche richieste esterne sono il beacon di **Cloudflare Web Analytics** — senza cookie e senza identificatori persistenti, solo statistiche aggregate — e i link alle fonti ufficiali. La cache del service worker resta sul dispositivo dell’utente. L’hosting può registrare log tecnici secondo le proprie condizioni.
 
 ## Avvertenza
 
-SS34Up non è un servizio ufficiale e non sostituisce Comune di Verbania, Anas, Navigazione Laghi o forze dell’ordine. Non usare il sito per emergenze. Verificare sempre la fonte prima di partire.
+> **SS34Up non è un servizio ufficiale** e non sostituisce Comune di Verbania, Anas, Navigazione Laghi o forze dell’ordine. Non usare il sito per emergenze. Verificare sempre la fonte prima di partire.
+
+Per segnalazioni sui dati: [info@verbanianotizie.it](mailto:info@verbanianotizie.it). Per problemi tecnici: [issue su GitHub](https://github.com/Dario-Fe/SS34Up/issues).
