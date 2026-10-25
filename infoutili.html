@@ -13,6 +13,9 @@
   <meta name="apple-mobile-web-app-title" content="SS34Up" />
   <meta name="mobile-web-app-capable" content="yes" />
   <link rel="stylesheet" href="assets/style.css?v=4" />
+  <!-- Cloudflare Web Analytics -->
+  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c2664d686e3c495b84da351ee712c66a"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 </head>
 <body class="info-page">
   <a class="skip-link" href="#main">Vai ai contenuti</a>
@@ -41,8 +44,8 @@
       <h1>Dati chiari, fonti alla mano.</h1>
       <p>
         SS34Up è un progetto indipendente che mette insieme le informazioni ufficiali sulla SS34,
-        sui servizi via lago e sulla viabilità collegata. Nessuna pubblicità, nessun tracciamento,
-        nessun dato inventato.
+        sui servizi via lago e sulla viabilità collegata. Nessuna pubblicità, nessun cookie,
+        nessuna profilazione, nessun dato inventato.
       </p>
     </section>
 
@@ -62,8 +65,8 @@
               <span>Non serve registrarsi e non ci sono cookie di profilazione.</span>
             </div>
             <div class="info-card">
-              <strong>Nessuna mappa tracciante</strong>
-              <span>La pagina non carica widget o script di terze parti.</span>
+              <strong>Statistiche anonime</strong>
+              <span>L’unico script esterno è il beacon di Cloudflare Web Analytics: niente cookie, niente profilazione.</span>
             </div>
             <div class="info-card">
               <strong>Fonti collegate</strong>
@@ -209,10 +212,18 @@
         <section id="privacy">
           <h2>Privacy</h2>
           <p>
-            La pagina è statica e non include analytics, pixel pubblicitari, font remoti o
-            commenti. Non raccoglie dati personali e non usa cookie. La cache del service worker
-            resta sul tuo dispositivo e serve solo a rendere il sito più veloce o disponibile
-            offline.
+            La pagina è statica e non include pixel pubblicitari, font remoti, commenti o
+            profilazione. Non raccoglie dati personali e non usa cookie. La cache del service
+            worker resta sul tuo dispositivo e serve solo a rendere il sito più veloce o
+            disponibile offline.
+          </p>
+          <p>
+            Per capire quante persone usano SS34Up e quali sezioni interessano di più, la pagina
+            carica il beacon di <strong>Cloudflare Web Analytics</strong>: uno script di terze
+            parti che non imposta cookie, non crea identificatori persistenti e non segue la
+            navigazione su altri siti. I dati raccolti sono aggregati — visite, pagine viste,
+            provenienza, tipo di dispositivo e paese — e non permettono di risalire alla singola
+            persona. Cloudflare li tratta secondo la propria informativa privacy.
           </p>
           <p>
             L’hosting può registrare log tecnici secondo le proprie condizioni. I link esterni
@@ -264,7 +275,7 @@
       </nav>
     </div>
     <div class="footer-bottom">
-      <span>Progetto indipendente, senza pubblicità e senza tracciamento.</span>
+      <span>Progetto indipendente, senza pubblicità e senza profilazione.</span>
       <span>Dati © Comune di Verbania · canale Telegram · Navigazione Laghi. Codice MIT.</span>
     </div>
   </footer>
