@@ -67,6 +67,12 @@ async function networkFirst(request) {
     if (cached) return cached;
 
     if (request.mode === "navigate") {
+      const pathname = new URL(request.url).pathname;
+      if (pathname === "/infoutili" || pathname === "/infoutili/") {
+        const info = await cache.match("./infoutili.html");
+        if (info) return info;
+      }
+
       const fallback = await cache.match("./index.html");
       if (fallback) return fallback;
     }
