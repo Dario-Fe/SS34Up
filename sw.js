@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_NAME = "ss34up-v1";
+const CACHE_NAME = "ss34up-v2";
 const SHELL = [
   "./",
   "./index.html",
@@ -39,6 +39,7 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
+  if (url.pathname.startsWith("/.netlify/")) return;
 
   if (
     url.pathname.endsWith("/data.json") ||

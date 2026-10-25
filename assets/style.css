@@ -219,6 +219,10 @@ h3 {
   background: rgba(255, 255, 255, 0.055);
 }
 
+.main-nav .nav-info {
+  display: none;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -1946,6 +1950,14 @@ h3 {
 
   .info-page .header-info {
     display: inline-flex;
+  }
+
+  .main-nav .nav-info {
+    display: block;
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-soft);
+    border-radius: 0 0 9px 9px;
   }
 
   .hero,
