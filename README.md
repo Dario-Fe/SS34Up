@@ -100,12 +100,15 @@ Su macOS/Linux i comandi equivalenti usano `.venv/bin/python`.
 
 Lo scraper:
 
-1. legge le pagine pubbliche del Comune di Verbania e l’API avvisi di Navigazione Laghi;
+1. legge le pagine pubbliche del Comune di Verbania, il preview pubblico del canale Telegram ufficiale “Verbania M’Informa” e l’API avvisi di Navigazione Laghi;
 2. filtra i contenuti non pertinenti e limita gli avvisi agli ultimi 120 giorni;
-3. estrae calendario, servizi, validità, orari e PDF;
-4. valida che tutti gli URL appartengano ai domini ufficiali;
-5. confronta l’hash del contenuto con `data.json` e conserva `generated_at` se nulla è cambiato;
-6. scrive il file in modo deterministico.
+3. usa Telegram come fonte supplementare, scartando i post già presenti sul sito o già pubblicati dal canale;
+4. estrae calendario, servizi, validità, orari e PDF;
+5. valida che tutti gli URL appartengano ai domini ufficiali o al canale Telegram del Comune;
+6. confronta l’hash del contenuto con `data.json` e conserva `generated_at` se nulla è cambiato;
+7. scrive il file in modo deterministico.
+
+Se il sito del Comune non risponde, lo scraper conserva l’ultimo calendario e gli avvisi Comune già salvati, poi aggiorna comunque Telegram e Navigazione Laghi. Un post Telegram viene accettato solo se è pertinente alla SS34 e non ripete per URL o contenuto un avviso già presente; la deduplica testuale considera gli avvisi dello stesso periodo.
 
 Il workflow `.github/workflows/aggiorna.yml` viene eseguito ogni giorno alle **08:00, 09:00, 16:00 e 17:00 UTC**. Un controllo in `Europe/Rome` prosegue solo alle 10:00 o alle 18:00 italiane, gestendo automaticamente ora legale e ora solare. Il workflow:
 
@@ -138,10 +141,10 @@ calendar
   source_url, published_at, updated_at, updated_label, counts,
   closure_window, months, days, content_hash
 notices[]
-  id, source, source_id, source_url, source_api, category, tags, title,
-  summary, body_text, published_at, updated_at, valid_from, valid_until,
-  closure_window, services, is_calendar, calendar_updated_label,
-  content_hash, first_seen_at
+  id, source, source_id, source_url, source_api, telegram_url (solo Telegram),
+  category, tags, title, summary, body_text, published_at, updated_at,
+  valid_from, valid_until, closure_window, services, is_calendar,
+  calendar_updated_label, content_hash, first_seen_at
 services[]
   id, kind, from, to, route, times, notes, source_urls
 timetables[]
@@ -156,10 +159,11 @@ Fonti principali:
 
 - [Comune di Verbania — Novità](https://www.comune.verbania.it/Novita)
 - [Calendario SS34 del Comune di Verbania](https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne)
+- [Canale Telegram “Verbania M’Informa”](https://t.me/s/VerbaniaMinforma)
 - [Navigazione Laghi](https://www.navigazionelaghi.it/)
 - [Orari Lago Maggiore](https://www.navigazionelaghi.it/biglietti-e-orari-lago-maggiore/)
 
-I contenuti del Comune di Verbania sono pubblicati con licenza **CC BY 4.0**, salvo diversa indicazione per contenuti di terzi. I contenuti di Navigazione Laghi sono consultati dalla fonte ufficiale, che non dichiara una licenza aperta esplicita: SS34Up riporta estratti e fatti con attribuzione e link, senza ridistribuire i PDF.
+I contenuti del Comune di Verbania sono pubblicati con licenza **CC BY 4.0**, salvo diversa indicazione per contenuti di terzi. I contenuti del canale Telegram sono consultati dalla fonte ufficiale, che non dichiara una licenza aperta esplicita. I contenuti di Navigazione Laghi sono consultati dalla fonte ufficiale, che non dichiara una licenza aperta esplicita: SS34Up riporta estratti e fatti con attribuzione e link, senza ridistribuire i PDF.
 
 Il codice del progetto è distribuito con licenza MIT. I dati e i contenuti restano dei rispettivi titolari. L’uso dei nomi delle fonti non implica approvazione o affiliazione.
 

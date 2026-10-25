@@ -19,6 +19,13 @@
         "license": "CC BY 4.0 salvo contenuti di terzi"
       },
       {
+        "id": "comune-verbania-telegram",
+        "name": "Comune di Verbania · Canale Telegram",
+        "url": "https://t.me/s/VerbaniaMinforma",
+        "kind": "istituzionale",
+        "license": "Contenuti del canale ufficiale, consultati dalla fonte; nessuna licenza aperta esplicita"
+      },
+      {
         "id": "navigazione-laghi",
         "name": "Navigazione Laghi",
         "url": "https://www.navigazionelaghi.it/",

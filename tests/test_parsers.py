@@ -6,17 +6,21 @@ from pathlib import Path
 import pytest
 
 from parsers import (
+    canonical_notice_url,
     extract_closure_window,
     extract_services,
     extract_times,
     extract_validity,
     is_navlaghi_relevant,
     is_official_url,
+    is_probably_duplicate_text,
     is_verbania_relevant,
     merge_services,
     normalize_time,
     parse_calendar,
     parse_navlaghi_avvisi,
+    parse_telegram_channel,
+    parse_telegram_datetime,
     parse_timetables,
     parse_verbania_article,
     parse_verbania_listing,
@@ -220,9 +224,157 @@ def test_time_and_service_helpers():
 def test_official_url_validation():
     assert is_official_url("https://www.comune.verbania.it/Novita/Avvisi")
     assert is_official_url("https://www.navigazionelaghi.it/avvisi/test/")
+    assert is_official_url("https://t.me/VerbaniaMinforma")
+    assert is_official_url("https://t.me/s/VerbaniaMinforma")
+    assert is_official_url("https://t.me/VerbaniaMinforma/2891")
+    assert is_official_url("https://t.me/s/VerbaniaMinforma/2891")
+    assert not is_official_url("http://t.me/VerbaniaMinforma")
+    assert not is_official_url("https://t.me/OtherChannel/2891")
     assert not is_official_url("http://www.comune.verbania.it/Novita/Avvisi")
     assert not is_official_url("https://example.com/fake")
     assert not is_official_url("https://comune.verbania.it.evil.example/fake")
+
+
+def test_telegram_channel_parser():
+    posts = parse_telegram_channel(
+        (FIXTURES / "telegram_verbania.html").read_bytes(),
+        "https://t.me/s/VerbaniaMinforma",
+    )
+    assert len(posts) == 4
+    by_id = {post["id"]: post for post in posts}
+    assert by_id["2891"]["published_at"] == "2026-10-09T16:54:15+02:00"
+    assert by_id["2891"]["title"].startswith("SS 34 chiusa di notte")
+    assert "galleria paramassi" in by_id["2891"]["body_text"]
+    assert by_id["2891"]["links"] == []
+    assert by_id["2902"]["links"] == [
+        "https://www.comune.verbania.it/Novita/Comunicati/"
+        "S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne"
+    ]
+    assert by_id["2902"]["url"] == "https://t.me/VerbaniaMinforma/2902"
+    assert parse_telegram_datetime("2026-10-09T16:54:15+02:00") == (
+        "2026-10-09T16:54:15+02:00"
+    )
+    assert parse_telegram_datetime("not-a-date") is None
+
+
+def test_telegram_text_dedupe_and_canonical_url():
+    known = [
+        "SS 34 chiusa di notte a Cannobio: dal 21 ottobre battelli sostitutivi "
+        "tra Cannero e Cannobio. Durante i lavori per la galleria paramassi, "
+        "Navigazione Lago Maggiore attiva quattro corse notturne tra Cannero e Cannobio."
+    ]
+    candidate = (
+        "SS 34 chiusa di notte a Cannobio: dal 21 ottobre battelli sostitutivi "
+        "tra Cannero e Cannobio. Durante i lavori per la galleria paramassi, "
+        "Navigazione Lago Maggiore attiva quattro corse notturne tra Cannero e Cannobio."
+    )
+    assert is_probably_duplicate_text(candidate, known)
+    assert not is_probably_duplicate_text(
+        "SS 34 chiusa per lavori urgenti a Cannobio il 27 ottobre.", known
+    )
+    assert canonical_notice_url(
+        "https://www.comune.verbania.it/Novita/Avvisi/test/?utm_source=x#top"
+    ) == "https://comune.verbania.it/Novita/Avvisi/test"
+
+
+def test_collect_telegram_skips_duplicates(monkeypatch):
+    import scraper_ss34up as scraper
+
+    html = (FIXTURES / "telegram_verbania.html").read_bytes()
+    monkeypatch.setattr(scraper, "fetch", lambda session, url: html)
+    known = [
+        {
+            "source": "Comune di Verbania",
+            "source_url": CALENDAR_URL,
+            "title": "S.S. 34 a Cannobio, da domani la chiusura notturna",
+            "summary": "",
+            "body_text": "Calendario delle aperture e delle chiusure notturne.",
+            "published_at": "2026-10-20T17:00:00+02:00",
+        },
+        {
+            "source": "Comune di Verbania",
+            "source_url": (
+                "https://www.comune.verbania.it/Novita/Avvisi/"
+                "SS34-chiusa-di-notte-battelli-sostitutivi"
+            ),
+            "title": "SS 34 chiusa di notte a Cannobio",
+            "summary": "",
+            "body_text": (
+                "SS 34 chiusa di notte a Cannobio: dal 21 ottobre battelli "
+                "sostitutivi tra Cannero e Cannobio. Durante i lavori per la "
+                "galleria paramassi, Navigazione Lago Maggiore attiva quattro "
+                "corse notturne tra Cannero e Cannobio."
+            ),
+            "published_at": "2026-10-09T16:00:00+02:00",
+        },
+    ]
+    existing = {
+        "notices": [
+            {
+                "id": "telegram-2800",
+                "source": scraper.TELEGRAM_SOURCE,
+                "source_url": "https://t.me/VerbaniaMinforma/2800",
+                "title": "SS 34: senso unico alternato a Cannero",
+                "summary": "",
+                "body_text": "SS 34: senso unico alternato a Cannero il 2 ottobre per lavori.",
+                "published_at": "2026-10-01T10:00:00+02:00",
+            },
+            {
+                "id": "telegram-2500",
+                "source": scraper.TELEGRAM_SOURCE,
+                "source_url": "https://t.me/VerbaniaMinforma/2500",
+                "title": "SS 34: vecchio avviso",
+                "summary": "",
+                "body_text": "SS 34: vecchio avviso non più recente.",
+                "published_at": "2025-10-01T10:00:00+02:00",
+            },
+        ]
+    }
+    notices, warnings = scraper.collect_telegram(None, existing, known)
+    assert warnings == []
+    assert [notice["id"] for notice in notices] == [
+        "telegram-2910",
+        "telegram-2800",
+    ]
+    notice = notices[0]
+    assert notice["source"] == scraper.TELEGRAM_SOURCE
+    assert notice["source_url"] == "https://t.me/VerbaniaMinforma/2910"
+    assert notice["telegram_url"] == "https://t.me/VerbaniaMinforma/2910"
+    assert "Canale Telegram" in notice["tags"]
+    assert is_official_url(notice["source_url"])
+    assert notice["first_seen_at"]
+
+
+def test_merge_missing_notices_keeps_previous_comune_fallback():
+    import scraper_ss34up as scraper
+
+    current = [
+        {
+            "source": "Comune di Verbania",
+            "source_url": "https://www.comune.verbania.it/Novita/Avvisi/current",
+        }
+    ]
+    existing = {
+        "notices": [
+            {
+                "source": "Comune di Verbania",
+                "source_url": "https://www.comune.verbania.it/Novita/Avvisi/current",
+            },
+            {
+                "source": "Comune di Verbania",
+                "source_url": "https://www.comune.verbania.it/Novita/Avvisi/old",
+            },
+            {
+                "source": "Navigazione Laghi",
+                "source_url": "https://www.navigazionelaghi.it/avvisi/old",
+            },
+        ]
+    }
+    merged = scraper.merge_missing_notices(existing, current, "Comune di Verbania")
+    assert [notice["source_url"] for notice in merged] == [
+        "https://www.comune.verbania.it/Novita/Avvisi/current",
+        "https://www.comune.verbania.it/Novita/Avvisi/old",
+    ]
 
 
 def test_notice_body_contains_no_navigation_chrome():

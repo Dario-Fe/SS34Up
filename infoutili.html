@@ -12,7 +12,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="SS34Up" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <link rel="stylesheet" href="assets/style.css?v=3" />
+  <link rel="stylesheet" href="assets/style.css?v=4" />
 </head>
 <body class="info-page">
   <a class="skip-link" href="#main">Vai ai contenuti</a>
@@ -79,11 +79,17 @@
         <section id="come-funziona">
           <h2>Come funziona</h2>
           <ol>
-            <li>Lo scraper legge le pagine pubbliche del Comune di Verbania e di Navigazione Laghi.</li>
+            <li>Lo scraper legge le pagine pubbliche del Comune di Verbania, il canale Telegram ufficiale “Verbania M’Informa” e l’API avvisi di Navigazione Laghi.</li>
             <li>I contenuti vengono filtrati: restano solo avvisi pertinenti a SS34, Cannobio, Cannero, navigazione e viabilità collegata.</li>
             <li>Date, orari, servizi e link vengono normalizzati in un formato unico e salvati in <code>data.json</code>.</li>
             <li>La pagina mostra i dati e collega ogni scheda alla fonte ufficiale.</li>
           </ol>
+          <p>
+            Il canale Telegram viene usato come fonte supplementare: se il sito del Comune non
+            risponde, lo scraper mantiene l’ultimo calendario e gli ultimi avvisi disponibili e
+            continua a controllare Telegram e Navigazione Laghi. Prima di pubblicare un post,
+            SS34Up verifica che non ripeta un avviso già presente sul sito o nel canale.
+          </p>
           <p>
             Se il contenuto non cambia, il file resta identico: non viene aggiornata la data di
             generazione e non viene creato un commit inutile.
@@ -166,6 +172,9 @@
               <a href="https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne" target="_blank" rel="noopener noreferrer">Calendario SS34 — aperture e chiusure notturne ↗</a>
             </li>
             <li>
+              <a href="https://t.me/s/VerbaniaMinforma" target="_blank" rel="noopener noreferrer">Comune di Verbania — canale Telegram “Verbania M’Informa” ↗</a>
+            </li>
+            <li>
               <a href="https://www.navigazionelaghi.it/" target="_blank" rel="noopener noreferrer">Navigazione Laghi — sito ufficiale ↗</a>
             </li>
             <li>
@@ -174,9 +183,11 @@
           </ul>
           <p>
             I contenuti del Comune di Verbania sono pubblicati con licenza CC BY 4.0, salvo
-            diversa indicazione per contenuti di terzi. I contenuti di Navigazione Laghi sono
-            consultati dalla fonte ufficiale, che non dichiara una licenza aperta esplicita:
-            SS34Up ne riporta solo estratti e fatti, con attribuzione e link.
+            diversa indicazione per contenuti di terzi. I contenuti del canale Telegram sono
+            consultati dalla fonte ufficiale, che non dichiara una licenza aperta esplicita.
+            I contenuti di Navigazione Laghi sono consultati dalla fonte ufficiale, che non
+            dichiara una licenza aperta esplicita: SS34Up ne riporta solo estratti e fatti,
+            con attribuzione e link.
           </p>
         </section>
 
@@ -254,7 +265,7 @@
     </div>
     <div class="footer-bottom">
       <span>Progetto indipendente, senza pubblicità e senza tracciamento.</span>
-      <span>Dati © Comune di Verbania · Navigazione Laghi. Codice MIT.</span>
+      <span>Dati © Comune di Verbania · canale Telegram · Navigazione Laghi. Codice MIT.</span>
     </div>
   </footer>
 </body>

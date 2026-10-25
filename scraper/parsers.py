@@ -3,9 +3,10 @@ from __future__ import annotations
 import hashlib
 import json
 import re
-from datetime import date, datetime
+import unicodedata
+from datetime import date, datetime, timezone
 from html import unescape
-from urllib.parse import urljoin, urlparse
+from urllib.parse import unquote, urljoin, urlparse
 from zoneinfo import ZoneInfo
 
 from bs4 import BeautifulSoup
@@ -17,6 +18,8 @@ OFFICIAL_DOMAINS = {
     "navigazionelaghi.it",
     "www.navigazionelaghi.it",
 }
+TELEGRAM_CHANNEL = "VerbaniaMinforma"
+TELEGRAM_CHANNEL_URL = f"https://t.me/s/{TELEGRAM_CHANNEL}"
 
 MONTHS = {
     "gennaio": 1,
@@ -129,6 +132,13 @@ def is_official_url(url: str) -> bool:
     if parsed.scheme != "https" or not parsed.hostname:
         return False
     host = parsed.hostname.lower()
+    if host in {"t.me", "www.t.me"}:
+        path = parsed.path.rstrip("/")
+        return (
+            path in {f"/{TELEGRAM_CHANNEL}", f"/s/{TELEGRAM_CHANNEL}"}
+            or path.startswith(f"/{TELEGRAM_CHANNEL}/")
+            or path.startswith(f"/s/{TELEGRAM_CHANNEL}/")
+        )
     return any(host == domain or host.endswith("." + domain) for domain in OFFICIAL_DOMAINS)
 
 
@@ -140,6 +150,151 @@ def assert_official_url(url: str) -> str:
 
 def absolute_url(base: str, href: str) -> str:
     return urljoin(base, href)
+
+
+def canonical_notice_url(url: str) -> str:
+    parsed = urlparse(url)
+    host = (parsed.hostname or "").lower()
+    if host.startswith("www."):
+        host = host[4:]
+    path = re.sub(r"/{2,}", "/", unquote(parsed.path or "/")).rstrip("/") or "/"
+    return f"https://{host}{path}" if host else clean_text(url)
+
+
+DEDUPE_STOPWORDS = set(
+    """
+    a ad al alla alle allo anche che chi con da dal dalla dalle dallo dei del
+    della delle dello di e ed gli ha hanno i il in io la le lo ma mi nei nel
+    nella nelle nello non o per piu se si sono su sul sulla sulle tra un una
+    uno come cosa cui dopo dove durante fra loro molto noi pero qua quale
+    quali quando quanto sei sempre senza sia solo sopra sotto sta stato stata
+    stati tutte tutti tutto vi voi the and for with from that this comune
+    citta canale telegram informa verbania
+    """.split()
+)
+
+
+def dedupe_tokens(text: str) -> frozenset[str]:
+    value = re.sub(r"https?://\S+", " ", text or "")
+    value = re.sub(r"\bS\.?\s*S\.?\s*\.?\s*34\b", " ss34 ", value, flags=re.IGNORECASE)
+    value = re.sub(
+        r"\bstatale\s*(?:n\.?\s*)?34\b", " ss34 ", value, flags=re.IGNORECASE
+    )
+    value = re.sub(r"\bSS\s*\.?\s*34\b", " ss34 ", value, flags=re.IGNORECASE)
+    value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode()
+    words = re.findall(r"[a-z0-9]+", value.lower())
+    return frozenset(
+        word
+        for word in words
+        if (len(word) >= 3 or word.isdigit()) and word not in DEDUPE_STOPWORDS
+    )
+
+
+def is_probably_duplicate_text(
+    candidate_text: str,
+    known_texts: list[str],
+    threshold: float = 0.65,
+) -> bool:
+    candidate = dedupe_tokens(candidate_text)
+    if not candidate:
+        return False
+    for known in known_texts:
+        known_tokens = dedupe_tokens(known)
+        if not known_tokens:
+            continue
+        union = candidate | known_tokens
+        if len(candidate & known_tokens) / len(union) >= threshold:
+            return True
+    return False
+
+
+def notice_text(notice: dict) -> str:
+    return clean_text(
+        " ".join(
+            [
+                notice.get("title") or "",
+                notice.get("summary") or "",
+                notice.get("body_text") or "",
+            ]
+        )
+    )
+
+
+def parse_telegram_datetime(value: str) -> str | None:
+    text = clean_text(value)
+    if not text:
+        return None
+    try:
+        parsed = datetime.fromisoformat(text)
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(ROME).isoformat()
+
+
+def telegram_title(lines: list[str]) -> str:
+    for raw in lines:
+        line = re.sub(r"^[^\wÀ-ÿ]+", "", raw).strip()
+        if not re.search(r"[A-Za-zÀ-ÿ0-9]", line):
+            continue
+        if len(line) > 120:
+            line = line[:120].rsplit(" ", 1)[0].rstrip(" ,;:-")
+            return f"{line}…"
+        return line
+    return ""
+
+
+def parse_telegram_channel(html: str | bytes, source_url: str) -> list[dict]:
+    assert_official_url(source_url)
+    soup = parse_html(html)
+    posts: list[dict] = []
+    for node in soup.select(".tgme_widget_message_wrap"):
+        link = node.select_one(".tgme_widget_message_date[href]")
+        time_node = node.select_one("time[datetime]")
+        text_node = node.select_one(".tgme_widget_message_text")
+        if not link or not time_node or not text_node:
+            continue
+        post_url = absolute_url(source_url, link.get("href", ""))
+        if not is_official_url(post_url):
+            continue
+        published_at = parse_telegram_datetime(time_node.get("datetime", ""))
+        if not published_at:
+            continue
+        lines = [
+            clean_text(line)
+            for line in text_node.get_text("\n", strip=True).splitlines()
+            if clean_text(line)
+        ]
+        lines = [line for line in lines if re.search(r"[A-Za-zÀ-ÿ0-9]", line)]
+        if not lines:
+            continue
+        body_text = clean_text(" ".join(lines))
+        title = telegram_title(lines)
+        if not title or not body_text:
+            continue
+        summary = body_text[:320].rstrip()
+        if len(body_text) > 320:
+            summary += "…"
+        links: list[str] = []
+        for anchor in text_node.find_all("a", href=True):
+            href = anchor.get("href", "")
+            candidate = href if href.startswith("http") else urljoin("https://t.me", href)
+            if is_official_url(candidate) and candidate not in links:
+                links.append(candidate)
+        post_id = urlparse(post_url).path.rstrip("/").rsplit("/", 1)[-1]
+        posts.append(
+            {
+                "id": post_id,
+                "url": post_url,
+                "published_at": published_at,
+                "title": title,
+                "summary": summary,
+                "body_text": body_text,
+                "links": links,
+            }
+        )
+    return posts
 
 
 def parse_italian_date(value: str, default_year: int | None = None) -> str | None:

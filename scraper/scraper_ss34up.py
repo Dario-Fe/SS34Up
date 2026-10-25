@@ -15,15 +15,21 @@ from bs4 import BeautifulSoup
 try:
     from scraper.parsers import (
         ROME,
+        TELEGRAM_CHANNEL_URL,
         assert_official_url,
+        canonical_notice_url,
         extract_closure_window,
         extract_services,
         extract_validity,
         is_calendar_url,
+        is_official_url,
+        is_probably_duplicate_text,
         is_verbania_relevant,
         merge_services,
+        notice_text,
         parse_calendar,
         parse_navlaghi_avvisi,
+        parse_telegram_channel,
         parse_timetables,
         parse_verbania_article,
         parse_verbania_listing,
@@ -33,15 +39,21 @@ try:
 except ImportError:
     from parsers import (
         ROME,
+        TELEGRAM_CHANNEL_URL,
         assert_official_url,
+        canonical_notice_url,
         extract_closure_window,
         extract_services,
         extract_validity,
         is_calendar_url,
+        is_official_url,
+        is_probably_duplicate_text,
         is_verbania_relevant,
         merge_services,
+        notice_text,
         parse_calendar,
         parse_navlaghi_avvisi,
+        parse_telegram_channel,
         parse_timetables,
         parse_verbania_article,
         parse_verbania_listing,
@@ -86,6 +98,10 @@ NAV_API = "https://www.navigazionelaghi.it/wp-json/wp/v2/avvisi?lago=9&per_page=
 NAV_TIMETABLES_URL = (
     "https://www.navigazionelaghi.it/biglietti-e-orari-lago-maggiore/"
 )
+TELEGRAM_URL = TELEGRAM_CHANNEL_URL
+TELEGRAM_SOURCE = "Comune di Verbania · Telegram"
+TELEGRAM_DEDUPE_DAYS = 3
+DEDUPE_THRESHOLD = 0.65
 
 SOURCE_CATALOG = [
     {
@@ -94,6 +110,16 @@ SOURCE_CATALOG = [
         "url": "https://www.comune.verbania.it/Novita",
         "kind": "istituzionale",
         "license": "CC BY 4.0 salvo contenuti di terzi",
+    },
+    {
+        "id": "comune-verbania-telegram",
+        "name": "Comune di Verbania · Canale Telegram",
+        "url": TELEGRAM_URL,
+        "kind": "istituzionale",
+        "license": (
+            "Contenuti del canale ufficiale, consultati dalla fonte; "
+            "nessuna licenza aperta esplicita"
+        ),
     },
     {
         "id": "navigazione-laghi",
@@ -357,6 +383,232 @@ def collect_verbania(
     return calendar_data, notices, warnings
 
 
+def notice_date(value: str | None) -> date | None:
+    if not value:
+        return None
+    try:
+        return date.fromisoformat(value[:10])
+    except ValueError:
+        return None
+
+
+def is_recent_notice(notice: dict) -> bool:
+    published = notice_date(notice.get("published_at"))
+    if not published:
+        return True
+    cutoff = datetime.now(ROME).date() - timedelta(days=NOTICE_LOOKBACK_DAYS)
+    return published >= cutoff
+
+
+def dedupe_context(known_notices: list[dict], candidate_date: date | None) -> list[str]:
+    texts: list[str] = []
+    for notice in known_notices:
+        published = notice_date(notice.get("published_at"))
+        if (
+            candidate_date
+            and published
+            and abs((candidate_date - published).days) > TELEGRAM_DEDUPE_DAYS
+        ):
+            continue
+        texts.append(notice_text(notice))
+    return texts
+
+
+def build_telegram_notice(
+    post: dict,
+    source_url: str,
+    first_seen_at: str,
+) -> dict:
+    source_url = assert_official_url(source_url)
+    title = post["title"]
+    body = post["body_text"]
+    services = extract_services(body, source_url)
+    closure = extract_closure_window(body)
+    reference_year = datetime.fromisoformat(post["published_at"]).year
+    valid_from, valid_until = extract_validity(body, reference_year)
+    if not valid_from:
+        valid_from = infer_valid_from(body, post.get("published_at"))
+    if closure:
+        valid_from = closure.get("valid_from") or valid_from
+        valid_until = closure.get("valid_until") or valid_until
+    category = "navigazione" if services else "viabilita"
+    tags = list(dict.fromkeys([*notice_tags(title, body), "Canale Telegram"]))
+    return {
+        "id": f"telegram-{post['id']}",
+        "source": TELEGRAM_SOURCE,
+        "source_id": post["id"],
+        "source_url": source_url,
+        "source_api": TELEGRAM_URL,
+        "telegram_url": post["url"],
+        "category": category,
+        "tags": tags,
+        "title": title,
+        "summary": post["summary"],
+        "body_text": body,
+        "published_at": post["published_at"],
+        "updated_at": post["published_at"],
+        "valid_from": valid_from,
+        "valid_until": valid_until,
+        "closure_window": closure,
+        "services": services,
+        "is_calendar": False,
+        "calendar_updated_label": "",
+        "content_hash": stable_hash(
+            {
+                "title": title,
+                "body": body,
+                "published_at": post["published_at"],
+                "source_url": source_url,
+            }
+        ),
+        "first_seen_at": first_seen_at,
+    }
+
+
+def merge_missing_notices(
+    existing: dict,
+    current: list[dict],
+    source: str,
+) -> list[dict]:
+    seen = {
+        canonical_notice_url(notice["source_url"])
+        for notice in current
+        if notice.get("source_url")
+    }
+    merged = list(current)
+    for notice in existing.get("notices", []):
+        if notice.get("source") != source:
+            continue
+        source_url = notice.get("source_url")
+        key = canonical_notice_url(source_url) if source_url else ""
+        if key and key in seen:
+            continue
+        merged.append(notice)
+        if key:
+            seen.add(key)
+    return merged
+
+
+def filter_existing_telegram(
+    previous: list[dict],
+    known_notices: list[dict],
+) -> list[dict]:
+    known = list(known_notices)
+    known_urls = {
+        canonical_notice_url(notice["source_url"])
+        for notice in known
+        if notice.get("source_url")
+    }
+    accepted: list[dict] = []
+    for notice in sorted(
+        (item for item in previous if is_recent_notice(item)),
+        key=lambda item: item.get("published_at") or "",
+        reverse=True,
+    ):
+        source_url = notice.get("source_url")
+        key = canonical_notice_url(source_url) if source_url else ""
+        if key and key in known_urls:
+            continue
+        candidate_date = notice_date(notice.get("published_at"))
+        if is_probably_duplicate_text(
+            notice_text(notice),
+            dedupe_context(known, candidate_date),
+            DEDUPE_THRESHOLD,
+        ):
+            continue
+        accepted.append(notice)
+        known.append(notice)
+        if key:
+            known_urls.add(key)
+    return accepted
+
+
+def collect_telegram(
+    session: requests.Session,
+    existing: dict,
+    known_notices: list[dict],
+) -> tuple[list[dict], list[str]]:
+    warnings: list[str] = []
+    seen = first_seen_map(existing)
+    now = datetime.now(ROME).isoformat(timespec="seconds")
+    try:
+        payload = fetch(session, TELEGRAM_URL)
+        posts = parse_telegram_channel(payload, TELEGRAM_URL)
+    except Exception as error:
+        warnings.append(f"Canale Telegram non disponibile: {error}")
+        previous = [
+            notice
+            for notice in existing.get("notices", [])
+            if notice.get("source") == TELEGRAM_SOURCE
+        ]
+        return filter_existing_telegram(previous, known_notices), warnings
+
+    known = list(known_notices)
+    known_urls = {
+        canonical_notice_url(notice["source_url"])
+        for notice in known
+        if notice.get("source_url")
+    }
+    notices: list[dict] = []
+    for post in sorted(
+        posts,
+        key=lambda item: item.get("published_at") or "",
+        reverse=True,
+    ):
+        title = post["title"]
+        body = post["body_text"]
+        if not is_verbania_relevant(title, body):
+            continue
+        official_links = [
+            link for link in post["links"] if is_official_url(link)
+        ]
+        if any(
+            canonical_notice_url(link) in known_urls
+            for link in official_links
+        ):
+            continue
+        candidate_date = notice_date(post.get("published_at"))
+        if is_probably_duplicate_text(
+            f"{title} {body}",
+            dedupe_context(known, candidate_date),
+            DEDUPE_THRESHOLD,
+        ):
+            continue
+        source_url = official_links[0] if official_links else post["url"]
+        notice = build_telegram_notice(
+            post,
+            source_url,
+            seen.get(f"telegram-{post['id']}", now),
+        )
+        notices.append(notice)
+        known.append(notice)
+        known_urls.add(canonical_notice_url(source_url))
+
+    current_ids = {notice["id"] for notice in notices}
+    previous = [
+        notice
+        for notice in existing.get("notices", [])
+        if notice.get("source") == TELEGRAM_SOURCE
+        and notice.get("id") not in current_ids
+    ]
+    preserved = filter_existing_telegram(previous, known)
+    return notices + preserved, warnings
+
+
+def dedupe_by_source_url(notices: list[dict]) -> list[dict]:
+    seen: set[str] = set()
+    result: list[dict] = []
+    for notice in notices:
+        source_url = notice.get("source_url")
+        key = canonical_notice_url(source_url) if source_url else ""
+        if key and key in seen:
+            continue
+        result.append(notice)
+        if key:
+            seen.add(key)
+    return result
+
+
 def collect_navlaghi(
     session: requests.Session,
     existing: dict,
@@ -389,10 +641,13 @@ def build_data(
     calendar: dict,
     verbania_notices: list[dict],
     nav_notices: list[dict],
+    telegram_notices: list[dict],
     timetables: list[dict],
     existing: dict,
 ) -> dict:
-    notices = verbania_notices + nav_notices
+    notices = dedupe_by_source_url(
+        verbania_notices + nav_notices + telegram_notices
+    )
     notices.sort(
         key=lambda item: (
             item.get("published_at") or "",
@@ -467,14 +722,29 @@ def main() -> int:
         session, existing
     )
     if not calendar:
-        log("Errore: calendario SS34 non disponibile, data.json non aggiornato.")
-        return 1
+        previous_calendar = existing.get("calendar")
+        if not previous_calendar:
+            log("Errore: calendario SS34 non disponibile e nessun dato salvato.")
+            return 1
+        calendar = previous_calendar
+        warnings_verbania.append(
+            "Calendario SS34 non disponibile: uso l'ultimo calendario salvato."
+        )
+        verbania_notices = merge_missing_notices(
+            existing, verbania_notices, "Comune di Verbania"
+        )
     nav_notices, timetables, warnings_nav = collect_navlaghi(session, existing)
-    warnings = warnings_verbania + warnings_nav
+    telegram_notices, warnings_telegram = collect_telegram(
+        session,
+        existing,
+        verbania_notices + nav_notices,
+    )
+    warnings = warnings_verbania + warnings_nav + warnings_telegram
     data = build_data(
         calendar,
         verbania_notices,
         nav_notices,
+        telegram_notices,
         timetables,
         existing,
     )
