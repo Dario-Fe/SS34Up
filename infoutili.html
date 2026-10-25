@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Info e trasparenza · SS34Up</title>
+  <meta name="description" content="Come funziona SS34Up, come installarla come app, quali fonti usa, ogni quanto si aggiorna, limiti dei dati, privacy e licenze." />
+  <meta name="theme-color" content="#07111f" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon-180.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="SS34Up" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="info-page">
+  <a class="skip-link" href="#main">Vai ai contenuti</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="./" aria-label="SS34Up, home">
+        <img src="icon.svg" width="34" height="34" alt="" />
+        <span class="brand-text">SS34<span>Up</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Navigazione">
+        <a href="./#notti">Prossime notti</a>
+        <a href="./#calendario">Calendario</a>
+        <a href="./#servizi">Via lago</a>
+        <a href="./#avvisi">Avvisi</a>
+      </nav>
+      <div class="header-actions">
+        <a class="header-info" href="./">Torna al sito</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <p class="kicker">Info e trasparenza</p>
+      <h1>Dati chiari, fonti alla mano.</h1>
+      <p>
+        SS34Up è un progetto indipendente che mette insieme le informazioni ufficiali sulla SS34,
+        sui servizi via lago e sulla viabilità collegata. Nessuna pubblicità, nessun tracciamento,
+        nessun dato inventato.
+      </p>
+    </section>
+
+    <div class="info-layout">
+      <div class="info-content">
+        <section id="cos-e">
+          <h2>Cos’è SS34Up</h2>
+          <p>
+            SS34Up è un aggregatore statico: legge le fonti ufficiali, produce un file
+            <code>data.json</code> e lo mostra in una pagina consultabile anche da telefono.
+            Ogni informazione rimanda alla fonte originale, così puoi sempre verificare il dato
+            e leggere l’avviso completo.
+          </p>
+          <div class="info-cards">
+            <div class="info-card">
+              <strong>Nessun account</strong>
+              <span>Non serve registrarsi e non ci sono cookie di profilazione.</span>
+            </div>
+            <div class="info-card">
+              <strong>Nessuna mappa tracciante</strong>
+              <span>La pagina non carica widget o script di terze parti.</span>
+            </div>
+            <div class="info-card">
+              <strong>Fonti collegate</strong>
+              <span>Ogni card, orario e giorno del calendario ha un link alla fonte.</span>
+            </div>
+            <div class="info-card">
+              <strong>Aggiornamento automatico</strong>
+              <span>Due volte al giorno, alle 10:00 e alle 18:00 ora italiana.</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="come-funziona">
+          <h2>Come funziona</h2>
+          <ol>
+            <li>Lo scraper legge le pagine pubbliche del Comune di Verbania e di Navigazione Laghi.</li>
+            <li>I contenuti vengono filtrati: restano solo avvisi pertinenti a SS34, Cannobio, Cannero, navigazione e viabilità collegata.</li>
+            <li>Date, orari, servizi e link vengono normalizzati in un formato unico e salvati in <code>data.json</code>.</li>
+            <li>La pagina mostra i dati e collega ogni scheda alla fonte ufficiale.</li>
+          </ol>
+          <p>
+            Se il contenuto non cambia, il file resta identico: non viene aggiornata la data di
+            generazione e non viene creato un commit inutile.
+          </p>
+        </section>
+
+        <section id="installa">
+          <h2>Installa SS34Up</h2>
+          <p>
+            SS34Up è una web app installabile: si aggiunge alla schermata Home del telefono o al
+            desktop del computer direttamente dal browser, senza passare da App Store o Play Store.
+            Si apre a tutto schermo con la sua icona e continua a usare gli stessi dati del sito.
+          </p>
+          <div class="info-cards">
+            <div class="info-card">
+              <strong>Android · Chrome</strong>
+              <span>Menu ⋮ → Installa app, oppure Aggiungi alla schermata Home.</span>
+            </div>
+            <div class="info-card">
+              <strong>iPhone e iPad · Safari</strong>
+              <span>Condividi → Aggiungi alla schermata Home → Aggiungi.</span>
+            </div>
+            <div class="info-card">
+              <strong>Computer · Chrome o Edge</strong>
+              <span>Icona Installa nella barra degli indirizzi, oppure Menu → Installa SS34Up.</span>
+            </div>
+            <div class="info-card">
+              <strong>Dopo l’installazione</strong>
+              <span>Si apre come un’app. Gli aggiornamenti arrivano dal sito, senza aggiornamenti manuali.</span>
+            </div>
+          </div>
+          <div class="info-note">
+            <strong>Su iPhone e iPad serve Safari.</strong> Gli altri browser iOS non mostrano
+            l’opzione “Aggiungi alla schermata Home”. Dopo la prima visita, le pagine e i dati già
+            caricati restano disponibili offline; per gli ultimi aggiornamenti serve la connessione.
+          </div>
+        </section>
+
+        <section id="calendario">
+          <h2>Calendario e notti</h2>
+          <p>
+            La notte indicata è quella tra il giorno selezionato e il successivo. Per esempio,
+            la notte di domenica 25 ottobre va dalle 21:00 di domenica alle 05:00 di lunedì.
+            Dopo mezzanotte fa fede il giorno precedente.
+          </p>
+          <p>
+            La chiusura notturna della SS34 è prevista dalle 21:00 alle 05:00 ed esclude la notte
+            tra sabato e domenica. Il calendario operativo può cambiare in base al meteo e
+            all’avanzamento dei lavori: per questo la pagina rimanda sempre alla fonte aggiornata.
+          </p>
+          <div class="info-note">
+            <strong>Attenzione alle date.</strong> L’ordinanza ANAS riporta l’avvio delle chiusure
+            dal 12 ottobre 2026, mentre il calendario operativo del Comune parte dal 21 ottobre.
+            SS34Up mostra entrambi i dati e non li fonde: per la notte corrente prevale il
+            calendario operativo aggiornato.
+          </div>
+        </section>
+
+        <section id="aggiornamento">
+          <h2>Aggiornamento</h2>
+          <p>
+            Lo scraper viene eseguito automaticamente due volte al giorno, alle 10:00 e alle
+            18:00 nel fuso orario <strong>Europe/Rome</strong>. L’orario è protetto contro
+            l’ora legale: il workflow parte in UTC e verifica l’ora italiana prima di aggiornare.
+          </p>
+          <p>
+            Puoi anche forzare un aggiornamento manuale dal repository GitHub. La data
+            dell’ultimo aggiornamento è sempre visibile in home, nella parte alta e nel footer.
+          </p>
+        </section>
+
+        <section id="fonti">
+          <h2>Fonti</h2>
+          <p>Le fonti principali del progetto sono:</p>
+          <ul>
+            <li>
+              <a href="https://www.comune.verbania.it/Novita" target="_blank" rel="noopener noreferrer">Comune di Verbania — Novità, avvisi e comunicati ↗</a>
+            </li>
+            <li>
+              <a href="https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne" target="_blank" rel="noopener noreferrer">Calendario SS34 — aperture e chiusure notturne ↗</a>
+            </li>
+            <li>
+              <a href="https://www.navigazionelaghi.it/" target="_blank" rel="noopener noreferrer">Navigazione Laghi — sito ufficiale ↗</a>
+            </li>
+            <li>
+              <a href="https://www.navigazionelaghi.it/biglietti-e-orari-lago-maggiore/" target="_blank" rel="noopener noreferrer">Navigazione Laghi — orari Lago Maggiore ↗</a>
+            </li>
+          </ul>
+          <p>
+            I contenuti del Comune di Verbania sono pubblicati con licenza CC BY 4.0, salvo
+            diversa indicazione per contenuti di terzi. I contenuti di Navigazione Laghi sono
+            consultati dalla fonte ufficiale, che non dichiara una licenza aperta esplicita:
+            SS34Up ne riporta solo estratti e fatti, con attribuzione e link.
+          </p>
+        </section>
+
+        <section id="limiti">
+          <h2>Limiti e avvertenze</h2>
+          <p>
+            SS34Up non è un servizio ufficiale e non sostituisce i canali di Comune, Anas,
+            Navigazione Laghi o forze dell’ordine. I dati possono essere incompleti, aggiornati
+            con ritardo o non coprire una modifica dell’ultimo minuto.
+          </p>
+          <ul>
+            <li>Verifica sempre la fonte prima di partire, soprattutto in caso di maltempo.</li>
+            <li>Non usare la pagina per emergenze o per richieste di soccorso.</li>
+            <li>Gli orari dei mezzi possono cambiare: fanno fede i PDF e gli avvisi del gestore.</li>
+            <li>Le date del calendario sono quelle pubblicate dal Comune, non una previsione.</li>
+          </ul>
+        </section>
+
+        <section id="privacy">
+          <h2>Privacy</h2>
+          <p>
+            La pagina è statica e non include analytics, pixel pubblicitari, font remoti o
+            commenti. Non raccoglie dati personali e non usa cookie. La cache del service worker
+            resta sul tuo dispositivo e serve solo a rendere il sito più veloce o disponibile
+            offline.
+          </p>
+          <p>
+            L’hosting può registrare log tecnici secondo le proprie condizioni. I link esterni
+            portano ai siti delle fonti, che applicano le rispettive informative privacy.
+          </p>
+        </section>
+
+        <section id="licenze">
+          <h2>Licenze</h2>
+          <p>
+            Il codice di SS34Up è distribuito con licenza MIT. I dati e i contenuti giornalistici
+            restano dei rispettivi titolari: Comune di Verbania, Anas e Navigazione Laghi.
+            L’uso del nome delle fonti non implica approvazione o affiliazione.
+          </p>
+        </section>
+      </div>
+
+      <aside class="info-toc" aria-label="Indice della pagina">
+        <strong>In questa pagina</strong>
+        <a href="#cos-e">Cos’è SS34Up</a>
+        <a href="#come-funziona">Come funziona</a>
+        <a href="#installa">Installa l’app</a>
+        <a href="#calendario">Calendario e notti</a>
+        <a href="#aggiornamento">Aggiornamento</a>
+        <a href="#fonti">Fonti</a>
+        <a href="#limiti">Limiti</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#licenze">Licenze</a>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="icon.svg" width="30" height="30" alt="" />
+        <div>
+          <strong>SS34Up</strong>
+          <span>La SS34 di notte, in chiaro.</span>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span>Aggiornamenti automatici alle 10:00 e 18:00, ora italiana.</span>
+      </div>
+      <nav class="footer-links" aria-label="Link utili">
+        <a href="./">Home</a>
+        <a href="https://www.comune.verbania.it/Novita" target="_blank" rel="noopener noreferrer">Comune di Verbania ↗</a>
+        <a href="https://www.navigazionelaghi.it/" target="_blank" rel="noopener noreferrer">Navigazione Laghi ↗</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>Progetto indipendente, senza pubblicità e senza tracciamento.</span>
+      <span>Dati © Comune di Verbania · Navigazione Laghi. Codice MIT.</span>
+    </div>
+  </footer>
+</body>
+</html>

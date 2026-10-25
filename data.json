@@ -1,0 +1,1690 @@
+{
+  "meta": {
+    "app": "SS34Up",
+    "version": 1,
+    "generated_at": "2026-10-25T10:46:56+01:00",
+    "timezone": "Europe/Rome",
+    "update_schedule": [
+      "10:00",
+      "18:00"
+    ],
+    "schedule_note": "Aggiornamento automatico alle 10:00 e 18:00, ora italiana.",
+    "content_hash": "81653e209a8997e05725ec3d8a66873b866832681eb7b8284aa5263f3977445b",
+    "sources": [
+      {
+        "id": "comune-verbania",
+        "name": "Comune di Verbania",
+        "url": "https://www.comune.verbania.it/Novita",
+        "kind": "istituzionale",
+        "license": "CC BY 4.0 salvo contenuti di terzi"
+      },
+      {
+        "id": "navigazione-laghi",
+        "name": "Navigazione Laghi",
+        "url": "https://www.navigazionelaghi.it/",
+        "kind": "istituzionale",
+        "license": "Contenuti consultati dalla fonte ufficiale, senza licenza aperta esplicita"
+      }
+    ]
+  },
+  "calendar": {
+    "source_url": "https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne",
+    "published_at": "2026-10-20T00:00:00+02:00",
+    "updated_at": "2026-10-21T09:05:27+02:00",
+    "updated_label": "21/10/2026 09:05",
+    "months": [
+      {
+        "key": "2026-10",
+        "label": "Ottobre 2026",
+        "year": 2026,
+        "month": 10,
+        "weekdays": [
+          "lun",
+          "mar",
+          "mer",
+          "gio",
+          "ven",
+          "sab",
+          "dom"
+        ],
+        "weeks": [
+          [
+            {
+              "date": "2026-10-12",
+              "day": 12,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-10-13",
+              "day": 13,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-10-14",
+              "day": 14,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-10-15",
+              "day": 15,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-10-16",
+              "day": 16,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-10-17",
+              "day": 17,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-10-18",
+              "day": 18,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            }
+          ],
+          [
+            {
+              "date": "2026-10-19",
+              "day": 19,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-10-20",
+              "day": 20,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-10-21",
+              "day": 21,
+              "status": "CHIUSURA_NOTTURNA",
+              "status_label": "Chiusura notturna",
+              "night_closed": true
+            },
+            {
+              "date": "2026-10-22",
+              "day": 22,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-10-23",
+              "day": 23,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-10-24",
+              "day": 24,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-10-25",
+              "day": 25,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            }
+          ],
+          [
+            {
+              "date": "2026-10-26",
+              "day": 26,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-10-27",
+              "day": 27,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-10-28",
+              "day": 28,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-10-29",
+              "day": 29,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-10-30",
+              "day": 30,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-10-31",
+              "day": 31,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            null
+          ]
+        ]
+      },
+      {
+        "key": "2026-11",
+        "label": "Novembre 2026",
+        "year": 2026,
+        "month": 11,
+        "weekdays": [
+          "lun",
+          "mar",
+          "mer",
+          "gio",
+          "ven",
+          "sab",
+          "dom"
+        ],
+        "weeks": [
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+              "date": "2026-11-01",
+              "day": 1,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            }
+          ],
+          [
+            {
+              "date": "2026-11-02",
+              "day": 2,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-03",
+              "day": 3,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-04",
+              "day": 4,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-05",
+              "day": 5,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-06",
+              "day": 6,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-07",
+              "day": 7,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-11-08",
+              "day": 8,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            }
+          ],
+          [
+            {
+              "date": "2026-11-09",
+              "day": 9,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-10",
+              "day": 10,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-11",
+              "day": 11,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-12",
+              "day": 12,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-13",
+              "day": 13,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-14",
+              "day": 14,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-11-15",
+              "day": 15,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            }
+          ],
+          [
+            {
+              "date": "2026-11-16",
+              "day": 16,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-17",
+              "day": 17,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-18",
+              "day": 18,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-19",
+              "day": 19,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-20",
+              "day": 20,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-21",
+              "day": 21,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-11-22",
+              "day": 22,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            }
+          ],
+          [
+            {
+              "date": "2026-11-23",
+              "day": 23,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-24",
+              "day": 24,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-25",
+              "day": 25,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-26",
+              "day": 26,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-27",
+              "day": 27,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-11-28",
+              "day": 28,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-11-29",
+              "day": 29,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            }
+          ],
+          [
+            {
+              "date": "2026-11-30",
+              "day": 30,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      {
+        "key": "2026-12",
+        "label": "Dicembre 2026",
+        "year": 2026,
+        "month": 12,
+        "weekdays": [
+          "lun",
+          "mar",
+          "mer",
+          "gio",
+          "ven",
+          "sab",
+          "dom"
+        ],
+        "weeks": [
+          [
+            null,
+            {
+              "date": "2026-12-01",
+              "day": 1,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-02",
+              "day": 2,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-03",
+              "day": 3,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-04",
+              "day": 4,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-05",
+              "day": 5,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-12-06",
+              "day": 6,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            }
+          ],
+          [
+            {
+              "date": "2026-12-07",
+              "day": 7,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-08",
+              "day": 8,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-12-09",
+              "day": 9,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-10",
+              "day": 10,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-11",
+              "day": 11,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-12",
+              "day": 12,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-12-13",
+              "day": 13,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            }
+          ],
+          [
+            {
+              "date": "2026-12-14",
+              "day": 14,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-15",
+              "day": 15,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-16",
+              "day": 16,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-17",
+              "day": 17,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-18",
+              "day": 18,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-19",
+              "day": 19,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-12-20",
+              "day": 20,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            }
+          ],
+          [
+            {
+              "date": "2026-12-21",
+              "day": 21,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-22",
+              "day": 22,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-23",
+              "day": 23,
+              "status": "CHIUSA",
+              "status_label": "Chiusa",
+              "night_closed": true
+            },
+            {
+              "date": "2026-12-24",
+              "day": 24,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-12-25",
+              "day": 25,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-12-26",
+              "day": 26,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-12-27",
+              "day": 27,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            }
+          ],
+          [
+            {
+              "date": "2026-12-28",
+              "day": 28,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-12-29",
+              "day": 29,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-12-30",
+              "day": 30,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            {
+              "date": "2026-12-31",
+              "day": 31,
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
+            },
+            null,
+            null,
+            null
+          ]
+        ]
+      }
+    ],
+    "days": [
+      {
+        "date": "2026-10-12",
+        "day": 12,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-10-13",
+        "day": 13,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-10-14",
+        "day": 14,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-10-15",
+        "day": 15,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-10-16",
+        "day": 16,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-10-17",
+        "day": 17,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-10-18",
+        "day": 18,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-10-19",
+        "day": 19,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-10-20",
+        "day": 20,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-10-21",
+        "day": 21,
+        "status": "CHIUSURA_NOTTURNA",
+        "status_label": "Chiusura notturna",
+        "night_closed": true
+      },
+      {
+        "date": "2026-10-22",
+        "day": 22,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-10-23",
+        "day": 23,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-10-24",
+        "day": 24,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-10-25",
+        "day": 25,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-10-26",
+        "day": 26,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-10-27",
+        "day": 27,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-10-28",
+        "day": 28,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-10-29",
+        "day": 29,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-10-30",
+        "day": 30,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-10-31",
+        "day": 31,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-11-01",
+        "day": 1,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-11-02",
+        "day": 2,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-03",
+        "day": 3,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-04",
+        "day": 4,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-05",
+        "day": 5,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-06",
+        "day": 6,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-07",
+        "day": 7,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-11-08",
+        "day": 8,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-09",
+        "day": 9,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-10",
+        "day": 10,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-11",
+        "day": 11,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-12",
+        "day": 12,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-13",
+        "day": 13,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-14",
+        "day": 14,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-11-15",
+        "day": 15,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-16",
+        "day": 16,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-17",
+        "day": 17,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-18",
+        "day": 18,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-19",
+        "day": 19,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-20",
+        "day": 20,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-21",
+        "day": 21,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-11-22",
+        "day": 22,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-23",
+        "day": 23,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-24",
+        "day": 24,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-25",
+        "day": 25,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-26",
+        "day": 26,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-27",
+        "day": 27,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-28",
+        "day": 28,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-11-29",
+        "day": 29,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-11-30",
+        "day": 30,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-01",
+        "day": 1,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-02",
+        "day": 2,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-03",
+        "day": 3,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-04",
+        "day": 4,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-05",
+        "day": 5,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-12-06",
+        "day": 6,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-07",
+        "day": 7,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-08",
+        "day": 8,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-12-09",
+        "day": 9,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-10",
+        "day": 10,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-11",
+        "day": 11,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-12",
+        "day": 12,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-12-13",
+        "day": 13,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-14",
+        "day": 14,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-15",
+        "day": 15,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-16",
+        "day": 16,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-17",
+        "day": 17,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-18",
+        "day": 18,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-19",
+        "day": 19,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-12-20",
+        "day": 20,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-21",
+        "day": 21,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-22",
+        "day": 22,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-23",
+        "day": 23,
+        "status": "CHIUSA",
+        "status_label": "Chiusa",
+        "night_closed": true
+      },
+      {
+        "date": "2026-12-24",
+        "day": 24,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-12-25",
+        "day": 25,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-12-26",
+        "day": 26,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-12-27",
+        "day": 27,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-12-28",
+        "day": 28,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-12-29",
+        "day": 29,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-12-30",
+        "day": 30,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      },
+      {
+        "date": "2026-12-31",
+        "day": 31,
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
+      }
+    ],
+    "counts": {
+      "APERTA": 29,
+      "CHIUSA": 51,
+      "CHIUSURA_NOTTURNA": 1,
+      "NON_DEFINITA": 0
+    },
+    "closure_window": {
+      "start": "21:00",
+      "end": "05:00",
+      "timezone": "Europe/Rome",
+      "valid_from": null,
+      "valid_until": null,
+      "excluded_nights": [
+        "sabato"
+      ]
+    },
+    "content_hash": "3d9850dd31dd5a690aaf0d27dd41a384638719ca58c319cb4fdb5df6fc426024"
+  },
+  "services": [
+    {
+      "id": "servizio-946706a75535",
+      "kind": "battello",
+      "from": "Cannero Riviera",
+      "to": "Cannobio",
+      "route": "Cannero Riviera → Cannobio",
+      "times": [
+        "21:05",
+        "22:00",
+        "23:00",
+        "00:00"
+      ],
+      "notes": "Servizio sostitutivo serale",
+      "source_urls": [
+        "https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne",
+        "https://www.comune.verbania.it/Novita/Avvisi/Lavori-sulla-SS-34-il-collegamento-notturno-tra-Cannero-e-Cannobio-passa-dal-lago"
+      ]
+    },
+    {
+      "id": "servizio-52345eea50e9",
+      "kind": "battello",
+      "from": "Cannobio",
+      "to": "Cannero Riviera",
+      "route": "Cannobio → Cannero Riviera",
+      "times": [
+        "21:30",
+        "22:30",
+        "23:30",
+        "00:30"
+      ],
+      "notes": "Servizio sostitutivo serale",
+      "source_urls": [
+        "https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne",
+        "https://www.comune.verbania.it/Novita/Avvisi/Lavori-sulla-SS-34-il-collegamento-notturno-tra-Cannero-e-Cannobio-passa-dal-lago"
+      ]
+    },
+    {
+      "id": "servizio-9c8cf10ea637",
+      "kind": "traghetto",
+      "from": "Intra",
+      "to": "Laveno",
+      "route": "Intra → Laveno",
+      "times": [
+        "00:00"
+      ],
+      "notes": "Corsa aggiuntiva serale",
+      "source_urls": [
+        "https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne",
+        "https://www.comune.verbania.it/Novita/Avvisi/Lavori-sulla-SS-34-il-collegamento-notturno-tra-Cannero-e-Cannobio-passa-dal-lago"
+      ]
+    },
+    {
+      "id": "servizio-4941a41b9921",
+      "kind": "traghetto",
+      "from": "Laveno",
+      "to": "Intra",
+      "route": "Laveno → Intra",
+      "times": [
+        "00:30"
+      ],
+      "notes": "Corsa aggiuntiva serale",
+      "source_urls": [
+        "https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne",
+        "https://www.comune.verbania.it/Novita/Avvisi/Lavori-sulla-SS-34-il-collegamento-notturno-tra-Cannero-e-Cannobio-passa-dal-lago"
+      ]
+    }
+  ],
+  "notices": [
+    {
+      "id": "navigazione-603996",
+      "source": "Navigazione Laghi",
+      "source_id": "603996",
+      "source_url": "https://www.navigazionelaghi.it/avvisi/apertura-ss-34-cannero-cannobio/",
+      "source_api": "https://www.navigazionelaghi.it/wp-json/wp/v2/avvisi?lago=9&per_page=100",
+      "category": "navigazione",
+      "tags": [
+        "Navigazione Laghi",
+        "Lago Maggiore"
+      ],
+      "title": "Apertura SS.34 Cannero – Cannobio",
+      "summary": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 24/26 Si informa la spettabile clientela che, domenica 25 ottobre e domenica 01 Novembre 2026 le corse n° 94 – 95 – 96 – 97 – 98 – 99 – 100 – 101 previste fra Cannero e Cannobio non verranno effettuate in quanto, come comunicato dal Comune di Verbania…",
+      "body_text": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 24/26 Si informa la spettabile clientela che, domenica 25 ottobre e domenica 01 Novembre 2026 le corse n° 94 – 95 – 96 – 97 – 98 – 99 – 100 – 101 previste fra Cannero e Cannobio non verranno effettuate in quanto, come comunicato dal Comune di Verbania, la strada S.S. 34 rimarrà aperta. Arona, 23 Ottobre 2026 LA DIREZIONE",
+      "published_at": "2026-10-23T15:52:13+02:00",
+      "updated_at": "2026-10-23T15:52:13+02:00",
+      "valid_from": null,
+      "valid_until": null,
+      "closure_window": null,
+      "services": [],
+      "content_hash": "cb7a7c69d98821eaa776595fdff90d977c211d94cfe1fdb9991d3a43686b5925",
+      "first_seen_at": "2026-10-25T10:46:03+01:00"
+    },
+    {
+      "id": "comune-2b6cc4e42a43",
+      "source": "Comune di Verbania",
+      "source_id": "10400",
+      "source_url": "https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne",
+      "category": "calendario",
+      "tags": [
+        "Cannobio",
+        "Cannero Riviera",
+        "Navigazione",
+        "Chiusure notturne"
+      ],
+      "title": "S.S. 34 a Cannobio: il calendario delle aperture e delle chiusure notturne",
+      "summary": "Giorno per giorno, l’informazione ufficiale su quando la statale resterà aperta di notte nei giorni di pioggia. Per aiutarvi a organizzare i vostri spostamenti in questi mesi di cantiere.",
+      "body_text": "Sappiamo quanto la chiusura notturna della statale pesi sulle giornate di chi lavora e si sposta lungo il lago. Per questo, quando il maltempo impedisce di lavorare in sicurezza, o per organizzazione del cantiere, la strada resta aperta anche di notte. Questa pagina vi dice, giorno per giorno, come stanno le cose. Come funziona: Dal 21 ottobre la S.S. 34 è chiusa dalle 21.00 alle 05.00 nel tratto di Cannobio interessato dal cantiere della galleria paramassi. Il calendario indica, per ogni giornata, se la notte successiva la strada sarà chiusa oppure aperta per pioggia. Lo aggiorniamo ogni giorno, appena è possibile decidere. Poiché tutto dipende dal meteo, non c'è un orario fisso di aggiornamento: vi invitiamo a consultarlo il più vicino possibile alla partenza. Questa è l'unica fonte affidabile. Non fate affidamento su voci o messaggi circolati sui social. Da ricordare: Durante la chiusura passano solo mezzi di soccorso per la gestione delle emergenze. Nella notte tra sabato e domenica la strada non chiude. Battelli Cannero Riviera – Cannobio: Da Cannero Riviera: 21.05 – 22.00 – 23.00 – 24.00 Da Cannobio: 21.30 – 22.30 – 23.30 – 00.30 Traghetto aggiuntivo Intra – Laveno: Da Intra alle 24.00 Da Laveno alle 00.30 Info navigazione: numero verde 800 551801 Parcheggi gratuiti: Per chi usa i battelli, Cannobio e Cannero Riviera mettono a disposizione aree di sosta gratuita. Modalità e moduli sono sui siti dei due Comuni e dopo il calendario. Grazie per la pazienza e la collaborazione. LEGENDA: CHIUSA: strada chiusa dalle ore 21.00 del giorno indicato, fino alle ore 05.00 del giorno successivo APERTA : strada aperta a senso unico alternato OTTOBRE 2026 lun. mar. mer. gio. ven. sab. dom. 12 APERTA 13 APERTA 14 APERTA 15 APERTA 16 APERTA 17 APERTA 18 APERTA 19 APERTA 20 APERTA 21 CHIUSURA NOTTURNA 22 CHIUSA 23 CHIUSA 24 APERTA 25 APERTA 26 CHIUSA 27 CHIUSA 28 CHIUSA 29 CHIUSA 30 CHIUSA 31 APERTA NOVEMBRE 2026 lun. mar. mer. gio. ven. sab. dom. 01 APERTA 02 CHIUSA 03 CHIUSA 04 CHIUSA 05 CHIUSA 06 CHIUSA 07 APERTA 08 CHIUSA 09 CHIUSA 10 CHIUSA 11 CHIUSA 12 CHIUSA 13 CHIUSA 14 APERTA 15 CHIUSA 16 CHIUSA 17 CHIUSA 18 CHIUSA 19 CHIUSA 20 CHIUSA 21 APERTA 22 CHIUSA 23 CHIUSA 24 CHIUSA 25 CHIUSA 26 CHIUSA 27 CHIUSA 28 APERTA 29 CHIUSA 30 CHIUSA DICEMBRE 2026 lun. mar. mer. gio. ven. sab. dom. 01 CHIUSA 02 CHIUSA 03 CHIUSA 04 CHIUSA 05 APERTA 06 CHIUSA 07 CHIUSA 08 APERTA 09 CHIUSA 10 CHIUSA 11 CHIUSA 12 APERTA 13 CHIUSA 14 CHIUSA 15 CHIUSA 16 CHIUSA 17 CHIUSA 18 CHIUSA 19 APERTA 20 CHIUSA 21 CHIUSA 22 CHIUSA 23 CHIUSA 24 APERTA 25 APERTA 26 APERTA 27 APERTA 28 APERTA 29 APERTA 30 APERTA 31 APERTA PARCHEGGI E I PASS GRATUITI: A Cannobio i lavoratori turnisti possono sostare gratuitamente in via Dalla Chiesa, nell'area del Campo sportivo «Mario Brocca», esponendo l'apposita tessera, valida esclusivamente nei periodi di chiusura della statale. Per richiederla si compila il modulo pubblicato sul sito del Comune di Cannobio, indicando i dati personali, la targa del veicolo, la sede di lavoro e l'articolazione dei turni. Al modulo va allegata una dichiarazione del datore di lavoro, datata e sottoscritta, che attesti il rapporto di lavoro, la sede e l'organizzazione dei turni. La domanda va consegnata di persona alla Polizia Municipale, in via Giovanola 25, dal lunedì al sabato dalle 10.00 alle 12.00 e il giovedì anche dalle 16.30 alle 17.30. A Cannero Riviera il permesso di sosta gratuita si richiede online, attraverso il modulo disponibile sul sito del Comune. Occorre indicare i dati personali, la targa, la marca e il modello del veicolo, la località e la ditta presso cui si lavora, allegando una fotografia del permesso di lavoro. Il pass viene inviato per e-mail e va stampato ed esposto in modo visibile sull'auto. È valido nei soli periodi di chiusura totale della statale e consente la sosta in viale del Lido, in viale dei Tigli (esclusa l'area riservata ai pullman), nell'area ex tennis di viale del Lido, nel nuovo parcheggio della zona Hapimag e nel parcheggio antistante il Porto Turistico. La planimetria delle aree è consultabile sul sito del Comune di Cannero Riviera . Per informazioni sul servizio di navigazione è attivo il numero verde 800 551801.",
+      "published_at": "2026-10-20T00:00:00+02:00",
+      "updated_at": "2026-10-21T09:05:27+02:00",
+      "valid_from": "2026-10-21",
+      "valid_until": null,
+      "closure_window": {
+        "start": "21:00",
+        "end": "05:00",
+        "timezone": "Europe/Rome",
+        "valid_from": null,
+        "valid_until": null,
+        "excluded_nights": [
+          "sabato"
+        ]
+      },
+      "services": [
+        {
+          "id": "servizio-946706a75535",
+          "kind": "battello",
+          "from": "Cannero Riviera",
+          "to": "Cannobio",
+          "route": "Cannero Riviera → Cannobio",
+          "times": [
+            "21:05",
+            "22:00",
+            "23:00",
+            "00:00"
+          ],
+          "notes": "Servizio sostitutivo serale",
+          "source_urls": [
+            "https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne"
+          ]
+        },
+        {
+          "id": "servizio-52345eea50e9",
+          "kind": "battello",
+          "from": "Cannobio",
+          "to": "Cannero Riviera",
+          "route": "Cannobio → Cannero Riviera",
+          "times": [
+            "21:30",
+            "22:30",
+            "23:30",
+            "00:30"
+          ],
+          "notes": "Servizio sostitutivo serale",
+          "source_urls": [
+            "https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne"
+          ]
+        },
+        {
+          "id": "servizio-9c8cf10ea637",
+          "kind": "traghetto",
+          "from": "Intra",
+          "to": "Laveno",
+          "route": "Intra → Laveno",
+          "times": [
+            "00:00"
+          ],
+          "notes": "Corsa aggiuntiva serale",
+          "source_urls": [
+            "https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne"
+          ]
+        },
+        {
+          "id": "servizio-4941a41b9921",
+          "kind": "traghetto",
+          "from": "Laveno",
+          "to": "Intra",
+          "route": "Laveno → Intra",
+          "times": [
+            "00:30"
+          ],
+          "notes": "Corsa aggiuntiva serale",
+          "source_urls": [
+            "https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne"
+          ]
+        }
+      ],
+      "is_calendar": true,
+      "calendar_updated_label": "21/10/2026 09:05",
+      "content_hash": "dc47b0a096168c8a740cee2178b25dd73471d129cc4947e4a2997ccf24744ccc",
+      "first_seen_at": "2026-10-25T10:45:41+01:00"
+    },
+    {
+      "id": "navigazione-585890",
+      "source": "Navigazione Laghi",
+      "source_id": "585890",
+      "source_url": "https://www.navigazionelaghi.it/avvisi/rimodulazione-servizio-di-linea/",
+      "source_api": "https://www.navigazionelaghi.it/wp-json/wp/v2/avvisi?lago=9&per_page=100",
+      "category": "navigazione",
+      "tags": [
+        "Navigazione Laghi",
+        "Lago Maggiore"
+      ],
+      "title": "Rimodulazione servizio di linea",
+      "summary": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 22/26 In esito alle esigenze del territorio rappresentate in seno al Tavolo Tecnico istituito presso la Prefettura del VCO alla presenza della Provincia del VCO, della Prefettura di Varese e delle Amministrazioni comunali di Verbania, Cannero, Cannobi…",
+      "body_text": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 22/26 In esito alle esigenze del territorio rappresentate in seno al Tavolo Tecnico istituito presso la Prefettura del VCO alla presenza della Provincia del VCO, della Prefettura di Varese e delle Amministrazioni comunali di Verbania, Cannero, Cannobio, Oggebbio, Ghiffa, Trarego Viggiona, Vignone, Bee, Arizzano e Premeno, per la mitigazione dei disagi conseguenti ai lavori per la messa in sicurezza della SS34, si informa la spettabile clientela che, a far data da mercoledì 21 ottobre, il servizio di linea sarà rimodulato come segue. È prevista l’istituzione di un servizio navetta serale tra Cannero e Cannobio e viceversa con partenze da Cannero 21:05 – 22:00 – 23:00 e 00:00 e da Cannobio 21:30 – 22:30 – 23:30 e 00:30 Saranno sospese le seguenti corse sulla direttrice Intra-Laveno: T52 – T51 – T60 – T59 – T66 – T65 – T72 – T71 – T78 – T77 – T84 – T83 – T88 – T87 – T96 Saranno previste due corse aggiuntive sulla direttrice Intra-Laveno alle ore 00:00 da Intra e 00:30 da Laveno Ci scusiamo per il disagio e confermiamo l’impegno a monitorare l’effettivo utilizzo dei servizi integrativi onde restituire al Tavolo Tecnico proposte di eventuali azioni correttive e migliorative. Arona, 12 Ottobre 2026 LA DIREZIONE",
+      "published_at": "2026-10-12T17:32:11+02:00",
+      "updated_at": "2026-10-12T17:32:11+02:00",
+      "valid_from": "2026-10-21",
+      "valid_until": null,
+      "closure_window": null,
+      "services": [],
+      "content_hash": "fdefba4f05647bd04e910249e694c312eb41c3e1b8f319930a64177a4d74fc95",
+      "first_seen_at": "2026-10-25T10:46:03+01:00"
+    },
+    {
+      "id": "comune-6bba2c3d34fc",
+      "source": "Comune di Verbania",
+      "source_id": "10443",
+      "source_url": "https://www.comune.verbania.it/Novita/Avvisi/Lavori-sulla-SS-34-il-collegamento-notturno-tra-Cannero-e-Cannobio-passa-dal-lago",
+      "category": "navigazione",
+      "tags": [
+        "SS34",
+        "Cannobio",
+        "Cannero Riviera",
+        "Navigazione",
+        "Chiusure notturne"
+      ],
+      "title": "Lavori sulla SS 34, il collegamento notturno tra Cannero e Cannobio passa dal lago",
+      "summary": "Dal 21 ottobre corse NLM dalle 21.05 alle 00.30. Prevista anche una partenza in più del traghetto da Intra per Laveno",
+      "body_text": "In concomitanza della chiusura notturna della SS 34 in comune di Cannobio dalle 21,00 alle 05,00 per i lavori di costruzione della galleria paramassi dal giorno 21 ottobre sarà attivato dalla NLM il servizio sostitutivo via lago di collegamento da Cannero a Cannobio A/R con i seguenti orari: Partenze da Cannero verso Cannobio: 21,05 - 22,00 - 23,00 - 00,00 Partenza da Cannobio verso Cannero : 21,30 - 22,30 - 23,30 - 00,30 NLM istituirà un corsa aggiuntiva del traghetto con partenza da Intra verso Laveno ore 00,00 Partenza da Laveno verso Intra Ore 00,30 Da lunedì 12.10.26 installazione e attivazione del cantiere e a seguire dalle 05,00 alle 21,00 senso unico alternato regolato da impianto semaforico e/o movieri.",
+      "published_at": "2026-10-09T00:00:00+02:00",
+      "updated_at": "2026-10-09T16:33:56+02:00",
+      "valid_from": "2026-10-21",
+      "valid_until": null,
+      "closure_window": {
+        "start": "21:00",
+        "end": "05:00",
+        "timezone": "Europe/Rome",
+        "valid_from": null,
+        "valid_until": null,
+        "excluded_nights": []
+      },
+      "services": [
+        {
+          "id": "servizio-946706a75535",
+          "kind": "battello",
+          "from": "Cannero Riviera",
+          "to": "Cannobio",
+          "route": "Cannero Riviera → Cannobio",
+          "times": [
+            "21:05",
+            "22:00",
+            "23:00",
+            "00:00"
+          ],
+          "notes": "Servizio sostitutivo serale",
+          "source_urls": [
+            "https://www.comune.verbania.it/Novita/Avvisi/Lavori-sulla-SS-34-il-collegamento-notturno-tra-Cannero-e-Cannobio-passa-dal-lago"
+          ]
+        },
+        {
+          "id": "servizio-52345eea50e9",
+          "kind": "battello",
+          "from": "Cannobio",
+          "to": "Cannero Riviera",
+          "route": "Cannobio → Cannero Riviera",
+          "times": [
+            "21:30",
+            "22:30",
+            "23:30",
+            "00:30"
+          ],
+          "notes": "Servizio sostitutivo serale",
+          "source_urls": [
+            "https://www.comune.verbania.it/Novita/Avvisi/Lavori-sulla-SS-34-il-collegamento-notturno-tra-Cannero-e-Cannobio-passa-dal-lago"
+          ]
+        },
+        {
+          "id": "servizio-9c8cf10ea637",
+          "kind": "traghetto",
+          "from": "Intra",
+          "to": "Laveno",
+          "route": "Intra → Laveno",
+          "times": [
+            "00:00"
+          ],
+          "notes": "Corsa aggiuntiva serale",
+          "source_urls": [
+            "https://www.comune.verbania.it/Novita/Avvisi/Lavori-sulla-SS-34-il-collegamento-notturno-tra-Cannero-e-Cannobio-passa-dal-lago"
+          ]
+        },
+        {
+          "id": "servizio-4941a41b9921",
+          "kind": "traghetto",
+          "from": "Laveno",
+          "to": "Intra",
+          "route": "Laveno → Intra",
+          "times": [
+            "00:30"
+          ],
+          "notes": "Corsa aggiuntiva serale",
+          "source_urls": [
+            "https://www.comune.verbania.it/Novita/Avvisi/Lavori-sulla-SS-34-il-collegamento-notturno-tra-Cannero-e-Cannobio-passa-dal-lago"
+          ]
+        }
+      ],
+      "is_calendar": false,
+      "calendar_updated_label": "",
+      "content_hash": "0ed1b1d40851855b2aa8bab9df0c9bc883b35afeb36bb8f44f28d09c64080af5",
+      "first_seen_at": "2026-10-25T10:45:41+01:00"
+    },
+    {
+      "id": "comune-f8a70695f96d",
+      "source": "Comune di Verbania",
+      "source_id": "10324",
+      "source_url": "https://www.comune.verbania.it/Novita/Avvisi/SS34-lavori-a-Cannobio-in-localita-Puncetta-dal-28-settembre-senso-unico-alternato-e-da-ottobre-chiusure-notturne",
+      "category": "viabilita",
+      "tags": [
+        "SS34",
+        "Cannobio",
+        "Chiusure notturne"
+      ],
+      "title": "SS34, lavori a Cannobio in località Puncetta: dal 28 settembre senso unico alternato e, da ottobre, chiusure notturne",
+      "summary": "Galleria paramassi sulla Statale 34 tra Cannobio e il confine: fino a fine maggio 2027 si viaggia a senso unico alternato di giorno e, dal 12 ottobre, con la strada chiusa di notte, tranne alla vigilia dei giorni festivi.",
+      "body_text": "In riferimento all'avvio del cantiere per la realizzazione della galleria paramassi previsto per il giorno 28.09.26 si comunica che ANAS ha diramato Ordinanza n. 672/2026/TO lungo la S.S. 34 dal Km. 30+600 al km 30+400 nel territorio del Comune di Cannobio all'altezza della località \"Puncetta\", per modificare la circolazione stradale attualmente in vigore lungo il tratto della S.S. 34 che si estende nel Comune di Cannobio dal Km. 30+60 al km 30+400 nel modo seguente: senso unico alternato mediante regolamentato da semafori o movieri su SS 34 del Lago Maggiore dal km. 30+600 al km. 30+400 , in direzione Verbania, su corsia di marcia a partire dalle ore 08:00 del 28/09/2026 fino alle ore 18:00 del 31/05/2027. - chiusura al traffico su SS 34 del Lago Maggiore dal km. 30+600 al km. 30+400, in direzione Verbania, in Comune di Cannobio, in orario notturno, a partire dal 12/10/2026 fino al 31/05/2027 nella fascia oraria dalle 21:00 alle 05:00 del giorno successivo esclusi i giorni prefestivi (sabato). Durante la chiusura notturna del traffico stradale prevista tra le ore tra le ore 21,00 e le ore 05,00 del giorno succesivo è consentito il passaggio alle seguenti categorie di veicoli e personale: mezzi e personale adibiti al pronto soccorso e assistenza sanitaria ( tipo reperibilità medica, ecc,) mezzi e personale delle forze dell'ordine mezzi e personale dei Vigili del Fuoco e della protezione civile.",
+      "published_at": "2026-09-25T00:00:00+02:00",
+      "updated_at": "2026-09-25T13:58:13+02:00",
+      "valid_from": "2026-10-12",
+      "valid_until": "2027-05-31",
+      "closure_window": {
+        "start": "21:00",
+        "end": "05:00",
+        "timezone": "Europe/Rome",
+        "valid_from": "2026-10-12",
+        "valid_until": "2027-05-31",
+        "excluded_nights": [
+          "sabato"
+        ]
+      },
+      "services": [],
+      "is_calendar": false,
+      "calendar_updated_label": "",
+      "content_hash": "da27aead2b0956b4df0c993f1538bcd4f0a17f328e6cc39bf2742f12dd95e6cc",
+      "first_seen_at": "2026-10-25T10:45:41+01:00"
+    },
+    {
+      "id": "comune-babb451d62ba",
+      "source": "Comune di Verbania",
+      "source_id": "10283",
+      "source_url": "https://www.comune.verbania.it/Novita/Avvisi/DA-LUNEDI-28-SETTEMBRE-AVVIO-DEL-CANTIERE-PER-LA-COSTRUZIONE-DELLA-GALLERIA-PARAMASSI-SULLA-SS-34-TRA-CANNERO-E-CANNOBIO",
+      "category": "viabilita",
+      "tags": [
+        "SS34",
+        "Cannobio",
+        "Cannero Riviera",
+        "Navigazione",
+        "Chiusure notturne"
+      ],
+      "title": "DA LUNEDÌ 28 SETTEMBRE AVVIO DEL CANTIERE PER LA COSTRUZIONE DELLA GALLERIA PARAMASSI SULLA SS 34 TRA CANNERO E CANNOBIO",
+      "summary": "Da lunedì 28 settembre il via ai lavori sulla SS 34: senso unico alternato nelle ore di punta, poi dall'11 ottobre chiusura notturna per 4/5 mesi con servizi sostitutivi via lago. La programmazione condivisa con i sindaci del VCO, Anas, società di trasporto e sindacati dopo mesi di confronto e oltre 1.470 questionari raccolti dai cittadini.",
+      "body_text": "In data 11.09 e 17.09 u.s. si sono svolti presso la Prefettura del VCO due incontri tecnici per la programmazione dell'inizio dei lavori per la realizzazione della galleria paramassi sulla SS 34 in Comune di Cannobio, per la definizione di un cronoprogramma aggiornato delle fasi attuative e dei servizi alternativi di trasporto da predisporre nella fascia di chiusura notturna della strada. Riprendendo la programmazione messa a punto e concordata nell'ottobre 2025, che aveva raccolto le indicazioni emerse dalle risposte ricevute nei mesi di agosto e settembre '25 contenute nei 1.470 questionari compilati online, dai lavori propedeutici svolti nei precedenti tavoli tecnici nei mesi di luglio, agosto e settembre – compreso il tavolo provinciale transfrontaliero – e dalle interlocuzioni intercorse con i sindaci, i tecnici preposti alla realizzazione dell'opera, i responsabili delle società dei trasporti pubblici (NLM e VCO Trasporti) e delle organizzazioni sindacali, si è giunti alle seguenti conclusioni: Installazione e avvio del cantiere da lunedì 28.09.2026 , con istituzione della circolazione a senso unico alternato regolato da impianto semaforico \"intelligente\" e da movieri nella fascia dalle 5.00 alle 8.00 e dalle 15.30 alle 18.30. Anas garantirà l'impiego di proprio personale nella fascia dalle 9.00 alle 12.00. Chiusura notturna della strada a partire da domenica 11 ottobre p.v., dalle 21.00 alle 5.00 , per un periodo di 4/5 mesi, con esclusione della notte tra sabato e domenica, garantendo il transito ai mezzi di soccorso e alle Forze dell'Ordine. Istituzione di servizi di trasporto alternativo, via lago, con motonave della Navigazione Lago Maggiore da Cannero a Cannobio (andata e ritorno), a partire dalle ore 21.00, con ultima corsa in partenza da Cannobio verso Cannero intorno alle 0.30. Gli orari dettagliati delle singole corse saranno diramati da NLM entro il 6 ottobre 2026. I Comuni di Cannobio e di Cannero Riviera metteranno a disposizione parcheggi gratuiti per gli utenti. Istituzione, da parte di NLM, di una corsa aggiuntiva del traghetto con partenza da Intra alle ore 0.00 e di una corsa con partenza da Laveno intorno alle 0.30–0.45. Gli orari dettagliati delle singole corse saranno diramati da NLM entro il 6 ottobre 2026. Nelle prime settimane di avvio del cantiere tutte le attività saranno monitorate per verificare l'efficienza e l'efficacia dei servizi di trasporto alternativi predisposti e della regolazione della circolazione a senso unico alternato (funzionalità dell'impianto semaforico \"intelligente\", fasce orarie dei movieri, ecc.) e, se necessario, alla luce delle esigenze effettive, per apportare eventuali integrazioni e/o modifiche. Stiamo cercando di fare il possibile per alleviare i disagi che comunque un cantiere di questa portata comporterà per gli utenti della SS 34 e chiediamo alle nostre comunità comprensione, ma siamo altrettanto consapevoli che l'intervento è improrogabile e necessario per migliorare e garantire la sicurezza di chi transita lungo la SS 34. I Sindaci dei Comuni di Verbania, Cannobio, Cannero Riviera, Oggebbio, Ghiffa, Premeno, Vignone, Bee, Arizzano",
+      "published_at": "2026-09-18T00:00:00+02:00",
+      "updated_at": "2026-09-18T18:00:43+02:00",
+      "valid_from": "2026-10-11",
+      "valid_until": null,
+      "closure_window": {
+        "start": "21:00",
+        "end": "05:00",
+        "timezone": "Europe/Rome",
+        "valid_from": null,
+        "valid_until": null,
+        "excluded_nights": [
+          "sabato"
+        ]
+      },
+      "services": [],
+      "is_calendar": false,
+      "calendar_updated_label": "",
+      "content_hash": "cd2595561ed30d48d3265300c7adfe0ba9eba3da39c0904bf2752f689634a888",
+      "first_seen_at": "2026-10-25T10:45:41+01:00"
+    }
+  ],
+  "timetables": [
+    {
+      "id": "orario-5a6f7b7c6346",
+      "kind": "battello",
+      "route": "Arona ↔ Cannobio",
+      "title": "ARONA-CANNOBIO-ARONA.pdf",
+      "pdf_url": "https://www.navigazionelaghi.it/wp-content/uploads/2026/10/ARONA-CANNOBIO-ARONA.pdf",
+      "source_page": "https://www.navigazionelaghi.it/biglietti-e-orari-lago-maggiore/",
+      "valid_from": "2026-10-05",
+      "valid_until": "2026-11-08"
+    },
+    {
+      "id": "orario-9c68108fce50",
+      "kind": "traghetto",
+      "route": "Intra ↔ Laveno",
+      "title": "TRAGHETTI-INTRA-LAVENO-INTRA.pdf",
+      "pdf_url": "https://www.navigazionelaghi.it/wp-content/uploads/2026/10/TRAGHETTI-INTRA-LAVENO-INTRA.pdf",
+      "source_page": "https://www.navigazionelaghi.it/biglietti-e-orari-lago-maggiore/",
+      "valid_from": "2026-10-05",
+      "valid_until": "2026-11-08"
+    }
+  ]
+}

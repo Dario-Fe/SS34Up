@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SS34Up · Chiusure notturne SS34 e servizi via lago</title>
+  <meta name="description" content="Calendario ufficiale delle chiusure notturne della SS34 a Cannobio, servizi sostitutivi via lago, avvisi e orari. Aggiornato alle 10:00 e alle 18:00." />
+  <meta name="theme-color" content="#07111f" />
+  <meta property="og:title" content="SS34Up · La Statale 34, senza sorprese" />
+  <meta property="og:description" content="Chiusure notturne SS34, battelli e traghetti, avvisi ufficiali in un'unica pagina." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon-180.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="SS34Up" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Vai ai contenuti</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="./" aria-label="SS34Up, home">
+        <img src="icon.svg" width="34" height="34" alt="" />
+        <span class="brand-text">SS34<span>Up</span></span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Sezioni principali">
+        <a href="#notti">Prossime notti</a>
+        <a href="#calendario">Calendario</a>
+        <a href="#servizi">Via lago</a>
+        <a href="#avvisi">Avvisi</a>
+        <a href="#orari">Orari</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="header-info" href="infoutili.html">Info</a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Apri il menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="pulse"></span> SS34 · Lago Maggiore</p>
+        <h1 id="hero-title">La Statale 34,<br /><span>senza sorprese</span></h1>
+        <p class="hero-lead">
+          Chiusure notturne, battelli sostitutivi, traghetti e avvisi ufficiali.
+          Tutto in una pagina, con il link alla fonte accanto a ogni informazione.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#notti">Controlla stanotte</a>
+          <a class="button button-ghost" href="#servizi">Servizi via lago</a>
+        </div>
+        <div class="sync-line" id="sync-line" aria-live="polite">
+          <span class="sync-dot"></span>
+          <span>Caricamento dati ufficiali…</span>
+        </div>
+      </div>
+
+      <aside class="status-card" id="status-card" aria-live="polite" aria-busy="true">
+        <div class="status-topline">
+          <span class="status-kicker">Stato SS34</span>
+          <span class="status-source">Fonte ufficiale</span>
+        </div>
+        <div class="status-main">
+          <span class="status-badge status-unknown" id="status-badge">Caricamento</span>
+          <h2 id="status-title">Verifica in corso</h2>
+          <p id="status-detail">Sto leggendo il calendario del Comune di Verbania.</p>
+        </div>
+        <div class="status-window" id="status-window">
+          <span>Finestra notturna</span>
+          <strong>21:00 → 05:00</strong>
+        </div>
+        <a class="status-link" id="status-link" href="#calendario">Vai al calendario</a>
+      </aside>
+    </section>
+
+    <section class="stats" aria-label="Riepilogo">
+      <article class="stat">
+        <span class="stat-label">Prossima notte</span>
+        <strong id="stat-night">—</strong>
+        <span class="stat-note" id="stat-night-note">Calendario in caricamento</span>
+      </article>
+      <article class="stat">
+        <span class="stat-label">Finestra di chiusura</span>
+        <strong id="stat-window">21:00–05:00</strong>
+        <span class="stat-note">Esclusa la notte tra sabato e domenica</span>
+      </article>
+      <article class="stat">
+        <span class="stat-label">Servizi via lago</span>
+        <strong id="stat-services">—</strong>
+        <span class="stat-note">Battelli e traghetti serali</span>
+      </article>
+    </section>
+
+    <div class="error-banner" id="data-error" hidden>
+      <strong>Dati non disponibili.</strong>
+      <span>Apri direttamente le fonti ufficiali:</span>
+      <a href="https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne" target="_blank" rel="noopener noreferrer">Comune di Verbania</a>
+      <a href="https://www.navigazionelaghi.it/avvisi/" target="_blank" rel="noopener noreferrer">Navigazione Laghi</a>
+    </div>
+
+    <section class="section" id="notti" aria-labelledby="notti-title">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Prossime notti</p>
+          <h2 id="notti-title">Cosa succede quando scende il buio</h2>
+          <p class="section-lead">Lo stato si riferisce alla notte del giorno indicato. Dopo mezzanotte fa fede il giorno precedente.</p>
+        </div>
+        <a class="source-chip" id="nights-source" href="#calendario">
+          <span>Calendario ufficiale</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="night-grid" id="night-grid">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+      <div class="callout">
+        <div class="callout-icon" aria-hidden="true">!</div>
+        <div>
+          <strong>Attenzione alle date.</strong>
+          L’ordinanza ANAS indica le chiusure dal 12 ottobre, mentre il calendario operativo del Comune parte dal 21 ottobre.
+          Per la notte corrente usa sempre il calendario aggiornato e la sua fonte.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="calendario" aria-labelledby="calendario-title">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Calendario operativo</p>
+          <h2 id="calendario-title">Le notti, una per una</h2>
+          <p class="section-lead" id="calendar-updated">Caricamento del calendario…</p>
+        </div>
+        <a class="source-chip" id="calendar-source" href="#" target="_blank" rel="noopener noreferrer">
+          <span>Comune di Verbania</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <div class="legend" aria-label="Legenda">
+        <span><i class="legend-dot status-aparta"></i>Aperta</span>
+        <span><i class="legend-dot status-chiusa"></i>Chiusa</span>
+        <span><i class="legend-dot status-notturna"></i>Chiusura notturna</span>
+        <span class="legend-note">Clicca un giorno per i dettagli</span>
+      </div>
+
+      <div class="calendar-grid" id="calendar-grid">
+        <div class="skeleton-calendar"></div>
+        <div class="skeleton-calendar"></div>
+        <div class="skeleton-calendar"></div>
+      </div>
+      <p class="small-note">
+        La notte indicata è quella tra il giorno e il giorno successivo. Nella notte tra sabato e domenica la strada non chiude.
+        Il calendario viene aggiornato dal Comune in base al meteo: controllalo prima di partire.
+      </p>
+    </section>
+
+    <section class="section" id="servizi" aria-labelledby="servizi-title">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Alternativa via lago</p>
+          <h2 id="servizi-title">Battelli e traghetti serali</h2>
+          <p class="section-lead">Corse sostitutive attive durante la chiusura notturna della SS34.</p>
+        </div>
+        <a class="source-chip" id="services-source" href="https://www.navigazionelaghi.it/" target="_blank" rel="noopener noreferrer">
+          <span>Navigazione Laghi</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div id="services-alert"></div>
+      <div class="services-grid" id="services-grid">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+    </section>
+
+    <section class="section" id="avvisi" aria-labelledby="avvisi-title">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Avvisi e comunicati</p>
+          <h2 id="avvisi-title">Le fonti, senza rumore</h2>
+          <p class="section-lead">Solo avvisi pertinenti alla SS34, a Cannobio e Cannero, alla navigazione e alla viabilità collegata.</p>
+        </div>
+        <span class="count-chip" id="notice-count">—</span>
+      </div>
+
+      <div class="notice-toolbar">
+        <label class="search-field">
+          <span class="visually-hidden">Cerca negli avvisi</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+          <input id="notice-search" type="search" placeholder="Cerca: chiusura, battello, ordinanza…" autocomplete="off" />
+        </label>
+        <div class="filters" id="notice-filters" role="group" aria-label="Filtra avvisi">
+          <button class="filter is-active" type="button" data-filter="tutti" aria-pressed="true">Tutti</button>
+          <button class="filter" type="button" data-filter="viabilita" aria-pressed="false">Viabilità</button>
+          <button class="filter" type="button" data-filter="navigazione" aria-pressed="false">Navigazione</button>
+          <button class="filter" type="button" data-filter="calendario" aria-pressed="false">Calendario</button>
+        </div>
+      </div>
+
+      <div class="notice-grid" id="notice-list">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+      <div class="empty-state" id="notice-empty" hidden>
+        <strong>Nessun avviso trovato.</strong>
+        <span>Prova a cambiare filtro o termine di ricerca.</span>
+      </div>
+    </section>
+
+    <section class="section" id="orari" aria-labelledby="orari-title">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Orari completi</p>
+          <h2 id="orari-title">I PDF ufficiali</h2>
+          <p class="section-lead">Le tabelle complete di Navigazione Laghi, con validità e link diretto.</p>
+        </div>
+        <a class="source-chip" href="https://www.navigazionelaghi.it/biglietti-e-orari-lago-maggiore/" target="_blank" rel="noopener noreferrer">
+          <span>Pagina orari</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="timetable-grid" id="timetable-grid">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+    </section>
+
+    <section class="section sources-section" id="fonti" aria-labelledby="fonti-title">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Trasparenza</p>
+          <h2 id="fonti-title">Da dove arrivano i dati</h2>
+        </div>
+      </div>
+      <div class="sources-grid" id="sources-list"></div>
+      <p class="small-note">
+        SS34Up è un aggregatore indipendente. Non sostituisce i canali ufficiali e non inventa dati:
+        in caso di dubbio o emergenza, segui le indicazioni di Comune, Anas, Navigazione Laghi e forze dell’ordine.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="icon.svg" width="30" height="30" alt="" />
+        <div>
+          <strong>SS34Up</strong>
+          <span>La SS34 di notte, in chiaro.</span>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span id="footer-updated">Aggiornamento in corso…</span>
+        <span>Aggiornamenti automatici alle 10:00 e 18:00, ora italiana.</span>
+      </div>
+      <nav class="footer-links" aria-label="Link utili">
+        <a href="infoutili.html">Info e trasparenza</a>
+        <a href="infoutili.html#installa">Installa l’app</a>
+        <a href="https://www.comune.verbania.it/Novita" target="_blank" rel="noopener noreferrer">Comune di Verbania ↗</a>
+        <a href="https://www.navigazionelaghi.it/" target="_blank" rel="noopener noreferrer">Navigazione Laghi ↗</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>Progetto indipendente, senza pubblicità e senza tracciamento.</span>
+      <span>Dati © Comune di Verbania · Navigazione Laghi. Codice MIT.</span>
+    </div>
+  </footer>
+
+  <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="detail-title">
+    <form method="dialog">
+      <button class="dialog-close" type="submit" aria-label="Chiudi la scheda">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+      </button>
+    </form>
+    <div class="dialog-content" id="detail-content"></div>
+  </dialog>
+
+  <noscript>
+    <div class="noscript">SS34Up usa JavaScript per mostrare il calendario e gli avvisi. Puoi comunque consultare le fonti ufficiali linkate nella pagina.</div>
+  </noscript>
+</body>
+</html>

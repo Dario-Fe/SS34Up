@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="SS34Up">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="4" x2="56" y2="62" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#173763"/>
+      <stop offset="1" stop-color="#07111f"/>
+    </linearGradient>
+    <linearGradient id="road" x1="32" y1="8" x2="32" y2="55" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f4f8ff"/>
+      <stop offset="1" stop-color="#b9cdea"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+  <path d="M11 55c11-13 18-29 18-47" fill="none" stroke="url(#road)" stroke-width="10" stroke-linecap="round"/>
+  <path d="M49 55c-8-16-9-31-8-47" fill="none" stroke="url(#road)" stroke-width="10" stroke-linecap="round"/>
+  <path d="M30 54c6-14 7-29 4-45" fill="none" stroke="#4f8cff" stroke-width="2.4" stroke-dasharray="3 5" stroke-linecap="round"/>
+  <path d="M13 52c7 2 14 2 20 0 6-2 12-2 18 0" fill="none" stroke="#56d3e8" stroke-width="2.4" stroke-linecap="round" opacity=".9"/>
+  <path d="M16 57c6 1 11 1 16 0 5-1 9-1 15 0" fill="none" stroke="#56d3e8" stroke-width="1.6" stroke-linecap="round" opacity=".45"/>
+</svg>
