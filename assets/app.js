@@ -735,7 +735,9 @@
       const links = new Map(
         $$("#main-nav a")
           .map((link) => {
-            const target = $(link.getAttribute("href"));
+            const href = link.getAttribute("href");
+            if (!href?.startsWith("#")) return null;
+            const target = $(href);
             return target ? [target, link] : null;
           })
           .filter(Boolean)

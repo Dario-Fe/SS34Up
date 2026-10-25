@@ -1,12 +1,12 @@
 "use strict";
 
-const CACHE_NAME = "ss34up-v2";
+const CACHE_NAME = "ss34up-v3";
 const SHELL = [
   "./",
   "./index.html",
   "./infoutili.html",
-  "./assets/style.css",
-  "./assets/app.js",
+  "./assets/style.css?v=3",
+  "./assets/app.js?v=3",
   "./manifest.json",
   "./icon.svg",
   "./icon-180.png",
