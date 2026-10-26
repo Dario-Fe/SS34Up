@@ -2,7 +2,9 @@ name: Aggiorna dati SS34Up
 
 on:
   schedule:
-    - cron: "0 8,9,16,17 * * *"
+    # Al minuto 15, non a :00: l'inizio dell'ora è il momento più congestionato
+    # dello scheduler di GitHub e le run arrivano in ritardo o non arrivano.
+    - cron: "15 8,9,16,17 * * *"
   workflow_dispatch:
 
 permissions:
@@ -33,18 +35,43 @@ jobs:
       - name: Installa dipendenze
         run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
 
-      - name: Verifica finestra oraria italiana
+      # Guardia basata sull'età dei dati, non sull'ora: una run consegnata in
+      # ritardo da GitHub non viene più sprecata e, se una run si perde, la
+      # successiva recupera. La soglia resta sotto le 7 ore che separano i
+      # trigger di backup (09:15) da quelli serali (16:15), così lo slot
+      # serale parte anche quando quello mattutino è arrivato in ritardo.
+      - name: Verifica età dell'ultimo aggiornamento
         id: finestra
         if: github.event_name == 'schedule'
         shell: bash
+        env:
+          MIN_AGE_HOURS: "6"
         run: |
-          HOUR=$(TZ=Europe/Rome date +%H)
-          echo "Ora italiana: $HOUR"
-          if [ "$HOUR" = "10" ] || [ "$HOUR" = "18" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "run=false" >> "$GITHUB_OUTPUT"
-          fi
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+
+          threshold = float(os.environ["MIN_AGE_HOURS"])
+
+          try:
+              with open("data.json", encoding="utf-8") as handle:
+                  last = datetime.fromisoformat(json.load(handle)["meta"]["generated_at"])
+              if last.tzinfo is None:
+                  last = last.replace(tzinfo=timezone.utc)
+              age = (datetime.now(timezone.utc) - last).total_seconds() / 3600
+              run = age >= threshold
+              print(
+                  f"Ultimo controllo: {last.isoformat()} ({age:.1f} h fa); "
+                  f"soglia {threshold:g} h -> {'eseguo' if run else 'salto'}"
+              )
+          except (OSError, ValueError, KeyError, TypeError) as exc:
+              print(f"generated_at non leggibile ({exc}): eseguo comunque")
+              run = True
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"run={'true' if run else 'false'}\n")
+          PY
 
       - name: Aggiorna data.json
         if: github.event_name == 'workflow_dispatch' || steps.finestra.outputs.run == 'true'

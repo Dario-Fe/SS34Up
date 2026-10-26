@@ -155,8 +155,8 @@ Il workflow `.github/workflows/aggiorna.yml` gestisce le esecuzioni:
 
 | Fase | Comportamento |
 | --- | --- |
-| Cron GitHub | 08:00, 09:00, 16:00 e 17:00 UTC |
-| Controllo del fuso | prosegue solo alle 10:00 o alle 18:00 di `Europe/Rome`, con ora legale e ora solare |
+| Cron GitHub | 08:15, 09:15, 16:15 e 17:15 UTC, lontano dal minuto `0` che è il più congestionato dello scheduler |
+| Guardia sull’età dei dati | prosegue se `meta.generated_at` ha almeno 6 ore: un ritardo di GitHub non spreca più la run e una run persa viene recuperata dalla successiva |
 | Contenuti nuovi | `data.json` cambia, nasce un commit e Netlify ridistribuisce il sito |
 | Nessuna novità | `generated_at` avanza comunque: il commit contiene solo l’orario, così l’app mostra sempre l’ultimo controllo |
 
