@@ -1,6 +1,12 @@
 "use strict";
 
 (() => {
+  // Lo smooth parte solo dopo la prima interazione, come in app.js: l'arrivo con
+  // un hash deve essere istantaneo anche sulla pagina Info.
+  const enableSmoothScroll = () => document.documentElement.classList.add("js-smooth");
+  document.addEventListener("pointerdown", enableSmoothScroll, { once: true, capture: true });
+  document.addEventListener("keydown", enableSmoothScroll, { once: true, capture: true });
+
   const toggle = document.getElementById("menu-toggle");
   const nav = document.getElementById("main-nav");
   if (!toggle || !nav) return;

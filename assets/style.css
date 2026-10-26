@@ -32,7 +32,10 @@
   box-sizing: border-box;
 }
 
-html {
+/* Lo smooth si attiva da JS alla prima interazione: all'arrivo con un hash la
+   pagina deve posizionarsi subito, altrimenti l'animazione parte sulla
+   posizione provvisoria e resta in volo quando arrivano i dati. */
+html.js-smooth {
   scroll-behavior: smooth;
 }
 

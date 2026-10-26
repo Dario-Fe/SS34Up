@@ -81,6 +81,12 @@
     hourCycle: "h23"
   });
 
+  // Lo smooth parte solo dopo la prima interazione: durante il caricamento gli
+  // spostamenti restano istantanei e l'ancora non si muove sulla posizione provvisoria.
+  const enableSmoothScroll = () => document.documentElement.classList.add("js-smooth");
+  document.addEventListener("pointerdown", enableSmoothScroll, { once: true, capture: true });
+  document.addEventListener("keydown", enableSmoothScroll, { once: true, capture: true });
+
   document.addEventListener("DOMContentLoaded", init);
 
   async function init() {
