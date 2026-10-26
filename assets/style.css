@@ -34,7 +34,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 92px;
 }
 
 body {
@@ -449,6 +448,7 @@ h3 {
 .status-source {
   color: var(--text-soft);
   letter-spacing: 0;
+  text-align: right;
   text-transform: none;
 }
 
@@ -625,7 +625,7 @@ h3 {
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
   padding: 62px 0 14px;
-  scroll-margin-top: 90px;
+  scroll-margin-top: 86px;
 }
 
 .section-head {
@@ -1721,7 +1721,7 @@ h3 {
 .info-content section {
   padding: 29px 0;
   border-top: 1px solid var(--line-soft);
-  scroll-margin-top: 94px;
+  scroll-margin-top: 86px;
 }
 
 .info-content section:first-child {
@@ -1935,8 +1935,9 @@ h3 {
 }
 
 @media (max-width: 640px) {
-  html {
-    scroll-padding-top: 78px;
+  .section,
+  .info-content section {
+    scroll-margin-top: 78px;
   }
 
   .header-inner {

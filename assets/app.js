@@ -51,6 +51,13 @@
     year: "numeric"
   });
 
+  const dateNumeric = new Intl.DateTimeFormat("it-IT", {
+    timeZone: "Europe/Rome",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  });
+
   const dateMonth = new Intl.DateTimeFormat("it-IT", {
     timeZone: "Europe/Rome",
     day: "numeric",
@@ -91,6 +98,29 @@
       console.error("Impossibile caricare data.json", error);
       renderLoadError();
     }
+
+    alignHashTarget();
+  }
+
+  // I contenuti arrivano dopo il primo layout: il browser ha già risolto l'ancora
+  // sull'altezza provvisoria della pagina, quindi la riallineiamo a dati caricati.
+  function alignHashTarget() {
+    let id = "";
+    try {
+      id = decodeURIComponent(window.location.hash.slice(1));
+    } catch {
+      id = "";
+    }
+    if (!id) return;
+
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const root = document.documentElement;
+    const previous = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    target.scrollIntoView({ block: "start" });
+    root.style.scrollBehavior = previous;
   }
 
   function hydrate(data) {
@@ -226,9 +256,10 @@
     }
 
     if (source) {
-      source.textContent = state.data.calendar.updated_label
-        ? `Aggiornato ${state.data.calendar.updated_label}`
-        : "Fonte Comune di Verbania";
+      const sourceDate = formatDay(state.data.calendar.updated_at);
+      source.textContent = sourceDate
+        ? `Fonte: Comune di Verbania · calendario del ${sourceDate}`
+        : "Fonte: Comune di Verbania";
     }
   }
 
@@ -588,9 +619,9 @@
 
     const sync = $("#sync-line");
     sync.classList.remove("is-error");
-    sync.innerHTML = `<span class="sync-dot"></span><span>Ultimo aggiornamento: ${escapeHtml(generated)}</span>`;
+    sync.innerHTML = `<span class="sync-dot"></span><span>Ultimo controllo: ${escapeHtml(generated)}</span>`;
 
-    $("#footer-updated").textContent = `Ultimo aggiornamento: ${generated}.`;
+    $("#footer-updated").textContent = `Ultimo controllo: ${generated}.`;
   }
 
   function openNotice(id) {
@@ -862,6 +893,12 @@
     if (from) return `Dal ${formatDate(from)}.`;
     if (to) return `Fino al ${formatDate(to)}.`;
     return "";
+  }
+
+  function formatDay(value) {
+    if (!value) return "";
+    const parsed = new Date(value);
+    return Number.isNaN(parsed.getTime()) ? "" : dateNumeric.format(parsed);
   }
 
   function formatTimestamp(value) {
