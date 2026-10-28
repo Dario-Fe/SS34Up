@@ -2,14 +2,14 @@
   "meta": {
     "app": "SS34Up",
     "version": 1,
-    "generated_at": "2026-10-27T21:40:19+01:00",
+    "generated_at": "2026-10-28T16:04:01+01:00",
     "timezone": "Europe/Rome",
     "update_schedule": [
       "10:00",
       "18:00"
     ],
     "schedule_note": "Aggiornamento automatico alle 10:00 e 18:00, ora italiana.",
-    "content_hash": "81653e209a8997e05725ec3d8a66873b866832681eb7b8284aa5263f3977445b",
+    "content_hash": "67929a9f31f96ff71611030ebb7570435857f8a6e4e2e569f2e5de6514d43031",
     "sources": [
       {
         "id": "comune-verbania",
@@ -1360,6 +1360,29 @@
     }
   ],
   "notices": [
+    {
+      "id": "navigazione-609362",
+      "source": "Navigazione Laghi",
+      "source_id": "609362",
+      "source_url": "https://www.navigazionelaghi.it/avvisi/informativa-relativa-alle-modifiche-del-servizio-attualmente-in-vigore/",
+      "source_api": "https://www.navigazionelaghi.it/wp-json/wp/v2/avvisi?lago=9&per_page=100",
+      "category": "navigazione",
+      "tags": [
+        "Navigazione Laghi",
+        "Lago Maggiore"
+      ],
+      "title": "Informativa relativa alle modifiche del servizio attualmente in vigore",
+      "summary": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n°25/26 Con la presente, la scrivente Direzione di Esercizio desidera esprimere la propria comprensione per i disagi inevitabilmente derivanti dalla soppressione del gruppo corse c.d. T52 e assicurare che sono attualmente in corso le opportune valutazion…",
+      "body_text": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n°25/26 Con la presente, la scrivente Direzione di Esercizio desidera esprimere la propria comprensione per i disagi inevitabilmente derivanti dalla soppressione del gruppo corse c.d. T52 e assicurare che sono attualmente in corso le opportune valutazioni, finalizzate all’individuazione di possibili interventi migliorativi volti a contenere le ricadute sull’utenza. La rimodulazione del servizio si è resa necessaria in conseguenza dell’attivazione di un collegamento straordinario, richiesto dal tavolo Prefettizio, al fine di garantire la continuità dei collegamenti tra i Comuni di Cannero Riviera e Cannobio durante le ore notturne, nella fascia oraria compresa tra le ore 21:00 e le ore 05:00, in concomitanza con i lavori che interessano la Strada Statale 34. Al fine di valutare l’effettivo impatto delle modifiche introdotte e individuare eventuali soluzioni migliorative, è attualmente in corso un costante monitoraggio dei flussi di passeggeri e veicoli lungo la tratta interessata. Per agevolare la consultazione dell’offerta attualmente in vigore, si trasmette in allegato il quadro orario temporaneamente adottato per i collegamenti sulla tratta Intra – Laveno e viceversa. Arona, 28 ottobre 2026 LA DIREZIONE",
+      "published_at": "2026-10-28T14:01:16+01:00",
+      "updated_at": "2026-10-28T14:01:16+01:00",
+      "valid_from": null,
+      "valid_until": null,
+      "closure_window": null,
+      "services": [],
+      "content_hash": "0f3dead4c51f53942bddea428cb98d28c240a597c9435372ab31d0eeff5dd278",
+      "first_seen_at": "2026-10-28T16:03:58+01:00"
+    },
     {
       "id": "navigazione-603996",
       "source": "Navigazione Laghi",
