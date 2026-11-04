@@ -2,14 +2,14 @@
   "meta": {
     "app": "SS34Up",
     "version": 1,
-    "generated_at": "2026-11-03T17:10:05+01:00",
+    "generated_at": "2026-11-04T17:14:11+01:00",
     "timezone": "Europe/Rome",
     "update_schedule": [
       "10:00",
       "18:00"
     ],
     "schedule_note": "Aggiornamento automatico alle 10:00 e 18:00, ora italiana.",
-    "content_hash": "67929a9f31f96ff71611030ebb7570435857f8a6e4e2e569f2e5de6514d43031",
+    "content_hash": "48aaddd62fd5a8a21d9bde66133293afabe6abbce69f0f01ea746dccb69ca76a",
     "sources": [
       {
         "id": "comune-verbania",
@@ -37,8 +37,8 @@
   "calendar": {
     "source_url": "https://www.comune.verbania.it/Novita/Comunicati/S.S.-34-a-Cannobio-il-calendario-delle-aperture-e-delle-chiusure-notturne",
     "published_at": "2026-10-20T00:00:00+02:00",
-    "updated_at": "2026-10-21T09:05:27+02:00",
-    "updated_label": "21/10/2026 09:05",
+    "updated_at": "2026-11-04T13:13:59+01:00",
+    "updated_label": "04/11/2026 13:13",
     "months": [
       {
         "key": "2026-10",
@@ -280,9 +280,9 @@
             {
               "date": "2026-11-08",
               "day": 8,
-              "status": "CHIUSA",
-              "status_label": "Chiusa",
-              "night_closed": true
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
             }
           ],
           [
@@ -331,9 +331,9 @@
             {
               "date": "2026-11-15",
               "day": 15,
-              "status": "CHIUSA",
-              "status_label": "Chiusa",
-              "night_closed": true
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
             }
           ],
           [
@@ -382,9 +382,9 @@
             {
               "date": "2026-11-22",
               "day": 22,
-              "status": "CHIUSA",
-              "status_label": "Chiusa",
-              "night_closed": true
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
             }
           ],
           [
@@ -433,9 +433,9 @@
             {
               "date": "2026-11-29",
               "day": 29,
-              "status": "CHIUSA",
-              "status_label": "Chiusa",
-              "night_closed": true
+              "status": "APERTA",
+              "status_label": "Aperta",
+              "night_closed": false
             }
           ],
           [
@@ -897,9 +897,9 @@
       {
         "date": "2026-11-08",
         "day": 8,
-        "status": "CHIUSA",
-        "status_label": "Chiusa",
-        "night_closed": true
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
       },
       {
         "date": "2026-11-09",
@@ -946,9 +946,9 @@
       {
         "date": "2026-11-15",
         "day": 15,
-        "status": "CHIUSA",
-        "status_label": "Chiusa",
-        "night_closed": true
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
       },
       {
         "date": "2026-11-16",
@@ -995,9 +995,9 @@
       {
         "date": "2026-11-22",
         "day": 22,
-        "status": "CHIUSA",
-        "status_label": "Chiusa",
-        "night_closed": true
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
       },
       {
         "date": "2026-11-23",
@@ -1044,9 +1044,9 @@
       {
         "date": "2026-11-29",
         "day": 29,
-        "status": "CHIUSA",
-        "status_label": "Chiusa",
-        "night_closed": true
+        "status": "APERTA",
+        "status_label": "Aperta",
+        "night_closed": false
       },
       {
         "date": "2026-11-30",
@@ -1274,8 +1274,8 @@
       }
     ],
     "counts": {
-      "APERTA": 29,
-      "CHIUSA": 51,
+      "APERTA": 33,
+      "CHIUSA": 47,
       "CHIUSURA_NOTTURNA": 1,
       "NON_DEFINITA": 0
     },
@@ -1289,7 +1289,7 @@
         "sabato"
       ]
     },
-    "content_hash": "3d9850dd31dd5a690aaf0d27dd41a384638719ca58c319cb4fdb5df6fc426024"
+    "content_hash": "a79007409cd3db6f6490530e544b63ff737a400741c0a1b3dd0a204dee8efeaf"
   },
   "services": [
     {
@@ -1420,9 +1420,9 @@
       ],
       "title": "S.S. 34 a Cannobio: il calendario delle aperture e delle chiusure notturne",
       "summary": "Giorno per giorno, l’informazione ufficiale su quando la statale resterà aperta di notte nei giorni di pioggia. Per aiutarvi a organizzare i vostri spostamenti in questi mesi di cantiere.",
-      "body_text": "Sappiamo quanto la chiusura notturna della statale pesi sulle giornate di chi lavora e si sposta lungo il lago. Per questo, quando il maltempo impedisce di lavorare in sicurezza, o per organizzazione del cantiere, la strada resta aperta anche di notte. Questa pagina vi dice, giorno per giorno, come stanno le cose. Come funziona: Dal 21 ottobre la S.S. 34 è chiusa dalle 21.00 alle 05.00 nel tratto di Cannobio interessato dal cantiere della galleria paramassi. Il calendario indica, per ogni giornata, se la notte successiva la strada sarà chiusa oppure aperta per pioggia. Lo aggiorniamo ogni giorno, appena è possibile decidere. Poiché tutto dipende dal meteo, non c'è un orario fisso di aggiornamento: vi invitiamo a consultarlo il più vicino possibile alla partenza. Questa è l'unica fonte affidabile. Non fate affidamento su voci o messaggi circolati sui social. Da ricordare: Durante la chiusura passano solo mezzi di soccorso per la gestione delle emergenze. Nella notte tra sabato e domenica la strada non chiude. Battelli Cannero Riviera – Cannobio: Da Cannero Riviera: 21.05 – 22.00 – 23.00 – 24.00 Da Cannobio: 21.30 – 22.30 – 23.30 – 00.30 Traghetto aggiuntivo Intra – Laveno: Da Intra alle 24.00 Da Laveno alle 00.30 Info navigazione: numero verde 800 551801 Parcheggi gratuiti: Per chi usa i battelli, Cannobio e Cannero Riviera mettono a disposizione aree di sosta gratuita. Modalità e moduli sono sui siti dei due Comuni e dopo il calendario. Grazie per la pazienza e la collaborazione. LEGENDA: CHIUSA: strada chiusa dalle ore 21.00 del giorno indicato, fino alle ore 05.00 del giorno successivo APERTA : strada aperta a senso unico alternato OTTOBRE 2026 lun. mar. mer. gio. ven. sab. dom. 12 APERTA 13 APERTA 14 APERTA 15 APERTA 16 APERTA 17 APERTA 18 APERTA 19 APERTA 20 APERTA 21 CHIUSURA NOTTURNA 22 CHIUSA 23 CHIUSA 24 APERTA 25 APERTA 26 CHIUSA 27 CHIUSA 28 CHIUSA 29 CHIUSA 30 CHIUSA 31 APERTA NOVEMBRE 2026 lun. mar. mer. gio. ven. sab. dom. 01 APERTA 02 CHIUSA 03 CHIUSA 04 CHIUSA 05 CHIUSA 06 CHIUSA 07 APERTA 08 CHIUSA 09 CHIUSA 10 CHIUSA 11 CHIUSA 12 CHIUSA 13 CHIUSA 14 APERTA 15 CHIUSA 16 CHIUSA 17 CHIUSA 18 CHIUSA 19 CHIUSA 20 CHIUSA 21 APERTA 22 CHIUSA 23 CHIUSA 24 CHIUSA 25 CHIUSA 26 CHIUSA 27 CHIUSA 28 APERTA 29 CHIUSA 30 CHIUSA DICEMBRE 2026 lun. mar. mer. gio. ven. sab. dom. 01 CHIUSA 02 CHIUSA 03 CHIUSA 04 CHIUSA 05 APERTA 06 CHIUSA 07 CHIUSA 08 APERTA 09 CHIUSA 10 CHIUSA 11 CHIUSA 12 APERTA 13 CHIUSA 14 CHIUSA 15 CHIUSA 16 CHIUSA 17 CHIUSA 18 CHIUSA 19 APERTA 20 CHIUSA 21 CHIUSA 22 CHIUSA 23 CHIUSA 24 APERTA 25 APERTA 26 APERTA 27 APERTA 28 APERTA 29 APERTA 30 APERTA 31 APERTA PARCHEGGI E I PASS GRATUITI: A Cannobio i lavoratori turnisti possono sostare gratuitamente in via Dalla Chiesa, nell'area del Campo sportivo «Mario Brocca», esponendo l'apposita tessera, valida esclusivamente nei periodi di chiusura della statale. Per richiederla si compila il modulo pubblicato sul sito del Comune di Cannobio, indicando i dati personali, la targa del veicolo, la sede di lavoro e l'articolazione dei turni. Al modulo va allegata una dichiarazione del datore di lavoro, datata e sottoscritta, che attesti il rapporto di lavoro, la sede e l'organizzazione dei turni. La domanda va consegnata di persona alla Polizia Municipale, in via Giovanola 25, dal lunedì al sabato dalle 10.00 alle 12.00 e il giovedì anche dalle 16.30 alle 17.30. A Cannero Riviera il permesso di sosta gratuita si richiede online, attraverso il modulo disponibile sul sito del Comune. Occorre indicare i dati personali, la targa, la marca e il modello del veicolo, la località e la ditta presso cui si lavora, allegando una fotografia del permesso di lavoro. Il pass viene inviato per e-mail e va stampato ed esposto in modo visibile sull'auto. È valido nei soli periodi di chiusura totale della statale e consente la sosta in viale del Lido, in viale dei Tigli (esclusa l'area riservata ai pullman), nell'area ex tennis di viale del Lido, nel nuovo parcheggio della zona Hapimag e nel parcheggio antistante il Porto Turistico. La planimetria delle aree è consultabile sul sito del Comune di Cannero Riviera . Per informazioni sul servizio di navigazione è attivo il numero verde 800 551801.",
+      "body_text": "Sappiamo quanto la chiusura notturna della statale pesi sulle giornate di chi lavora e si sposta lungo il lago. Per questo, quando il maltempo impedisce di lavorare in sicurezza, o per organizzazione del cantiere, la strada resta aperta anche di notte. Questa pagina vi dice, giorno per giorno, come stanno le cose. Come funziona: Dal 21 ottobre la S.S. 34 è chiusa dalle 21.00 alle 05.00 nel tratto di Cannobio interessato dal cantiere della galleria paramassi. Il calendario indica, per ogni giornata, se la notte successiva la strada sarà chiusa oppure aperta per pioggia. Lo aggiorniamo ogni giorno, appena è possibile decidere. Poiché tutto dipende dal meteo, non c'è un orario fisso di aggiornamento: vi invitiamo a consultarlo il più vicino possibile alla partenza. Questa è l'unica fonte affidabile. Non fate affidamento su voci o messaggi circolati sui social. Da ricordare: Durante la chiusura passano solo mezzi di soccorso per la gestione delle emergenze. Nella notte tra sabato e domenica la strada non chiude. Battelli Cannero Riviera – Cannobio: Da Cannero Riviera: 21.05 – 22.00 – 23.00 – 24.00 Da Cannobio: 21.30 – 22.30 – 23.30 – 00.30 Traghetto aggiuntivo Intra – Laveno: Da Intra alle 24.00 Da Laveno alle 00.30 Info navigazione: numero verde 800 551801 Parcheggi gratuiti: Per chi usa i battelli, Cannobio e Cannero Riviera mettono a disposizione aree di sosta gratuita. Modalità e moduli sono sui siti dei due Comuni e dopo il calendario. Grazie per la pazienza e la collaborazione. LEGENDA: CHIUSA: strada chiusa dalle ore 21.00 del giorno indicato, fino alle ore 05.00 del giorno successivo APERTA : strada aperta a senso unico alternato OTTOBRE 2026 lun. mar. mer. gio. ven. sab. dom. 12 APERTA 13 APERTA 14 APERTA 15 APERTA 16 APERTA 17 APERTA 18 APERTA 19 APERTA 20 APERTA 21 CHIUSURA NOTTURNA 22 CHIUSA 23 CHIUSA 24 APERTA 25 APERTA 26 CHIUSA 27 CHIUSA 28 CHIUSA 29 CHIUSA 30 CHIUSA 31 APERTA NOVEMBRE 2026 lun. mar. mer. gio. ven. sab. dom. 01 APERTA 02 CHIUSA 03 CHIUSA 04 CHIUSA 05 CHIUSA 06 CHIUSA 07 APERTA 08 APERTA 09 CHIUSA 10 CHIUSA 11 CHIUSA 12 CHIUSA 13 CHIUSA 14 APERTA 15 APERTA 16 CHIUSA 17 CHIUSA 18 CHIUSA 19 CHIUSA 20 CHIUSA 21 APERTA 22 APERTA 23 CHIUSA 24 CHIUSA 25 CHIUSA 26 CHIUSA 27 CHIUSA 28 APERTA 29 APERTA 30 CHIUSA DICEMBRE 2026 lun. mar. mer. gio. ven. sab. dom. 01 CHIUSA 02 CHIUSA 03 CHIUSA 04 CHIUSA 05 APERTA 06 CHIUSA 07 CHIUSA 08 APERTA 09 CHIUSA 10 CHIUSA 11 CHIUSA 12 APERTA 13 CHIUSA 14 CHIUSA 15 CHIUSA 16 CHIUSA 17 CHIUSA 18 CHIUSA 19 APERTA 20 CHIUSA 21 CHIUSA 22 CHIUSA 23 CHIUSA 24 APERTA 25 APERTA 26 APERTA 27 APERTA 28 APERTA 29 APERTA 30 APERTA 31 APERTA PARCHEGGI E I PASS GRATUITI: A Cannobio i lavoratori turnisti possono sostare gratuitamente in via Dalla Chiesa, nell'area del Campo sportivo «Mario Brocca», esponendo l'apposita tessera, valida esclusivamente nei periodi di chiusura della statale. Per richiederla si compila il modulo pubblicato sul sito del Comune di Cannobio, indicando i dati personali, la targa del veicolo, la sede di lavoro e l'articolazione dei turni. Al modulo va allegata una dichiarazione del datore di lavoro, datata e sottoscritta, che attesti il rapporto di lavoro, la sede e l'organizzazione dei turni. La domanda va consegnata di persona alla Polizia Municipale, in via Giovanola 25, dal lunedì al sabato dalle 10.00 alle 12.00 e il giovedì anche dalle 16.30 alle 17.30. A Cannero Riviera il permesso di sosta gratuita si richiede online, attraverso il modulo disponibile sul sito del Comune. Occorre indicare i dati personali, la targa, la marca e il modello del veicolo, la località e la ditta presso cui si lavora, allegando una fotografia del permesso di lavoro. Il pass viene inviato per e-mail e va stampato ed esposto in modo visibile sull'auto. È valido nei soli periodi di chiusura totale della statale e consente la sosta in viale del Lido, in viale dei Tigli (esclusa l'area riservata ai pullman), nell'area ex tennis di viale del Lido, nel nuovo parcheggio della zona Hapimag e nel parcheggio antistante il Porto Turistico. La planimetria delle aree è consultabile sul sito del Comune di Cannero Riviera . Per informazioni sul servizio di navigazione è attivo il numero verde 800 551801.",
       "published_at": "2026-10-20T00:00:00+02:00",
-      "updated_at": "2026-10-21T09:05:27+02:00",
+      "updated_at": "2026-11-04T13:13:59+01:00",
       "valid_from": "2026-10-21",
       "valid_until": null,
       "closure_window": {
@@ -1500,8 +1500,8 @@
         }
       ],
       "is_calendar": true,
-      "calendar_updated_label": "21/10/2026 09:05",
-      "content_hash": "dc47b0a096168c8a740cee2178b25dd73471d129cc4947e4a2997ccf24744ccc",
+      "calendar_updated_label": "04/11/2026 13:13",
+      "content_hash": "ba7c60cb325dd232417ffe141f8fdb54b953bf14e15b6d27c35070315de20f07",
       "first_seen_at": "2026-10-25T10:45:41+01:00"
     },
     {
