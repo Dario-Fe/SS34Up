@@ -2,14 +2,14 @@
   "meta": {
     "app": "SS34Up",
     "version": 1,
-    "generated_at": "2026-11-08T16:07:04+01:00",
+    "generated_at": "2026-11-09T19:43:03+01:00",
     "timezone": "Europe/Rome",
     "update_schedule": [
       "10:00",
       "18:00"
     ],
     "schedule_note": "Aggiornamento automatico alle 10:00 e 18:00, ora italiana.",
-    "content_hash": "c393a68e90fef9e257b3e4ca8eb80b55d7f21bf15765293689a752a566878649",
+    "content_hash": "fd01a07858956180184156995e9f49d5aa31fa82dada3f0d2e8f73df3b36a92e",
     "sources": [
       {
         "id": "comune-verbania",
@@ -1360,6 +1360,29 @@
     }
   ],
   "notices": [
+    {
+      "id": "navigazione-611714",
+      "source": "Navigazione Laghi",
+      "source_id": "611714",
+      "source_url": "https://www.navigazionelaghi.it/avvisi/sospensione-corse-cannero-cannobio-per-apertura-strada-ss34/",
+      "source_api": "https://www.navigazionelaghi.it/wp-json/wp/v2/avvisi?lago=9&per_page=100",
+      "category": "navigazione",
+      "tags": [
+        "Navigazione Laghi",
+        "Lago Maggiore"
+      ],
+      "title": "Sospensione corse Cannero – Cannobio per apertura strada SS34",
+      "summary": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 26/26 Si informa la spettabile clientela che, a seguito dell’avviso pubblicato sul sito del Comune di Verbania relativo all’apertura della strada SS34, nelle giornate di lunedì 9, martedì 10 e mercoledì 11 novembre le corse n° 94, 95, 96, 97, 98, 99,…",
+      "body_text": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 26/26 Si informa la spettabile clientela che, a seguito dell’avviso pubblicato sul sito del Comune di Verbania relativo all’apertura della strada SS34, nelle giornate di lunedì 9, martedì 10 e mercoledì 11 novembre le corse n° 94, 95, 96, 97, 98, 99, 100 e 101 previste fra Cannero e Cannobio non verranno effettuate. In loro sostituzione, verranno effettuate corse integrative tra Intra e Laveno nella fascia oraria 12:30 – 20:00. Ci scusiamo per il disagio. Arona, 9 Novembre 2026 LA DIREZIONE",
+      "published_at": "2026-11-09T13:36:38+01:00",
+      "updated_at": "2026-11-09T13:36:38+01:00",
+      "valid_from": null,
+      "valid_until": null,
+      "closure_window": null,
+      "services": [],
+      "content_hash": "145b5cb4abc9a77445c37fd10cebfe8f331c4417af1affb35b9b8f192fa5c343",
+      "first_seen_at": "2026-11-09T19:42:57+01:00"
+    },
     {
       "id": "navigazione-609362",
       "source": "Navigazione Laghi",
