@@ -204,6 +204,34 @@ def test_timetables_are_parsed_with_validity():
     assert routes["Intra ↔ Laveno"]["pdf_url"].endswith(".pdf")
 
 
+def test_timetables_are_parsed_from_generic_winter_filenames():
+    html = """
+    <div class="file_list" id="list_orari-lago-maggiore">
+      <h5>Orario invernale battelli e traghetti valevole dal 9 novembre 2026 al 20 marzo 2027</h5>
+      <ul>
+        <li><a href="https://www.navigazionelaghi.it/wp-content/uploads/2026/11/Orario-Web-Inverno.pdf">
+          <span>Orario-Web-Inverno.pdf</span></a></li>
+        <li><a href="https://www.navigazionelaghi.it/wp-content/uploads/2026/11/Avviso-al-pubblico-n-28.pdf">
+          <span>Avviso-al-pubblico-n-28.pdf</span></a></li>
+        <li><a href="https://www.navigazionelaghi.it/wp-content/uploads/2026/11/Orario-Web-TRAGHETTI-2.pdf">
+          <span>Orario-Web-TRAGHETTI-2.pdf</span></a></li>
+      </ul>
+    </div>
+    <div class="file_list" id="list_orari-lago-como">
+      <h5>Orario in vigore dal 4 ottobre 2026 al 1 novembre 2026</h5>
+      <a href="https://www.navigazionelaghi.it/wp-content/uploads/2026/11/Orari_Web-I26-27.pdf">
+        Battelli e Servizi rapidi Como - Colico - Como</a>
+    </div>
+    """
+    timetables = parse_timetables(html, NAV_ORARI)
+    assert len(timetables) == 2
+    routes = {item["route"]: item for item in timetables}
+    assert routes["Arona ↔ Cannobio"]["pdf_url"].endswith("Orario-Web-Inverno.pdf")
+    assert routes["Intra ↔ Laveno"]["pdf_url"].endswith("Orario-Web-TRAGHETTI-2.pdf")
+    assert routes["Arona ↔ Cannobio"]["valid_from"] == "2026-11-09"
+    assert routes["Arona ↔ Cannobio"]["valid_until"] == "2027-03-20"
+
+
 def test_time_and_service_helpers():
     assert normalize_time("24.00") == "00:00"
     assert normalize_time("21,05") == "21:05"

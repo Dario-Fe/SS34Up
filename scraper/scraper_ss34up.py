@@ -630,7 +630,14 @@ def collect_navlaghi(
         notice["first_seen_at"] = seen.get(notice["id"], notice.get("first_seen_at", now))
     try:
         html = fetch(session, NAV_TIMETABLES_URL)
-        timetables = parse_timetables(html, NAV_TIMETABLES_URL)
+        parsed_timetables = parse_timetables(html, NAV_TIMETABLES_URL)
+        if parsed_timetables:
+            timetables = parsed_timetables
+        else:
+            warnings.append(
+                "Orari Navigazione Laghi non riconosciuti: uso gli ultimi salvati."
+            )
+            timetables = existing.get("timetables", [])
     except Exception as error:
         warnings.append(f"Orari Navigazione Laghi non disponibili: {error}")
         timetables = existing.get("timetables", [])

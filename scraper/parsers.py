@@ -846,13 +846,25 @@ def is_navlaghi_relevant(title: str, body: str) -> bool:
     )
 
 
+def _timetable_scope(soup: BeautifulSoup, source_url: str):
+    match = re.search(
+        r"/biglietti-e-orari-([a-z0-9-]+)/?$", urlparse(source_url).path
+    )
+    if match:
+        section = soup.find(id=f"list_orari-{match.group(1)}")
+        if section is not None:
+            return section, True
+    return soup, False
+
+
 def parse_timetables(html: str | bytes, source_url: str) -> list[dict]:
     assert_official_url(source_url)
     soup = parse_html(html)
-    page_text = node_text(soup)
+    scope, scoped = _timetable_scope(soup, source_url)
+    page_text = node_text(scope)
     valid_from, valid_until = extract_validity(page_text)
     timetables: dict[str, dict] = {}
-    for link in soup.find_all("a", href=True):
+    for link in scope.find_all("a", href=True):
         href = absolute_url(source_url, link["href"])
         if not href.lower().endswith(".pdf") or not is_official_url(href):
             continue
@@ -864,6 +876,15 @@ def parse_timetables(html: str | bytes, source_url: str) -> list[dict]:
         elif "INTRA" in combined and "LAVENO" in combined:
             route = "Intra ↔ Laveno"
             kind = "traghetto"
+        elif scoped and "TRAGHETT" in href.upper():
+            # Dal novembre 2026 la pagina usa nomi generici per i PDF del
+            # Lago Maggiore (es. Orario-Web-TRAGHETTI-2.pdf): la sezione è
+            # già quella del lago, quindi il tipo di file basta a capire la rotta.
+            route = "Intra ↔ Laveno"
+            kind = "traghetto"
+        elif scoped and re.search(r"ORARIO", href, re.IGNORECASE):
+            route = "Arona ↔ Cannobio"
+            kind = "battello"
         else:
             continue
         timetables[href] = {
