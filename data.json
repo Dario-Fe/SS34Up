@@ -2,14 +2,14 @@
   "meta": {
     "app": "SS34Up",
     "version": 1,
-    "generated_at": "2026-11-09T19:43:03+01:00",
+    "generated_at": "2026-11-10T18:26:49+01:00",
     "timezone": "Europe/Rome",
     "update_schedule": [
       "10:00",
       "18:00"
     ],
     "schedule_note": "Aggiornamento automatico alle 10:00 e 18:00, ora italiana.",
-    "content_hash": "fd01a07858956180184156995e9f49d5aa31fa82dada3f0d2e8f73df3b36a92e",
+    "content_hash": "1fc0c50f79587ee9b0b4f327a04b30bb210d50ff6b64a69c95227c40c6660550",
     "sources": [
       {
         "id": "comune-verbania",
@@ -1361,27 +1361,27 @@
   ],
   "notices": [
     {
-      "id": "navigazione-611714",
+      "id": "navigazione-611852",
       "source": "Navigazione Laghi",
-      "source_id": "611714",
-      "source_url": "https://www.navigazionelaghi.it/avvisi/sospensione-corse-cannero-cannobio-per-apertura-strada-ss34/",
+      "source_id": "611852",
+      "source_url": "https://www.navigazionelaghi.it/avvisi/modifiche-al-servizio-chiusura-ss34/",
       "source_api": "https://www.navigazionelaghi.it/wp-json/wp/v2/avvisi?lago=9&per_page=100",
       "category": "navigazione",
       "tags": [
         "Navigazione Laghi",
         "Lago Maggiore"
       ],
-      "title": "Sospensione corse Cannero – Cannobio per apertura strada SS34",
-      "summary": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 26/26 Si informa la spettabile clientela che, a seguito dell’avviso pubblicato sul sito del Comune di Verbania relativo all’apertura della strada SS34, nelle giornate di lunedì 9, martedì 10 e mercoledì 11 novembre le corse n° 94, 95, 96, 97, 98, 99,…",
-      "body_text": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 26/26 Si informa la spettabile clientela che, a seguito dell’avviso pubblicato sul sito del Comune di Verbania relativo all’apertura della strada SS34, nelle giornate di lunedì 9, martedì 10 e mercoledì 11 novembre le corse n° 94, 95, 96, 97, 98, 99, 100 e 101 previste fra Cannero e Cannobio non verranno effettuate. In loro sostituzione, verranno effettuate corse integrative tra Intra e Laveno nella fascia oraria 12:30 – 20:00. Ci scusiamo per il disagio. Arona, 9 Novembre 2026 LA DIREZIONE",
-      "published_at": "2026-11-09T13:36:38+01:00",
-      "updated_at": "2026-11-09T13:36:38+01:00",
+      "title": "Modifiche al servizio chiusura SS34",
+      "summary": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 28/26 Con l’introduzione del nuovo orario in vigore dal 09/11/2026, si riepilogano le modifiche al servizio intervenute in esito alle esigenze del territorio rappresentate in seno al Tavolo Tecnico istituito presso la Prefettura del VCO alla presenza…",
+      "body_text": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 28/26 Con l’introduzione del nuovo orario in vigore dal 09/11/2026, si riepilogano le modifiche al servizio intervenute in esito alle esigenze del territorio rappresentate in seno al Tavolo Tecnico istituito presso la Prefettura del VCO alla presenza della Provincia del VCO, della Prefettura di Varese e delle Amministrazioni comunali di Verbania, Cannero, Cannobio, Oggebbio, Ghiffa, Trarego Viggiona, Vignone, Bee, Arizzano e Premeno, per la mitigazione dei disagi conseguenti ai lavori per la messa in sicurezza della SS34. Nelle giornate di chiusura completa della SS34 secondo il calendario pubblicato dal Comune di Verbania è al momento prevista l’istituzione dei seguenti servizi integrativi Battello Cannero-Cannobio: partenze da Cannero 21:05 – 22:00 – 23:00 e 00:00 partenze da Cannobio 21:30 – 22:30 – 23:30 e 00:30 Corsa traghetto aggiuntivo Intra Laveno: partenza da Intra 00.00 partenza da Laveno 00.30 e la rimodulazione del servizio traghetto previsti dall’orario ufficiale con la sospensione delle seguenti corse sulla direttrice Intra-Laveno: T52 – T51 – T60 – T59 – T66 – T65 – T72 – T71 – T78 – T77 – T84 – T83 – T88 – T87 – T96 nelle giornate di apertura della SS34 con viabilità a senso unico alternato, non sarà previsto il servizio integrativo Cannero – Cannobio permanendo tuttavia sospensione delle corse sulla direttrice Intra-Laveno: T52 – T51 – T60 – T59 – T66 – T65 – T72 – T71 – T78 – T77 – T84 – T83 – T88 – T87 – T96 In considerazione dei flussi registrati nelle fasce pomeridiane delle corse traghetto, e con l’obiettivo di contenere quanto più possibile le ricadute sull’utenza si conferma l’impegno della Navigazione Lago Maggiore nel garantire, ove possibile , corse di sussidio nella fascia oraria più frequentate dai lavoratori pendolari (12.30 – 20.00). La reale operatività delle corse sarà comunicata a mezzo di avvisi al pubblico con la massima tempestività in funzione della programmazione di esercizio. Trattandosi di situazioni in continua evoluzione, subordinate altresì dalle condizioni metereologiche contingenti e variazioni del cronoprogramma lavori sulla SS34, si invitano i viaggiatori a prestare attenzione agli avvisi al pubblico affissi agli scali e sul sito che Navigazione Laghi si impegna a pubblicare in relazione alle future possibili ulteriori modifiche al servizio. I precedenti AVP (n. 22/26, 24/26, 25/26 e 26/26) sono da considerarsi superati. Arona, 10 Novembre 2026 LA DIREZIONE",
+      "published_at": "2026-11-10T17:22:54+01:00",
+      "updated_at": "2026-11-10T17:22:54+01:00",
       "valid_from": null,
       "valid_until": null,
       "closure_window": null,
       "services": [],
-      "content_hash": "145b5cb4abc9a77445c37fd10cebfe8f331c4417af1affb35b9b8f192fa5c343",
-      "first_seen_at": "2026-11-09T19:42:57+01:00"
+      "content_hash": "2cde415e1b8350746c0d92004ff07c59d9b7aa829510ce4e93b33c939a0b182c",
+      "first_seen_at": "2026-11-10T18:26:46+01:00"
     },
     {
       "id": "navigazione-609362",
@@ -1405,29 +1405,6 @@
       "services": [],
       "content_hash": "0f3dead4c51f53942bddea428cb98d28c240a597c9435372ab31d0eeff5dd278",
       "first_seen_at": "2026-10-28T16:03:58+01:00"
-    },
-    {
-      "id": "navigazione-603996",
-      "source": "Navigazione Laghi",
-      "source_id": "603996",
-      "source_url": "https://www.navigazionelaghi.it/avvisi/apertura-ss-34-cannero-cannobio/",
-      "source_api": "https://www.navigazionelaghi.it/wp-json/wp/v2/avvisi?lago=9&per_page=100",
-      "category": "navigazione",
-      "tags": [
-        "Navigazione Laghi",
-        "Lago Maggiore"
-      ],
-      "title": "Apertura SS.34 Cannero – Cannobio",
-      "summary": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 24/26 Si informa la spettabile clientela che, domenica 25 ottobre e domenica 01 Novembre 2026 le corse n° 94 – 95 – 96 – 97 – 98 – 99 – 100 – 101 previste fra Cannero e Cannobio non verranno effettuate in quanto, come comunicato dal Comune di Verbania…",
-      "body_text": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 24/26 Si informa la spettabile clientela che, domenica 25 ottobre e domenica 01 Novembre 2026 le corse n° 94 – 95 – 96 – 97 – 98 – 99 – 100 – 101 previste fra Cannero e Cannobio non verranno effettuate in quanto, come comunicato dal Comune di Verbania, la strada S.S. 34 rimarrà aperta. Arona, 23 Ottobre 2026 LA DIREZIONE",
-      "published_at": "2026-10-23T15:52:13+02:00",
-      "updated_at": "2026-10-23T15:52:13+02:00",
-      "valid_from": null,
-      "valid_until": null,
-      "closure_window": null,
-      "services": [],
-      "content_hash": "cb7a7c69d98821eaa776595fdff90d977c211d94cfe1fdb9991d3a43686b5925",
-      "first_seen_at": "2026-10-25T10:46:03+01:00"
     },
     {
       "id": "comune-2b6cc4e42a43",
@@ -1720,24 +1697,24 @@
   ],
   "timetables": [
     {
-      "id": "orario-5a6f7b7c6346",
+      "id": "orario-b98a5b2bd455",
       "kind": "battello",
       "route": "Arona ↔ Cannobio",
-      "title": "ARONA-CANNOBIO-ARONA.pdf",
-      "pdf_url": "https://www.navigazionelaghi.it/wp-content/uploads/2026/10/ARONA-CANNOBIO-ARONA.pdf",
+      "title": "Orario-Web-Inverno.pdf",
+      "pdf_url": "https://www.navigazionelaghi.it/wp-content/uploads/2026/11/Orario-Web-Inverno.pdf",
       "source_page": "https://www.navigazionelaghi.it/biglietti-e-orari-lago-maggiore/",
-      "valid_from": "2026-10-05",
-      "valid_until": "2026-11-08"
+      "valid_from": "2026-11-09",
+      "valid_until": "2027-03-20"
     },
     {
-      "id": "orario-9c68108fce50",
+      "id": "orario-69c3fd4ba985",
       "kind": "traghetto",
       "route": "Intra ↔ Laveno",
-      "title": "TRAGHETTI-INTRA-LAVENO-INTRA.pdf",
-      "pdf_url": "https://www.navigazionelaghi.it/wp-content/uploads/2026/10/TRAGHETTI-INTRA-LAVENO-INTRA.pdf",
+      "title": "Orario-Web-TRAGHETTI-2.pdf",
+      "pdf_url": "https://www.navigazionelaghi.it/wp-content/uploads/2026/11/Orario-Web-TRAGHETTI-2.pdf",
       "source_page": "https://www.navigazionelaghi.it/biglietti-e-orari-lago-maggiore/",
-      "valid_from": "2026-10-05",
-      "valid_until": "2026-11-08"
+      "valid_from": "2026-11-09",
+      "valid_until": "2027-03-20"
     }
   ]
 }
