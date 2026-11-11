@@ -2,14 +2,14 @@
   "meta": {
     "app": "SS34Up",
     "version": 1,
-    "generated_at": "2026-11-10T18:26:49+01:00",
+    "generated_at": "2026-11-11T17:06:44+01:00",
     "timezone": "Europe/Rome",
     "update_schedule": [
       "10:00",
       "18:00"
     ],
     "schedule_note": "Aggiornamento automatico alle 10:00 e 18:00, ora italiana.",
-    "content_hash": "1fc0c50f79587ee9b0b4f327a04b30bb210d50ff6b64a69c95227c40c6660550",
+    "content_hash": "52e74b5e21355658166093510339a3ec9af1e03ddaa632f4e3f1b79faca1ff34",
     "sources": [
       {
         "id": "comune-verbania",
@@ -1361,6 +1361,29 @@
   ],
   "notices": [
     {
+      "id": "navigazione-611863",
+      "source": "Navigazione Laghi",
+      "source_id": "611863",
+      "source_url": "https://www.navigazionelaghi.it/avvisi/corse-di-sussidio-tratta-intra-laveno/",
+      "source_api": "https://www.navigazionelaghi.it/wp-json/wp/v2/avvisi?lago=9&per_page=100",
+      "category": "navigazione",
+      "tags": [
+        "Navigazione Laghi",
+        "Lago Maggiore"
+      ],
+      "title": "Corse di sussidio tratta Intra – Laveno",
+      "summary": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 29/26 Si avvisa la spettabile clientela che nella giornata di domani, mercoledì 11 novembre, sulla tratta Intra – Laveno verranno effettuati delle corse di sussidio con i seguenti orari: INTRA p. LAVENO p. 12:30 13:00 13:30 14:00 14:30 15:00 15:30 16:…",
+      "body_text": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 29/26 Si avvisa la spettabile clientela che nella giornata di domani, mercoledì 11 novembre, sulla tratta Intra – Laveno verranno effettuati delle corse di sussidio con i seguenti orari: INTRA p. LAVENO p. 12:30 13:00 13:30 14:00 14:30 15:00 15:30 16:00 16:30 17:00 17:30 18:00 18:30 19:00 19:25 Arona, 10 Novembre 2026 LA DIREZIONE",
+      "published_at": "2026-11-10T19:12:09+01:00",
+      "updated_at": "2026-11-10T19:13:29+01:00",
+      "valid_from": null,
+      "valid_until": null,
+      "closure_window": null,
+      "services": [],
+      "content_hash": "90ded181d74c340397a07e8fb14f4854e443bbb8601196a0fd3adae04158d6a8",
+      "first_seen_at": "2026-11-11T17:06:42+01:00"
+    },
+    {
       "id": "navigazione-611852",
       "source": "Navigazione Laghi",
       "source_id": "611852",
@@ -1382,29 +1405,6 @@
       "services": [],
       "content_hash": "2cde415e1b8350746c0d92004ff07c59d9b7aa829510ce4e93b33c939a0b182c",
       "first_seen_at": "2026-11-10T18:26:46+01:00"
-    },
-    {
-      "id": "navigazione-609362",
-      "source": "Navigazione Laghi",
-      "source_id": "609362",
-      "source_url": "https://www.navigazionelaghi.it/avvisi/informativa-relativa-alle-modifiche-del-servizio-attualmente-in-vigore/",
-      "source_api": "https://www.navigazionelaghi.it/wp-json/wp/v2/avvisi?lago=9&per_page=100",
-      "category": "navigazione",
-      "tags": [
-        "Navigazione Laghi",
-        "Lago Maggiore"
-      ],
-      "title": "Informativa relativa alle modifiche del servizio attualmente in vigore",
-      "summary": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n°25/26 Con la presente, la scrivente Direzione di Esercizio desidera esprimere la propria comprensione per i disagi inevitabilmente derivanti dalla soppressione del gruppo corse c.d. T52 e assicurare che sono attualmente in corso le opportune valutazion…",
-      "body_text": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n°25/26 Con la presente, la scrivente Direzione di Esercizio desidera esprimere la propria comprensione per i disagi inevitabilmente derivanti dalla soppressione del gruppo corse c.d. T52 e assicurare che sono attualmente in corso le opportune valutazioni, finalizzate all’individuazione di possibili interventi migliorativi volti a contenere le ricadute sull’utenza. La rimodulazione del servizio si è resa necessaria in conseguenza dell’attivazione di un collegamento straordinario, richiesto dal tavolo Prefettizio, al fine di garantire la continuità dei collegamenti tra i Comuni di Cannero Riviera e Cannobio durante le ore notturne, nella fascia oraria compresa tra le ore 21:00 e le ore 05:00, in concomitanza con i lavori che interessano la Strada Statale 34. Al fine di valutare l’effettivo impatto delle modifiche introdotte e individuare eventuali soluzioni migliorative, è attualmente in corso un costante monitoraggio dei flussi di passeggeri e veicoli lungo la tratta interessata. Per agevolare la consultazione dell’offerta attualmente in vigore, si trasmette in allegato il quadro orario temporaneamente adottato per i collegamenti sulla tratta Intra – Laveno e viceversa. Arona, 28 ottobre 2026 LA DIREZIONE",
-      "published_at": "2026-10-28T14:01:16+01:00",
-      "updated_at": "2026-10-28T14:01:16+01:00",
-      "valid_from": null,
-      "valid_until": null,
-      "closure_window": null,
-      "services": [],
-      "content_hash": "0f3dead4c51f53942bddea428cb98d28c240a597c9435372ab31d0eeff5dd278",
-      "first_seen_at": "2026-10-28T16:03:58+01:00"
     },
     {
       "id": "comune-2b6cc4e42a43",
@@ -1503,29 +1503,6 @@
       "calendar_updated_label": "06/11/2026 16:03",
       "content_hash": "b16c53e36fe058c319840388fe828785855a70d9e9d7aee1be3e65220ab94932",
       "first_seen_at": "2026-10-25T10:45:41+01:00"
-    },
-    {
-      "id": "navigazione-585890",
-      "source": "Navigazione Laghi",
-      "source_id": "585890",
-      "source_url": "https://www.navigazionelaghi.it/avvisi/rimodulazione-servizio-di-linea/",
-      "source_api": "https://www.navigazionelaghi.it/wp-json/wp/v2/avvisi?lago=9&per_page=100",
-      "category": "navigazione",
-      "tags": [
-        "Navigazione Laghi",
-        "Lago Maggiore"
-      ],
-      "title": "Rimodulazione servizio di linea",
-      "summary": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 22/26 In esito alle esigenze del territorio rappresentate in seno al Tavolo Tecnico istituito presso la Prefettura del VCO alla presenza della Provincia del VCO, della Prefettura di Varese e delle Amministrazioni comunali di Verbania, Cannero, Cannobi…",
-      "body_text": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 22/26 In esito alle esigenze del territorio rappresentate in seno al Tavolo Tecnico istituito presso la Prefettura del VCO alla presenza della Provincia del VCO, della Prefettura di Varese e delle Amministrazioni comunali di Verbania, Cannero, Cannobio, Oggebbio, Ghiffa, Trarego Viggiona, Vignone, Bee, Arizzano e Premeno, per la mitigazione dei disagi conseguenti ai lavori per la messa in sicurezza della SS34, si informa la spettabile clientela che, a far data da mercoledì 21 ottobre, il servizio di linea sarà rimodulato come segue. È prevista l’istituzione di un servizio navetta serale tra Cannero e Cannobio e viceversa con partenze da Cannero 21:05 – 22:00 – 23:00 e 00:00 e da Cannobio 21:30 – 22:30 – 23:30 e 00:30 Saranno sospese le seguenti corse sulla direttrice Intra-Laveno: T52 – T51 – T60 – T59 – T66 – T65 – T72 – T71 – T78 – T77 – T84 – T83 – T88 – T87 – T96 Saranno previste due corse aggiuntive sulla direttrice Intra-Laveno alle ore 00:00 da Intra e 00:30 da Laveno Ci scusiamo per il disagio e confermiamo l’impegno a monitorare l’effettivo utilizzo dei servizi integrativi onde restituire al Tavolo Tecnico proposte di eventuali azioni correttive e migliorative. Arona, 12 Ottobre 2026 LA DIREZIONE",
-      "published_at": "2026-10-12T17:32:11+02:00",
-      "updated_at": "2026-10-12T17:32:11+02:00",
-      "valid_from": "2026-10-21",
-      "valid_until": null,
-      "closure_window": null,
-      "services": [],
-      "content_hash": "fdefba4f05647bd04e910249e694c312eb41c3e1b8f319930a64177a4d74fc95",
-      "first_seen_at": "2026-10-25T10:46:03+01:00"
     },
     {
       "id": "comune-6bba2c3d34fc",
