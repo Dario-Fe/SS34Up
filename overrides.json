@@ -1,0 +1,24 @@
+{
+  "_istruzioni": "Override manuali dello stato notturno SS34. JSON non supporta commenti: i campi _istruzioni, _campi e _esempio sono solo documentazione e vengono ignorati dall'app. Compila esclusivamente l'array \"overrides\". Precedenza: overrides.json (manuale) > calendar.overrides (automatico da Telegram) > calendario ufficiale.",
+  "_campi": {
+    "date": "Data della notte in formato YYYY-MM-DD. È il giorno di partenza della notte: 2026-11-12 indica la notte tra il 12 e il 13.",
+    "status": "Stato da mostrare: APERTA, CHIUSA o NON_DEFINITA. Se omesso viene dedotto da night_closed.",
+    "night_closed": "true se la strada è chiusa nella notte, false se è aperta. Se omesso viene dedotto da status.",
+    "reason": "Motivazione mostrata nella card e nella scheda del giorno (facoltativa).",
+    "source": "Etichetta della fonte, ad esempio \"Facebook Comune di Verbania\" (facoltativa).",
+    "source_url": "URL http/https della fonte da linkare (facoltativo).",
+    "updated_at": "Data e ora ISO 8601 dell'inserimento, ad esempio 2026-11-12T14:30:00+01:00. Facoltativa ma consigliata: viene mostrata nella card.",
+    "expires_at": "Data e ora ISO 8601 dopo la quale l'override viene ignorato e si torna al calendario ufficiale (facoltativa)."
+  },
+  "_esempio": {
+    "date": "2026-11-12",
+    "status": "APERTA",
+    "night_closed": false,
+    "reason": "Apertura per pioggia (fonte: Facebook Comune di Verbania)",
+    "source": "Intervento manuale",
+    "source_url": "https://www.facebook.com/comunediverbania",
+    "updated_at": "2026-11-12T14:30:00+01:00",
+    "expires_at": "2026-11-13T05:00:00+01:00"
+  },
+  "overrides": []
+}

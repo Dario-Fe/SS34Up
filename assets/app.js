@@ -95,16 +95,27 @@
     setupNoticeControls();
     setupServiceWorker();
 
+    let data = null;
     try {
       const response = await fetch("data.json", { cache: "no-store" });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const data = await response.json();
-      hydrate(data);
+      data = await response.json();
     } catch (error) {
       console.error("Impossibile caricare data.json", error);
       renderLoadError();
+      alignHashTarget();
+      return;
     }
 
+    let manualOverrides = null;
+    try {
+      const response = await fetch("overrides.json", { cache: "no-store" });
+      if (response.ok) manualOverrides = await response.json();
+    } catch (error) {
+      console.warn("Override manuali non disponibili", error);
+    }
+
+    hydrate(data, manualOverrides);
     alignHashTarget();
   }
 
@@ -129,14 +140,16 @@
     root.style.scrollBehavior = previous;
   }
 
-  function hydrate(data) {
+  function hydrate(data, manualOverrides) {
     if (!data || !data.calendar || !Array.isArray(data.calendar.days)) {
       renderLoadError();
       return;
     }
 
     state.data = data;
-    state.days = new Map(data.calendar.days.map((day) => [day.date, day]));
+    state.days = new Map(data.calendar.days.map((day) => [day.date, { ...day }]));
+    applyCalendarOverrides(data.calendar.overrides, "auto");
+    applyCalendarOverrides(manualOverrides?.overrides, "manual");
 
     $("#data-error").hidden = true;
     $("#status-card").setAttribute("aria-busy", "false");
@@ -158,6 +171,81 @@
       renderNights();
       updateCalendarMarkers();
     }, 60000);
+  }
+
+  function applyCalendarOverrides(list, kind) {
+    if (!Array.isArray(list)) return;
+
+    list.forEach((override) => {
+      if (!override || !override.date) return;
+      const day = state.days.get(override.date);
+      if (!day) return;
+
+      const expires = override.expires_at ? new Date(override.expires_at).getTime() : null;
+      if (expires !== null && !Number.isNaN(expires) && expires < Date.now()) return;
+
+      const requested = STATUS_LABELS[override.status] ? override.status : null;
+      const status = requested || (override.night_closed ? "CHIUSA" : "APERTA");
+      day.status = status;
+      day.status_label = STATUS_LABELS[status] || override.status_label || day.status_label;
+      day.night_closed =
+        typeof override.night_closed === "boolean" ? override.night_closed : status !== "APERTA";
+      day.override = {
+        kind,
+        reason: override.reason || "",
+        source: override.source || "",
+        source_url: override.source_url || "",
+        published_at: override.published_at || "",
+        updated_at: override.updated_at || ""
+      };
+    });
+  }
+
+  function formatOverrideMoment(override) {
+    const value = override?.published_at || override?.updated_at;
+    if (!value) return "";
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) return "";
+    return `${datePlain.format(parsed)}, ${timeShort.format(parsed)}`;
+  }
+
+  function overrideSummary(override) {
+    const when = formatOverrideMoment(override);
+    const parts = [];
+    if (override.kind === "auto") {
+      parts.push(
+        `Variazione recente dal canale Telegram del Comune di Verbania${when ? ` del ${when}` : ""}, che modifica il calendario ufficiale.`
+      );
+    } else {
+      parts.push(
+        `Stato impostato manualmente${when ? ` il ${when}` : ""}${override.source ? ` (${override.source})` : ""}.`
+      );
+    }
+    if (override.reason) parts.push(`Motivazione: ${override.reason}`);
+    return parts.join(" ");
+  }
+
+  function renderStatusOverride(override) {
+    const node = $("#status-override");
+    if (!node) return;
+
+    if (!override) {
+      node.hidden = true;
+      node.innerHTML = "";
+      return;
+    }
+
+    const when = formatOverrideMoment(override);
+    const label =
+      override.kind === "auto"
+        ? `Aggiornamento recente dal canale Telegram del Comune di Verbania${when ? ` del ${when}` : ""}: modifica il calendario ufficiale.`
+        : `Stato aggiornato manualmente${when ? ` il ${when}` : ""}${override.source ? ` (${override.source})` : ""}.`;
+    const reason = override.reason ? ` Motivazione: ${override.reason}` : "";
+    const link = override.source_url
+      ? ` <a href="${escapeHtml(safeUrl(override.source_url))}" target="_blank" rel="noopener noreferrer">Apri la fonte ↗</a>`
+      : "";
+    node.hidden = false;
+    node.innerHTML = `<strong>${escapeHtml(label)}</strong>${escapeHtml(reason)}${link}`;
   }
 
   function getRomeNow() {
@@ -267,6 +355,8 @@
         ? `Fonte: Comune di Verbania · calendario del ${sourceDate}`
         : "Fonte: Comune di Verbania";
     }
+
+    renderStatusOverride(day?.override);
   }
 
   function renderStats() {
@@ -331,6 +421,7 @@
               <span>${escapeHtml(dateMonth.format(new Date(`${day.date}T12:00:00Z`)).replace(/^\d+\s/, ""))}</span>
             </div>
             <span class="night-status">${escapeHtml(status)}</span>
+            ${day.override ? `<span class="night-override">${day.override.kind === "auto" ? "Aggiornato dal canale Telegram" : "Stato impostato manualmente"}</span>` : ""}
             <div class="night-window">
               <span>${day.night_closed ? "Chiusura" : "Stato"}</span>
               <strong>${escapeHtml(windowLabel)}</strong>
@@ -372,22 +463,24 @@
             const cells = week
               .map((day) => {
                 if (!day) return `<td class="cal-empty" aria-hidden="true"></td>`;
+                const sourceDay = state.days.get(day.date) || day;
                 const isCurrent = day.date === context.key;
                 const isToday = day.date === today;
-                const status = STATUS_LABELS[day.status] || day.status_label || "Stato";
-                const aria = `${dateLong.format(new Date(`${day.date}T12:00:00Z`))}, ${status}`;
+                const status = STATUS_LABELS[sourceDay.status] || sourceDay.status_label || "Stato";
+                const updated = sourceDay.override ? " (aggiornato da avviso)" : "";
+                const aria = `${dateLong.format(new Date(`${day.date}T12:00:00Z`))}, ${status}${updated}`;
 
                 return `
                   <td>
                     <button
-                      class="cal-day status-${statusClass(day.status)}${isCurrent ? " is-current" : ""}${isToday ? " is-today" : ""}"
+                      class="cal-day status-${statusClass(sourceDay.status)}${isCurrent ? " is-current" : ""}${isToday ? " is-today" : ""}${sourceDay.override ? " has-override" : ""}"
                       type="button"
                       data-date="${day.date}"
                       aria-label="${escapeHtml(aria)}. Apri i dettagli"
                       title="${escapeHtml(aria)}"
                     >
                       <span class="cal-num">${day.day}</span>
-                      <span class="cal-status">${escapeHtml(shortStatus(day.status))}</span>
+                      <span class="cal-status">${escapeHtml(shortStatus(sourceDay.status))}</span>
                     </button>
                   </td>
                 `;
@@ -681,11 +774,19 @@
     const status = STATUS_LABELS[day.status] || day.status_label || "Stato";
     const isCurrent = date === context.key;
     const isSaturday = new Date(`${date}T12:00:00Z`).getUTCDay() === 6;
+    const override = day.override;
     const explanation = day.night_closed
       ? `La SS34 è chiusa nella notte tra ${dateLong.format(new Date(`${date}T12:00:00Z`))} e il giorno successivo, dalle ${closure.start || "21:00"} alle ${closure.end || "05:00"}.`
       : day.status === "APERTA"
         ? `Nessuna chiusura notturna prevista: la strada resta aperta.${isSaturday ? " La notte tra sabato e domenica è esclusa dalle chiusure." : ""}`
         : "Lo stato di questa notte non è definito dal calendario. Verifica la fonte ufficiale prima di partire.";
+    const overrideSection = override
+      ? `<div class="dialog-section">
+          <h3>${override.kind === "auto" ? "Aggiornamento dal canale Telegram" : "Aggiornamento manuale"}</h3>
+          <p>${escapeHtml(overrideSummary(override))}</p>
+          ${override.source_url ? `<p><a href="${escapeHtml(safeUrl(override.source_url))}" target="_blank" rel="noopener noreferrer">Apri la fonte dell’aggiornamento ↗</a></p>` : ""}
+        </div>`
+      : "";
 
     openDialog(`
       <h2 id="detail-title">Notte di ${escapeHtml(dateLong.format(new Date(`${date}T12:00:00Z`)))}</h2>
@@ -697,6 +798,7 @@
         <h3>Stato della strada</h3>
         <p>${escapeHtml(explanation)}</p>
       </div>
+      ${overrideSection}
       <div class="dialog-section">
         <h3>${day.night_closed ? "Chiusura prevista" : "Finestra notturna"}</h3>
         <div class="dialog-window">${escapeHtml(day.night_closed ? `${closure.start || "21:00"} → ${closure.end || "05:00"}` : "Nessuna chiusura")}</div>

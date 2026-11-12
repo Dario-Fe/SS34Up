@@ -532,6 +532,36 @@ h3 {
   letter-spacing: -0.03em;
 }
 
+.status-override {
+  margin: 0 0 14px;
+  padding: 11px 13px;
+  border: 1px solid rgba(86, 211, 232, 0.28);
+  border-radius: var(--radius-sm);
+  background: rgba(86, 211, 232, 0.08);
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.status-override[hidden] {
+  display: none;
+}
+
+.status-override strong {
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+.status-override a {
+  color: var(--cyan);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.status-override a:hover {
+  text-decoration: underline;
+}
+
 .status-link {
   display: inline-flex;
   align-items: center;
@@ -789,6 +819,14 @@ h3 {
   background: currentColor;
 }
 
+.night-override {
+  display: block;
+  margin: -4px 0 14px;
+  color: var(--cyan);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
 .night-window {
   display: flex;
   align-items: center;
@@ -1000,6 +1038,18 @@ h3 {
 
 .cal-day.status-non-definita {
   color: var(--muted);
+}
+
+.cal-day.has-override::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 0 2px rgba(86, 211, 232, 0.18);
 }
 
 .cal-day.is-today::after {

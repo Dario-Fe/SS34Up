@@ -164,6 +164,36 @@ Il `content_hash` resta invariato quando i contenuti sono identici: serve a dist
 
 Per forzare un aggiornamento usare **Actions → Aggiorna dati SS34Up → Run workflow**. Il job richiede `contents: write`, già dichiarato nel workflow.
 
+## Aggiornamenti straordinari della notte
+
+Lo stato di una notte può essere corretto da due livelli, in ordine di precedenza crescente:
+
+1. **Automatico da Telegram** — lo scraper analizza i post del canale “Verbania M’Informa” degli ultimi 36 ore. Se un post indica in modo esplicito una variazione per la notte corrente o successiva (es. “la SS34 resterà aperta stanotte per pioggia”), viene scritto in `calendar.overrides` dentro `data.json`. L’override viene applicato solo se lo stato è diverso dal calendario ufficiale; la motivazione, se presente nel post, viene riportata nella card insieme a data, ora e link al post.
+2. **Manuale** — il file [`overrides.json`](overrides.json) nella root ha precedenza assoluta e non viene toccato dallo scraper. Per una notizia fuori dai canali monitorati (es. Facebook), basta modificare il file da GitHub e committare su `main`: Netlify ridistribuisce il sito e l’app applica l’override al reload, senza attendere la Action.
+
+Esempio di override manuale:
+
+```json
+{
+  "overrides": [
+    {
+      "date": "2026-11-12",
+      "status": "APERTA",
+      "night_closed": false,
+      "reason": "Apertura per pioggia (fonte: Facebook Comune)",
+      "source": "Intervento manuale",
+      "source_url": "",
+      "updated_at": "2026-11-12T14:30:00+01:00",
+      "expires_at": "2026-11-13T05:00:00+01:00"
+    }
+  ]
+}
+```
+
+`expires_at` è opzionale: una volta passata, la notte torna al calendario ufficiale. Per rimuovere un override manuale basta svuotare l’array `overrides`.
+
+Il file [`overrides.json`](overrides.json) contiene anche i campi di documentazione `_istruzioni`, `_campi` e `_esempio`: sono ignorati dall’app e servono come promemoria della struttura da usare.
+
 ## Deploy su Netlify
 
 1. Il repository pubblico è [Dario-Fe/SS34Up](https://github.com/Dario-Fe/SS34Up).
@@ -184,7 +214,10 @@ meta
   content_hash, sources
 calendar
   source_url, published_at, updated_at, updated_label, counts,
-  closure_window, months, days, content_hash
+  closure_window, months, days, overrides[], content_hash
+overrides[]
+  date, status, status_label, night_closed, reason, source, source_url,
+  published_at, kind
 notices[]
   id, source, source_id, source_url, source_api, telegram_url (solo Telegram),
   category, tags, title, summary, body_text, published_at, updated_at,

@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import json
+from datetime import datetime
 from pathlib import Path
 
 import pytest
 
 from parsers import (
+    ROME,
     canonical_notice_url,
+    detect_calendar_overrides,
     extract_closure_window,
     extract_services,
     extract_times,
@@ -358,8 +361,9 @@ def test_collect_telegram_skips_duplicates(monkeypatch):
             },
         ]
     }
-    notices, warnings = scraper.collect_telegram(None, existing, known)
+    notices, warnings, posts = scraper.collect_telegram(None, existing, known)
     assert warnings == []
+    assert posts
     assert [notice["id"] for notice in notices] == [
         "telegram-2910",
         "telegram-2800",
@@ -426,3 +430,115 @@ def test_generated_data_contract():
     assert all(is_official_url(notice["source_url"]) for notice in data["notices"])
     assert all(notice["first_seen_at"] for notice in data["notices"])
     assert all(is_official_url(item["pdf_url"]) for item in data["timetables"])
+
+
+def _override_calendar(*days):
+    return {"days": list(days)}
+
+
+def _telegram_notice(title, body, published_at, url="https://t.me/s/VerbaniaMinforma/1"):
+    return {
+        "source": "Comune di Verbania · Telegram",
+        "title": title,
+        "summary": body,
+        "body_text": body,
+        "published_at": published_at,
+        "source_url": url,
+        "telegram_url": url,
+    }
+
+
+def test_detect_override_for_rain_opening_tonight():
+    now = datetime(2026, 11, 12, 18, 0, tzinfo=ROME)
+    calendar = _override_calendar(
+        {"date": "2026-11-12", "status": "CHIUSA", "night_closed": True},
+        {"date": "2026-11-13", "status": "CHIUSA", "night_closed": True},
+    )
+    notice = _telegram_notice(
+        "SS34 aperta stanotte",
+        "La SS34 resterà aperta stanotte per pioggia: chiusura sospesa.",
+        "2026-11-12T14:30:00+01:00",
+    )
+
+    overrides = detect_calendar_overrides([notice], calendar, now)
+
+    assert len(overrides) == 1
+    assert overrides[0]["date"] == "2026-11-12"
+    assert overrides[0]["status"] == "APERTA"
+    assert overrides[0]["night_closed"] is False
+    assert "pioggia" in overrides[0]["reason"]
+    assert overrides[0]["published_at"] == "2026-11-12T14:30:00+01:00"
+
+
+def test_detect_override_with_explicit_night_range():
+    now = datetime(2026, 11, 12, 9, 0, tzinfo=ROME)
+    calendar = _override_calendar(
+        {"date": "2026-11-12", "status": "CHIUSA", "night_closed": True},
+    )
+    notice = _telegram_notice(
+        "SS34, chiusura sospesa",
+        "Nella notte tra il 12 e il 13 novembre la strada resterà aperta per maltempo.",
+        "2026-11-12T08:00:00+01:00",
+    )
+
+    overrides = detect_calendar_overrides([notice], calendar, now)
+
+    assert [item["date"] for item in overrides] == ["2026-11-12"]
+    assert overrides[0]["status"] == "APERTA"
+
+
+def test_detect_override_ignores_message_already_matching_calendar():
+    now = datetime(2026, 11, 12, 18, 0, tzinfo=ROME)
+    calendar = _override_calendar(
+        {"date": "2026-11-12", "status": "APERTA", "night_closed": False},
+    )
+    notice = _telegram_notice(
+        "SS34 aperta stanotte",
+        "La SS34 resterà aperta stanotte per pioggia.",
+        "2026-11-12T14:30:00+01:00",
+    )
+
+    assert detect_calendar_overrides([notice], calendar, now) == []
+
+
+def test_detect_override_ignores_message_without_date_or_status():
+    now = datetime(2026, 11, 12, 18, 0, tzinfo=ROME)
+    calendar = _override_calendar(
+        {"date": "2026-11-12", "status": "CHIUSA", "night_closed": True},
+    )
+    notice = _telegram_notice(
+        "Battelli serali",
+        "I battelli serali restano attivi per tutta la notte.",
+        "2026-11-12T14:30:00+01:00",
+    )
+
+    assert detect_calendar_overrides([notice], calendar, now) == []
+
+
+def test_detect_override_ignores_old_message():
+    now = datetime(2026, 11, 12, 18, 0, tzinfo=ROME)
+    calendar = _override_calendar(
+        {"date": "2026-11-12", "status": "CHIUSA", "night_closed": True},
+    )
+    notice = _telegram_notice(
+        "SS34 aperta stanotte",
+        "La SS34 resterà aperta stanotte per pioggia.",
+        "2026-11-10T09:00:00+01:00",
+    )
+
+    assert detect_calendar_overrides([notice], calendar, now) == []
+
+
+def test_detect_override_ignores_message_older_than_calendar_update():
+    now = datetime(2026, 11, 12, 18, 0, tzinfo=ROME)
+    calendar = _override_calendar(
+        {"date": "2026-11-12", "status": "CHIUSA", "night_closed": True},
+    )
+    calendar["updated_at"] = "2026-11-12T16:00:00+01:00"
+    notice = _telegram_notice(
+        "SS34 aperta stanotte",
+        "La SS34 resterà aperta stanotte per pioggia.",
+        "2026-11-12T14:30:00+01:00",
+    )
+
+    assert detect_calendar_overrides([notice], calendar, now) == []

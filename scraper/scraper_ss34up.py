@@ -18,6 +18,7 @@ try:
         TELEGRAM_CHANNEL_URL,
         assert_official_url,
         canonical_notice_url,
+        detect_calendar_overrides,
         extract_closure_window,
         extract_services,
         extract_validity,
@@ -42,6 +43,7 @@ except ImportError:
         TELEGRAM_CHANNEL_URL,
         assert_official_url,
         canonical_notice_url,
+        detect_calendar_overrides,
         extract_closure_window,
         extract_services,
         extract_validity,
@@ -527,7 +529,7 @@ def collect_telegram(
     session: requests.Session,
     existing: dict,
     known_notices: list[dict],
-) -> tuple[list[dict], list[str]]:
+) -> tuple[list[dict], list[str], list[dict]]:
     warnings: list[str] = []
     seen = first_seen_map(existing)
     now = datetime.now(ROME).isoformat(timespec="seconds")
@@ -541,7 +543,7 @@ def collect_telegram(
             for notice in existing.get("notices", [])
             if notice.get("source") == TELEGRAM_SOURCE
         ]
-        return filter_existing_telegram(previous, known_notices), warnings
+        return filter_existing_telegram(previous, known_notices), warnings, []
 
     known = list(known_notices)
     known_urls = {
@@ -592,7 +594,7 @@ def collect_telegram(
         and notice.get("id") not in current_ids
     ]
     preserved = filter_existing_telegram(previous, known)
-    return notices + preserved, warnings
+    return notices + preserved, warnings, posts
 
 
 def dedupe_by_source_url(notices: list[dict]) -> list[dict]:
@@ -644,12 +646,28 @@ def collect_navlaghi(
     return notices, timetables, warnings
 
 
+def telegram_posts_as_notices(posts: list[dict]) -> list[dict]:
+    return [
+        {
+            "source": TELEGRAM_SOURCE,
+            "title": post.get("title", ""),
+            "summary": post.get("summary", ""),
+            "body_text": post.get("body_text", ""),
+            "published_at": post.get("published_at", ""),
+            "source_url": post.get("url", ""),
+            "telegram_url": post.get("url", ""),
+        }
+        for post in posts
+    ]
+
+
 def build_data(
     calendar: dict,
     verbania_notices: list[dict],
     nav_notices: list[dict],
     telegram_notices: list[dict],
     timetables: list[dict],
+    telegram_posts: list[dict] | None = None,
 ) -> dict:
     notices = dedupe_by_source_url(
         verbania_notices + nav_notices + telegram_notices
@@ -669,12 +687,19 @@ def build_data(
         ]
         + [extract_services(calendar.get("body_text", ""), calendar["source_url"])]
     )
+    calendar_core = {
+        key: value
+        for key, value in calendar.items()
+        if key not in {"source", "title", "summary", "body_text", "overrides"}
+    }
+    calendar_core["overrides"] = detect_calendar_overrides(
+        telegram_posts_as_notices(telegram_posts)
+        if telegram_posts
+        else telegram_notices,
+        calendar,
+    )
     core = {
-        "calendar": {
-            key: value
-            for key, value in calendar.items()
-            if key not in {"source", "title", "summary", "body_text"}
-        },
+        "calendar": calendar_core,
         "notices": notices,
         "services": services,
         "timetables": timetables,
@@ -736,7 +761,7 @@ def main() -> int:
             existing, verbania_notices, "Comune di Verbania"
         )
     nav_notices, timetables, warnings_nav = collect_navlaghi(session, existing)
-    telegram_notices, warnings_telegram = collect_telegram(
+    telegram_notices, warnings_telegram, telegram_posts = collect_telegram(
         session,
         existing,
         verbania_notices + nav_notices,
@@ -748,6 +773,7 @@ def main() -> int:
         nav_notices,
         telegram_notices,
         timetables,
+        telegram_posts,
     )
     for warning in warnings:
         log(f"Avviso: {warning}")

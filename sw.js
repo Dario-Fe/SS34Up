@@ -1,14 +1,15 @@
 "use strict";
 
-const CACHE_NAME = "ss34up-v6";
+const CACHE_NAME = "ss34up-v7";
 const SHELL = [
   "./",
   "./index.html",
   "./infoutili.html",
-  "./assets/style.css?v=6",
-  "./assets/app.js?v=6",
+  "./assets/style.css?v=7",
+  "./assets/app.js?v=7",
   "./assets/nav.js?v=2",
   "./manifest.json",
+  "./overrides.json",
   "./icon.svg",
   "./icon-180.png",
   "./icon-192.png",
@@ -44,6 +45,7 @@ self.addEventListener("fetch", (event) => {
 
   if (
     url.pathname.endsWith("/data.json") ||
+    url.pathname.endsWith("/overrides.json") ||
     url.pathname.includes("/assets/") ||
     request.mode === "navigate"
   ) {

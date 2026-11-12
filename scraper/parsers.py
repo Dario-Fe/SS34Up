@@ -4,7 +4,7 @@ import hashlib
 import json
 import re
 import unicodedata
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from html import unescape
 from urllib.parse import unquote, urljoin, urlparse
 from zoneinfo import ZoneInfo
@@ -218,6 +218,279 @@ def notice_text(notice: dict) -> str:
             ]
         )
     )
+
+
+OVERRIDE_MAX_AGE_HOURS = 36
+
+OVERRIDE_NIGHT_CONTEXT = re.compile(
+    r"\bnotte\b|\bstanotte\b|\bnotturn[aoie]\b|\bsera\b|\bserale\b|"
+    r"\bdalle\s*21\b|\b21[:.]00\b|\b05[:.]00\b",
+    re.IGNORECASE,
+)
+
+OVERRIDE_OPEN = re.compile(
+    r"\b(?:resta|resterà|restera|resteranno|rimane|rimarrà|rimarra|rimarranno)\s+aperta\b|"
+    r"\b(?:strada|ss\s*\.?\s*34|circolazione|transito)\s+aperta\b|"
+    r"\baperta\s+al\s+transito\b|"
+    r"\bnon\s+(?:ci\s+sar[àa]|sar[àa]|verr[àa])\s+(?:la\s+)?chiusura\b|"
+    r"\bnon\s+chiude\b|\bnon\s+chiuder[àa]\b|"
+    r"\bchiusura\s+(?:sospesa|annullata|revocata|rinviata)\b|"
+    r"\b(?:sospesa|annullata|revocata|rinviata)\s+la\s+chiusura\b|"
+    r"\bapertura\s+(?:notturna|della\s+strada|al\s+transito|al\s+traffico)\b|"
+    r"\briapertura\b|\briaperta\b|\briapre\b",
+    re.IGNORECASE,
+)
+
+OVERRIDE_CLOSED = re.compile(
+    r"\bchiusa\b|\bchiude\b|\bchiusura\b|\bchiuder[àa]\b|\bchiuso\b",
+    re.IGNORECASE,
+)
+
+OVERRIDE_REASON_KEYWORDS = re.compile(
+    r"\bpioggia\b|\bmaltempo\b|\bmeteo\b|\bprevisioni\b|\bcondizioni\b|"
+    r"\bsicurezza\b|\ballerta\b|\bemergenza\b|\bcantiere\b|\borganizzazione\b|"
+    r"\blavori\b|\bconsentire\b|\bpermettere\b|\bdeflusso\b|\bviabilità\b|"
+    r"\besigenze\b|\bnecessità\b",
+    re.IGNORECASE,
+)
+
+OVERRIDE_RANGE = re.compile(
+    r"\btra\s+(?:(?:lunedì|lunedi|martedì|martedi|mercoledì|mercoledi|"
+    r"giovedì|giovedi|venerdì|venerdi|sabato|domenica)\s+)?(?:il\s+)?(\d{1,2})\s+e\s+"
+    r"(?:(?:lunedì|lunedi|martedì|martedi|mercoledì|mercoledi|"
+    r"giovedì|giovedi|venerdì|venerdi|sabato|domenica)\s+)?(?:il\s+)?(\d{1,2})"
+    r"(?:\s+(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre))?"
+    r"(?:\s+(\d{4}))?",
+    re.IGNORECASE,
+)
+
+OVERRIDE_TEXT_DATE = re.compile(
+    r"(?<!\d)(\d{1,2})\s+"
+    r"(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)"
+    r"(?:\s+(\d{4}))?",
+    re.IGNORECASE,
+)
+
+OVERRIDE_NUMERIC_DATE = re.compile(
+    r"(?<!\d)(\d{1,2})[/.](\d{1,2})(?:[/.](\d{2,4}))?(?!\d)"
+)
+
+OVERRIDE_TONIGHT = re.compile(
+    r"\b(?:stanotte|questa\s+notte|la\s+notte\s+di\s+oggi|notte\s+tra\s+oggi\s+e\s+domani)\b",
+    re.IGNORECASE,
+)
+
+OVERRIDE_TOMORROW = re.compile(
+    r"\b(?:domani\s+notte|notte\s+di\s+domani|notte\s+tra\s+domani\s+e\s+dopodomani)\b",
+    re.IGNORECASE,
+)
+
+
+def _parse_override_moment(value: str | None) -> datetime | None:
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=ROME)
+    return parsed
+
+
+def _resolve_override_date(
+    day: int, month: int, year: int | None, reference: date
+) -> str | None:
+    if not (1 <= month <= 12 and 1 <= day <= 31):
+        return None
+    years = [year] if year else [reference.year - 1, reference.year, reference.year + 1]
+    candidates = []
+    for candidate_year in years:
+        try:
+            candidates.append(date(candidate_year, month, day))
+        except ValueError:
+            continue
+    if not candidates:
+        return None
+    closest = min(candidates, key=lambda item: abs((item - reference).days))
+    return closest.isoformat()
+
+
+def _current_night_key(moment: datetime) -> date:
+    if moment.hour < 5:
+        return (moment - timedelta(days=1)).date()
+    return moment.date()
+
+
+def _looks_like_time(text: str, match: re.Match) -> bool:
+    if match.group(3):
+        return False
+    hour, minute = int(match.group(1)), int(match.group(2))
+    if hour > 31 or minute > 12:
+        return True
+    prefix = text[max(0, match.start() - 12) : match.start()].lower()
+    if re.search(r"(?:ore|dalle|alle|entro|fino)\s*$", prefix):
+        return True
+    return minute == 0 and hour <= 24
+
+
+def _month_near(text: str, position: int) -> int | None:
+    best: int | None = None
+    best_distance: int | None = None
+    for match in re.finditer(
+        r"\b(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)\b",
+        text,
+        re.IGNORECASE,
+    ):
+        month = MONTHS.get(match.group(1).lower())
+        distance = abs(match.start() - position)
+        if best_distance is None or distance < best_distance:
+            best = month
+            best_distance = distance
+    return best
+
+
+def _override_dates(text: str, published: datetime, now: datetime) -> list[str]:
+    reference = now.date()
+    found: list[str] = []
+
+    for match in OVERRIDE_RANGE.finditer(text):
+        month = MONTHS.get((match.group(3) or "").lower()) or _month_near(text, match.start())
+        if month is None:
+            month = published.month
+        year = int(match.group(4)) if match.group(4) else None
+        resolved = _resolve_override_date(int(match.group(1)), month, year, reference)
+        if resolved:
+            found.append(resolved)
+
+    if not found:
+        for match in OVERRIDE_TEXT_DATE.finditer(text):
+            month = MONTHS.get(match.group(2).lower())
+            year = int(match.group(3)) if match.group(3) else None
+            resolved = _resolve_override_date(int(match.group(1)), month, year, reference)
+            if resolved:
+                found.append(resolved)
+
+    if not found:
+        for match in OVERRIDE_NUMERIC_DATE.finditer(text):
+            if _looks_like_time(text, match):
+                continue
+            year = int(match.group(3)) if match.group(3) else None
+            if year is not None and year < 100:
+                year += 2000
+            resolved = _resolve_override_date(
+                int(match.group(1)), int(match.group(2)), year, reference
+            )
+            if resolved:
+                found.append(resolved)
+
+    if not found:
+        if OVERRIDE_TONIGHT.search(text):
+            found.append(_current_night_key(now).isoformat())
+        elif OVERRIDE_TOMORROW.search(text):
+            found.append(
+                (_current_night_key(now) + timedelta(days=1)).isoformat()
+            )
+
+    return list(dict.fromkeys(found))
+
+
+def extract_override_reason(text: str) -> str:
+    for sentence in re.split(r"(?<=[.!?])\s+", text):
+        sentence = sentence.strip(" -–—")
+        if sentence and OVERRIDE_REASON_KEYWORDS.search(sentence):
+            return sentence if len(sentence) <= 240 else sentence[:237].rstrip() + "…"
+    return ""
+
+
+def detect_calendar_overrides(
+    notices: list[dict],
+    calendar: dict | None,
+    now: datetime | None = None,
+) -> list[dict]:
+    """Rileva variazioni della notte corrente o successiva annunciate via Telegram.
+
+    Produce override solo quando il messaggio indica in modo esplicito uno stato
+    (aperta/chiusa), una notte riconoscibile e lo stato è diverso dal calendario.
+    """
+    moment = now or datetime.now(ROME)
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=ROME)
+
+    days_by_date = {
+        day.get("date"): day
+        for day in (calendar or {}).get("days", [])
+        if day.get("date")
+    }
+    current_night = _current_night_key(moment)
+    allowed = {
+        current_night.isoformat(),
+        (current_night + timedelta(days=1)).isoformat(),
+    }
+    calendar_updated = _parse_override_moment((calendar or {}).get("updated_at"))
+    best: dict[str, dict] = {}
+
+    for notice in notices or []:
+        published = _parse_override_moment(notice.get("published_at"))
+        if not published:
+            continue
+        if abs((moment - published).total_seconds()) > OVERRIDE_MAX_AGE_HOURS * 3600:
+            continue
+        if calendar_updated and published < calendar_updated:
+            continue
+
+        text = notice_text(notice)
+        if not text or not OVERRIDE_NIGHT_CONTEXT.search(text):
+            continue
+        if not SS34_PATTERN.search(text) and not re.search(
+            r"\bstatale\b|\bstrada\b", text, re.IGNORECASE
+        ):
+            continue
+
+        if OVERRIDE_OPEN.search(text):
+            status = "APERTA"
+        elif OVERRIDE_CLOSED.search(text):
+            status = "CHIUSA"
+        else:
+            continue
+
+        targets = [
+            target
+            for target in _override_dates(text, published, moment)
+            if target in allowed and target in days_by_date
+        ]
+        if not targets:
+            continue
+
+        reason = extract_override_reason(text)
+        for target in targets:
+            base = days_by_date[target]
+            night_closed = status != "APERTA"
+            base_status = base.get("status")
+            if base_status == status or (
+                night_closed and base_status in {"CHIUSA", "CHIUSURA_NOTTURNA"}
+            ):
+                continue
+            candidate = {
+                "date": target,
+                "status": status,
+                "status_label": STATUS_LABELS[status],
+                "night_closed": night_closed,
+                "reason": reason,
+                "source": notice.get("source") or "Canale Telegram del Comune",
+                "source_url": notice.get("telegram_url")
+                or notice.get("source_url")
+                or "",
+                "published_at": notice.get("published_at") or "",
+                "kind": "auto",
+            }
+            existing = best.get(target)
+            if existing is None or (
+                candidate["published_at"] or ""
+            ) > (existing["published_at"] or ""):
+                best[target] = candidate
+
+    return [best[key] for key in sorted(best)]
 
 
 def parse_telegram_datetime(value: str) -> str | None:
