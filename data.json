@@ -2,14 +2,14 @@
   "meta": {
     "app": "SS34Up",
     "version": 1,
-    "generated_at": "2026-11-12T14:30:44+01:00",
+    "generated_at": "2026-11-12T23:42:43+01:00",
     "timezone": "Europe/Rome",
     "update_schedule": [
       "10:00",
       "18:00"
     ],
     "schedule_note": "Aggiornamento automatico alle 10:00 e 18:00, ora italiana.",
-    "content_hash": "a37acae3832c8fc169196a42c4059fa123e2d9bf0d072ba9750fa169795453b6",
+    "content_hash": "f6b8b2034267c92fd4ec20b50a15d30fcd2f0e3a0fed288debf306e9f9c31232",
     "sources": [
       {
         "id": "comune-verbania",
@@ -1289,7 +1289,8 @@
         "sabato"
       ]
     },
-    "content_hash": "d58d592ab15a365b53bc001ff76427b93a0d6fce1e9686a090de414de7f9d6f6"
+    "content_hash": "d58d592ab15a365b53bc001ff76427b93a0d6fce1e9686a090de414de7f9d6f6",
+    "overrides": []
   },
   "services": [
     {
