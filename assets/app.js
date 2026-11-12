@@ -680,10 +680,11 @@
     const closure = state.data.calendar.closure_window || {};
     const status = STATUS_LABELS[day.status] || day.status_label || "Stato";
     const isCurrent = date === context.key;
+    const isSaturday = new Date(`${date}T12:00:00Z`).getUTCDay() === 6;
     const explanation = day.night_closed
       ? `La SS34 è chiusa nella notte tra ${dateLong.format(new Date(`${date}T12:00:00Z`))} e il giorno successivo, dalle ${closure.start || "21:00"} alle ${closure.end || "05:00"}.`
       : day.status === "APERTA"
-        ? "Nessuna chiusura notturna prevista: la strada resta aperta. La notte tra sabato e domenica è sempre esclusa dalle chiusure."
+        ? `Nessuna chiusura notturna prevista: la strada resta aperta.${isSaturday ? " La notte tra sabato e domenica è esclusa dalle chiusure." : ""}`
         : "Lo stato di questa notte non è definito dal calendario. Verifica la fonte ufficiale prima di partire.";
 
     openDialog(`
