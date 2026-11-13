@@ -2,14 +2,14 @@
   "meta": {
     "app": "SS34Up",
     "version": 1,
-    "generated_at": "2026-11-12T23:42:43+01:00",
+    "generated_at": "2026-11-13T17:15:02+01:00",
     "timezone": "Europe/Rome",
     "update_schedule": [
       "10:00",
       "18:00"
     ],
     "schedule_note": "Aggiornamento automatico alle 10:00 e 18:00, ora italiana.",
-    "content_hash": "f6b8b2034267c92fd4ec20b50a15d30fcd2f0e3a0fed288debf306e9f9c31232",
+    "content_hash": "4cfa074e727be889d6b0c9e0d0553bfe2f0ecf0cb60e3adb23fa43439cc3e21c",
     "sources": [
       {
         "id": "comune-verbania",
@@ -1361,6 +1361,29 @@
     }
   ],
   "notices": [
+    {
+      "id": "navigazione-612113",
+      "source": "Navigazione Laghi",
+      "source_id": "612113",
+      "source_url": "https://www.navigazionelaghi.it/avvisi/corse-di-sussidio-tratta-intra-laveno-2/",
+      "source_api": "https://www.navigazionelaghi.it/wp-json/wp/v2/avvisi?lago=9&per_page=100",
+      "category": "navigazione",
+      "tags": [
+        "Navigazione Laghi",
+        "Lago Maggiore"
+      ],
+      "title": "Corse di sussidio tratta Intra – Laveno",
+      "summary": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 30/26 Si avvisa la spettabile clientela che nelle giornate di sabato 14 novembre e domenica 15 novembre sulla tratta Intra – Laveno verranno effettuati delle corse di sussidio con i seguenti orari: INTRA p. LAVENO p. 12:30 13:00 13:30 14:00 14:30 15:0…",
+      "body_text": "NAVIGAZIONE LAGO MAGGIORE GESTIONE GOVERNATIVA AVVISO AL PUBBLICO n° 30/26 Si avvisa la spettabile clientela che nelle giornate di sabato 14 novembre e domenica 15 novembre sulla tratta Intra – Laveno verranno effettuati delle corse di sussidio con i seguenti orari: INTRA p. LAVENO p. 12:30 13:00 13:30 14:00 14:30 15:00 15:30 16:00 16:30 17:00 17:30 18:00 18:30 19:00 19:25 Arona, 13 Novembre 2026 LA DIREZIONE",
+      "published_at": "2026-11-13T11:23:05+01:00",
+      "updated_at": "2026-11-13T11:23:05+01:00",
+      "valid_from": null,
+      "valid_until": null,
+      "closure_window": null,
+      "services": [],
+      "content_hash": "f3a5c7ce3bbf6afad94be94024642277d85ceb91ca42f54e1fd0ce0073ef7ca8",
+      "first_seen_at": "2026-11-13T17:14:59+01:00"
+    },
     {
       "id": "navigazione-611852",
       "source": "Navigazione Laghi",
